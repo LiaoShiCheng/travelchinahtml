@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Day Tour Builder | Real-Time Pricing & Itinerary Designer</title>
+  <meta name="description" content="Handcraft your private 1-day China tour. Pick your destination city, must-see attractions, authentic dining, VIP vehicle, and private guide with real-time transparent pricing." />
+  <meta name="keywords" content="Custom China day tour, private 1 day tour builder, bespoke Beijing day trip, bespoke Shanghai tour, private car and guide China" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://travelchina.com/custom-tour.html" />
+
+  <!-- OpenGraph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://travelchina.com/custom-tour.html" />
+  <meta property="og:title" content="Custom Day Tour Builder | Real-Time Pricing & Itinerary Designer" />
+  <meta property="og:description" content="Handcraft your private 1-day China tour. Pick your destination city, must-see attractions, authentic dining, VIP vehicle, and private guide with real-time transparent pricing." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Custom Day Tour Builder | Real-Time Pricing & Itinerary Designer" />
+  <meta name="twitter:description" content="Handcraft your private 1-day China tour. Pick your destination city, must-see attractions, authentic dining, VIP vehicle, and private guide with real-time transparent pricing." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            china: {
+              red: '#C8102E',
+              darkred: '#9B111E',
+              gold: '#C5A059',
+              darkgold: '#997328',
+              navy: '#0F1E36',
+              slate: '#1E293B',
+              jade: '#0A5C36',
+              cream: '#FDFBF7'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+            chinese: ['"PingFang SC"', '"Microsoft YaHei"', 'sans-serif']
+          },
+          boxShadow: {
+            'card': '0 10px 30px -5px rgba(15, 30, 54, 0.08), 0 4px 12px -2px rgba(15, 30, 54, 0.04)',
+            'card-hover': '0 20px 40px -10px rgba(15, 30, 54, 0.15), 0 8px 20px -4px rgba(15, 30, 54, 0.08)',
+            'sticky': '0 -4px 20px rgba(0, 0, 0, 0.12)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Leaflet JS -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+
+  
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://travelchina.com/index.html"},{"@type":"ListItem","position":2,"name":"Tailor-Made Tour"}]}</script>
+  
+</head>
+<body class="bg-[#FCFBF8] text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-china-red selection:text-white">
+  
+  <!-- Top Bar -->
+  <div class="bg-china-navy text-gray-300 text-xs py-2.5 px-4 border-b border-white/10 hidden md:block">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-6">
+        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-china-gold"></i> Certified China Inbound Tour Operator (Lic: L-BJ-CJ00889)</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5 text-china-gold"></i> 24/7 VIP Concierge: +86 (10) 5360-1728</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5 text-china-gold"></i> service@travelchina.com</span>
+      </div>
+      <div class="flex items-center space-x-5">
+        <a href="https://wa.me/8613121234038" target="_blank" rel="noopener" class="text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 font-medium transition-colors">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp Concierge
+        </a>
+        <span class="text-white/20">|</span>
+        <span class="text-china-gold font-medium">144h Visa-Free Transit Guarantee</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <a href="/index.html" class="flex items-center space-x-3 group">
+          <div class="w-11 h-11 bg-china-red rounded-xl flex items-center justify-center text-white font-serif font-bold text-2xl shadow-md group-hover:scale-105 transition-transform duration-300">
+            TC
+          </div>
+          <div>
+            <span class="font-serif font-bold text-2xl tracking-tight text-china-navy block">TRAVEL<span class="text-china-red">CHINA</span></span>
+            <span class="text-[10px] tracking-[0.25em] text-gray-500 uppercase block font-medium">DISCOVER THE MIDDLE KINGDOM</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation with Hover Sub-menus & Tooltips -->
+        <nav class="hidden lg:flex items-center space-x-7">
+          
+            <div class="relative group py-6">
+              <a href="/tours/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
+                <span>Hot Tours</span>
+                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">5A</span>
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
+              </a>
+
+              <!-- Dropdown Panel (Hover Bridge & Card) -->
+              <div class="absolute left-0 top-[calc(100%-8px)] pt-2 w-80 z-50 invisible opacity-0 translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1 ring-1 ring-black/5">
+                  
+                    <a href="/tours/tc-101.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Classic Golden Triangle</span>
+                          <span class="px-1.5 py-0.2 rounded-full text-[8px] font-bold bg-red-100 text-china-red uppercase leading-tight shrink-0">Hot</span>
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Beijing, Xi'an & Shanghai (8-10 Days)</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/tours/tc-104.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Avatar & Yangtze Cruise</span>
+                          <span class="px-1.5 py-0.2 rounded-full text-[8px] font-bold bg-red-100 text-china-red uppercase leading-tight shrink-0">Classical</span>
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Zhangjiajie & Luxury River Cruise</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/tours/tc-103.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Legendary Silk Road</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Dunhuang, Turpan & Urumqi Odyssey</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/tours/tc-105.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Roof of the World: Tibet</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Lhasa & Everest Base Camp Expedition</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/tours/tc-106.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Yunnan Ethnic Kingdoms</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Lijiang, Shangri-La & Dali Fairyland</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/tours/index.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">View All Long-haul Tours</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Explore All Handcrafted Journeys</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <div class="relative group py-6">
+              <a href="/day-tours/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
+                <span>Day Tours</span>
+                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">Hot</span>
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
+              </a>
+
+              <!-- Dropdown Panel (Hover Bridge & Card) -->
+              <div class="absolute left-0 top-[calc(100%-8px)] pt-2 w-80 z-50 invisible opacity-0 translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1 ring-1 ring-black/5">
+                  
+                    <a href="/day-tours/beijing.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Beijing Day Tours</span>
+                          <span class="px-1.5 py-0.2 rounded-full text-[8px] font-bold bg-red-100 text-china-red uppercase leading-tight shrink-0">Hot</span>
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Great Wall, Forbidden City & Hutongs</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/day-tours/shanghai.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Shanghai Day Tours</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">The Bund, French Concession & Water Towns</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/day-tours/xian.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Xi'an Day Tours</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Terracotta Warriors & Ming City Wall</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/day-tours/chengdu.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Chengdu Day Tours</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Giant Pandas & Sanxingdui Mystery</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/day-tours/guilin.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Guilin & Yangshuo</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Li River Cruise & Karst Countryside</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/day-tours/zhangjiajie.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Zhangjiajie Day Tours</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Avatar Mountains & Glass Skywalk</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/day-tours/index.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">View All Day Tours</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Single-City Excursions & Activities</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <div class="relative group py-6">
+              <a href="/destinations/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
+                <span>Destinations</span>
+                
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
+              </a>
+
+              <!-- Dropdown Panel (Hover Bridge & Card) -->
+              <div class="absolute left-0 top-[calc(100%-8px)] pt-2 w-80 z-50 invisible opacity-0 translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1 ring-1 ring-black/5">
+                  
+                    <a href="/destinations/beijing.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Beijing</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Imperial Majesty & Ancient Wonders</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/destinations/shanghai.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Shanghai</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Futuristic Skyline & Bund Heritage</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/destinations/xian.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Xi'an</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">13 Ancient Dynasties & Terracotta Army</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/destinations/chengdu.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Chengdu</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Giant Panda Sanctuary & Spicy Delicacies</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/destinations/guilin.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Guilin & Yangshuo</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Karst Mountains & Li River Landscapes</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/destinations/zhangjiajie.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Zhangjiajie</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Avatar Hallelujah Mountains</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/destinations/index.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Explore All Cities</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Discover Iconic Cities of China</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <div class="relative group py-6">
+              <a href="/hotels/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
+                <span>China Hotels</span>
+                
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
+              </a>
+
+              <!-- Dropdown Panel (Hover Bridge & Card) -->
+              <div class="absolute left-0 top-[calc(100%-8px)] pt-2 w-80 z-50 invisible opacity-0 translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1 ring-1 ring-black/5">
+                  
+                    <a href="/hotels/beijing.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Beijing Hotels</span>
+                          
+                        </div>
+                        
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                </div>
+              </div>
+            </div>
+            
+              <div class="relative group py-6">
+                <a href="/custom-tour.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-china-red border-china-red font-bold">
+                  <span>Tailor-Made</span>
+                  
+                </a>
+
+                <!-- Hover Tooltip Popover for Single Nav Item -->
+                <div class="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] pt-2 w-64 z-50 invisible opacity-0 translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                  <div class="bg-china-navy/95 backdrop-blur-md text-white rounded-xl shadow-xl p-3 text-xs leading-relaxed border border-white/10 text-center relative">
+                    <!-- Arrow Pointer -->
+                    <div class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-china-navy/95 rotate-45 border-t border-l border-white/10"></div>
+                    <div class="relative z-10">
+                      <div class="flex items-center justify-center gap-1 text-china-gold font-bold text-[11px] mb-1">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-china-gold"></i>
+                        <span>Tailor-Made</span>
+                      </div>
+                      <p class="text-gray-200 font-normal text-[11px] leading-snug">100% Private, flexible & handcrafted journeys tailored to your pace and budget. test</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            <div class="relative group py-6">
+              <a href="/insights/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
+                <span>China Highlights</span>
+                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">Hot</span>
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
+              </a>
+
+              <!-- Dropdown Panel (Hover Bridge & Card) -->
+              <div class="absolute left-0 top-[calc(100%-8px)] pt-2 w-80 z-50 invisible opacity-0 translate-y-1.5 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1 ring-1 ring-black/5">
+                  
+                    <a href="/insights/china-144-hour-visa-free-transit-guide.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">144-Hour Visa-Free Transit</span>
+                          <span class="px-1.5 py-0.2 rounded-full text-[8px] font-bold bg-red-100 text-china-red uppercase leading-tight shrink-0">Hot</span>
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Complete Visa Exemption Guide</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/insights/all-cashless-china-guide.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Cashless China: Alipay & WeChat</span>
+                          <span class="px-1.5 py-0.2 rounded-full text-[8px] font-bold bg-red-100 text-china-red uppercase leading-tight shrink-0">Hot</span>
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Link Foreign Visa/Mastercard</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/insights/china-high-speed-rail-masterclass.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">High-Speed Rail Masterclass</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">12306 Booking & Train Travel Tips</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/insights/top-10-must-try-chinese-dishes.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Top 10 Must-Try Chinese Dishes</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Authentic Culinary Experiences</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                    <a href="/insights/index.html" class="flex items-start justify-between p-2.5 rounded-xl hover:bg-red-50/70 transition-all group/sub">
+                      <div class="pr-2 min-w-0">
+                        <div class="text-xs font-bold text-gray-800 group-hover/sub:text-china-red transition-colors flex items-center gap-1.5">
+                          <span class="truncate">Read All Insights</span>
+                          
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-0.5 line-clamp-1 leading-snug">Practical Guides, Dining & Transport</p>
+                      </div>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-300 group-hover/sub:text-china-red group-hover/sub:translate-x-0.5 transition-all mt-0.5 shrink-0"></i>
+                    </a>
+                  
+                </div>
+              </div>
+            </div>
+            
+              <a href="/about.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
+                <span>About Us</span>
+                
+              </a>
+              
+        </nav>
+
+        
+
+        <div class="flex lg:hidden items-center space-x-3">
+          <a href="/custom-tour.html" class="text-xs bg-china-red text-white px-3.5 py-1.5 rounded-full font-medium shadow">Plan Trip</a>
+          <button id="mobileMenuBtn" onclick="toggleMobileDrawer()" aria-label="Toggle Navigation" class="p-2 text-gray-700 hover:text-china-red rounded-lg focus:outline-none">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation with Accordion & Description -->
+    <div id="mobileDrawer" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-2 shadow-xl max-h-[80vh] overflow-y-auto">
+      
+        <div class="rounded-lg border border-gray-100 overflow-hidden">
+          <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
+            <a href="/tours/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
+              <span>Hot Tours</span>
+              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">5A</span>
+            </a>
+            <button onclick="toggleMobileSubmenu('mobile_sub_0', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
+              <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
+            </button>
+          </div>
+          <div id="mobile_sub_0" class="hidden bg-gray-50/80 px-3 py-2 space-y-1 border-t border-gray-100">
+            
+              <a href="/tours/tc-101.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Classic Golden Triangle</span>
+                  <span class="text-[9px] bg-red-100 text-china-red px-1.5 py-0.2 rounded-full font-bold">Hot</span>
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Beijing, Xi'an & Shanghai (8-10 Days)</div>
+              </a>
+            
+              <a href="/tours/tc-104.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Avatar & Yangtze Cruise</span>
+                  <span class="text-[9px] bg-red-100 text-china-red px-1.5 py-0.2 rounded-full font-bold">Classical</span>
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Zhangjiajie & Luxury River Cruise</div>
+              </a>
+            
+              <a href="/tours/tc-103.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Legendary Silk Road</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Dunhuang, Turpan & Urumqi Odyssey</div>
+              </a>
+            
+              <a href="/tours/tc-105.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Roof of the World: Tibet</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Lhasa & Everest Base Camp Expedition</div>
+              </a>
+            
+              <a href="/tours/tc-106.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Yunnan Ethnic Kingdoms</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Lijiang, Shangri-La & Dali Fairyland</div>
+              </a>
+            
+              <a href="/tours/index.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>View All Long-haul Tours</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Explore All Handcrafted Journeys</div>
+              </a>
+            
+          </div>
+        </div>
+        
+        <div class="rounded-lg border border-gray-100 overflow-hidden">
+          <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
+            <a href="/day-tours/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
+              <span>Day Tours</span>
+              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">Hot</span>
+            </a>
+            <button onclick="toggleMobileSubmenu('mobile_sub_1', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
+              <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
+            </button>
+          </div>
+          <div id="mobile_sub_1" class="hidden bg-gray-50/80 px-3 py-2 space-y-1 border-t border-gray-100">
+            
+              <a href="/day-tours/beijing.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Beijing Day Tours</span>
+                  <span class="text-[9px] bg-red-100 text-china-red px-1.5 py-0.2 rounded-full font-bold">Hot</span>
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Great Wall, Forbidden City & Hutongs</div>
+              </a>
+            
+              <a href="/day-tours/shanghai.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Shanghai Day Tours</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">The Bund, French Concession & Water Towns</div>
+              </a>
+            
+              <a href="/day-tours/xian.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Xi'an Day Tours</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Terracotta Warriors & Ming City Wall</div>
+              </a>
+            
+              <a href="/day-tours/chengdu.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Chengdu Day Tours</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Giant Pandas & Sanxingdui Mystery</div>
+              </a>
+            
+              <a href="/day-tours/guilin.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Guilin & Yangshuo</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Li River Cruise & Karst Countryside</div>
+              </a>
+            
+              <a href="/day-tours/zhangjiajie.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Zhangjiajie Day Tours</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Avatar Mountains & Glass Skywalk</div>
+              </a>
+            
+              <a href="/day-tours/index.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>View All Day Tours</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Single-City Excursions & Activities</div>
+              </a>
+            
+          </div>
+        </div>
+        
+        <div class="rounded-lg border border-gray-100 overflow-hidden">
+          <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
+            <a href="/destinations/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
+              <span>Destinations</span>
+              
+            </a>
+            <button onclick="toggleMobileSubmenu('mobile_sub_2', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
+              <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
+            </button>
+          </div>
+          <div id="mobile_sub_2" class="hidden bg-gray-50/80 px-3 py-2 space-y-1 border-t border-gray-100">
+            
+              <a href="/destinations/beijing.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Beijing</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Imperial Majesty & Ancient Wonders</div>
+              </a>
+            
+              <a href="/destinations/shanghai.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Shanghai</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Futuristic Skyline & Bund Heritage</div>
+              </a>
+            
+              <a href="/destinations/xian.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Xi'an</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">13 Ancient Dynasties & Terracotta Army</div>
+              </a>
+            
+              <a href="/destinations/chengdu.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Chengdu</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Giant Panda Sanctuary & Spicy Delicacies</div>
+              </a>
+            
+              <a href="/destinations/guilin.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Guilin & Yangshuo</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Karst Mountains & Li River Landscapes</div>
+              </a>
+            
+              <a href="/destinations/zhangjiajie.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Zhangjiajie</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Avatar Hallelujah Mountains</div>
+              </a>
+            
+              <a href="/destinations/index.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Explore All Cities</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Discover Iconic Cities of China</div>
+              </a>
+            
+          </div>
+        </div>
+        
+        <div class="rounded-lg border border-gray-100 overflow-hidden">
+          <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
+            <a href="/hotels/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
+              <span>China Hotels</span>
+              
+            </a>
+            <button onclick="toggleMobileSubmenu('mobile_sub_3', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
+              <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
+            </button>
+          </div>
+          <div id="mobile_sub_3" class="hidden bg-gray-50/80 px-3 py-2 space-y-1 border-t border-gray-100">
+            
+              <a href="/hotels/beijing.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Beijing Hotels</span>
+                  
+                </div>
+                
+              </a>
+            
+          </div>
+        </div>
+        
+          <a href="/custom-tour.html" class="block px-3 py-2.5 rounded-lg text-base font-medium transition-colors bg-red-50 text-china-red font-bold">
+            <div class="flex items-center justify-between">
+              <span>Tailor-Made</span>
+              
+            </div>
+            <p class="text-xs text-gray-400 font-normal mt-1 leading-snug">100% Private, flexible & handcrafted journeys tailored to your pace and budget. test</p>
+          </a>
+          
+        <div class="rounded-lg border border-gray-100 overflow-hidden">
+          <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
+            <a href="/insights/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
+              <span>China Highlights</span>
+              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">Hot</span>
+            </a>
+            <button onclick="toggleMobileSubmenu('mobile_sub_5', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
+              <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
+            </button>
+          </div>
+          <div id="mobile_sub_5" class="hidden bg-gray-50/80 px-3 py-2 space-y-1 border-t border-gray-100">
+            
+              <a href="/insights/china-144-hour-visa-free-transit-guide.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>144-Hour Visa-Free Transit</span>
+                  <span class="text-[9px] bg-red-100 text-china-red px-1.5 py-0.2 rounded-full font-bold">Hot</span>
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Complete Visa Exemption Guide</div>
+              </a>
+            
+              <a href="/insights/all-cashless-china-guide.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Cashless China: Alipay & WeChat</span>
+                  <span class="text-[9px] bg-red-100 text-china-red px-1.5 py-0.2 rounded-full font-bold">Hot</span>
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Link Foreign Visa/Mastercard</div>
+              </a>
+            
+              <a href="/insights/china-high-speed-rail-masterclass.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>High-Speed Rail Masterclass</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">12306 Booking & Train Travel Tips</div>
+              </a>
+            
+              <a href="/insights/top-10-must-try-chinese-dishes.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Top 10 Must-Try Chinese Dishes</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Authentic Culinary Experiences</div>
+              </a>
+            
+              <a href="/insights/index.html" class="block py-2 px-2.5 rounded-md text-xs font-medium text-gray-600 hover:text-china-red hover:bg-white transition-colors">
+                <div class="flex items-center justify-between">
+                  <span>Read All Insights</span>
+                  
+                </div>
+                <div class="text-[10px] text-gray-400 font-normal mt-0.5">Practical Guides, Dining & Transport</div>
+              </a>
+            
+          </div>
+        </div>
+        
+          <a href="/about.html" class="block px-3 py-2.5 rounded-lg text-base font-medium transition-colors text-gray-700 hover:bg-gray-50">
+            <div class="flex items-center justify-between">
+              <span>About Us</span>
+              
+            </div>
+            
+          </a>
+          
+      <div class="pt-4 border-t border-gray-100 flex flex-col gap-2.5">
+        <a href="https://wa.me/8613121234038" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 w-full py-3 bg-emerald-600 text-white rounded-xl text-sm font-semibold shadow">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Travel Specialist
+        </a>
+      </div>
+    </div>
+    <script>
+      function toggleMobileDrawer() {
+        var d = document.getElementById('mobileDrawer');
+        if (d) d.classList.toggle('hidden');
+      }
+      function toggleMobileSubmenu(subId, btn) {
+        var el = document.getElementById(subId);
+        if (!el) return;
+        el.classList.toggle('hidden');
+        var icon = btn ? btn.querySelector('svg, i') : null;
+        if (icon) icon.classList.toggle('rotate-180');
+      }
+    </script>
+  </header>
+  
+  <main class="flex-grow">
+    
+  <!-- Breadcrumb Navigation Bar -->
+  <nav class="bg-slate-50/90 border-b border-gray-200/80 py-3 text-xs text-gray-500 relative z-20" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-2.5">
+      <ol class="flex items-center gap-1.5 flex-wrap min-w-0" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5">
+          <a href="/index.html" itemprop="item" class="hover:text-china-red transition-colors flex items-center gap-1 font-medium text-gray-600">
+            <i data-lucide="home" class="w-3.5 h-3.5 text-gray-400"></i>
+            <span itemprop="name">Home</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5 min-w-0">
+              <span class="text-gray-400 shrink-0">/</span>
+              <span itemprop="name" class="text-china-navy font-bold truncate max-w-xs sm:max-w-md md:max-w-xl" aria-current="page">Tailor-Made Tour</span>
+              
+              <meta itemprop="position" content="2" />
+            </li>
+            
+      </ol>
+      
+    </div>
+  </nav>
+  
+    
+  <style>
+    /* Selected card styling */
+    .city-radio:checked + div {
+      border-color: #C8102E !important;
+      box-shadow: 0 0 0 2px #C8102E !important;
+    }
+    .city-radio:checked + div .city-overlay {
+      background: linear-gradient(to top, rgba(200, 16, 46, 0.85) 0%, rgba(10, 22, 40, 0.4) 100%) !important;
+    }
+    .city-radio:checked + div .city-check-icon {
+      background-color: #C8102E !important;
+      border-color: #C8102E !important;
+    }
+    .city-radio:checked + div .city-check-svg {
+      opacity: 1 !important;
+    }
+    .custom-res-card.active {
+      border-color: #C8102E !important;
+      background-color: #FEF2F2 !important;
+      box-shadow: 0 2px 8px rgba(200, 16, 46, 0.08);
+    }
+    .custom-res-card.active .res-check-badge {
+      background-color: #C8102E !important;
+      color: #ffffff !important;
+      border-color: #C8102E !important;
+    }
+    .custom-res-card.disabled {
+      opacity: 0.55 !important;
+      cursor: not-allowed !important;
+      filter: grayscale(40%);
+    }
+    .pax-radio:checked + span {
+      background-color: #C8102E !important;
+      color: #ffffff !important;
+      border-color: #C8102E !important;
+      font-weight: 700;
+    }
+  </style>
+
+  <!-- Hero Header -->
+  <section class="relative py-16 sm:py-20 bg-china-navy text-white overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1920&q=80" alt="Custom Day Tour Builder" class="w-full h-full object-cover opacity-30" />
+      <div class="absolute inset-0 bg-gradient-to-r from-china-navy via-china-navy/85 to-transparent"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-china-gold border border-china-gold/30 text-xs font-semibold mb-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>1-Day Private Customizer • Real-Time Database Pricing Engine</span>
+        </div>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
+          Custom Day Tour Builder
+        </h1>
+        <p class="text-gray-300 text-sm sm:text-base mt-3 leading-relaxed">
+          Design your perfect day tour. Pick a destination city, hand-select must-see landmarks, authentic dining, VIP vehicle, and private guide. Live pricing updates automatically.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Customizer Builder Grid -->
+  <section class="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      
+      <!-- Left 2 Cols: Step-by-Step Resource Selector -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- STEP 1: Select Destination City (Single Select Radio) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-200 space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-china-red text-xs uppercase font-bold tracking-widest block">Step 1</span>
+              <h2 class="font-serif text-xl sm:text-2xl font-bold text-china-navy">Select Destination City</h2>
+            </div>
+            <span class="text-xs text-gray-400 font-medium">Single Selection</span>
+          </div>
+          <p class="text-xs text-gray-500">Choose one city for your 1-day itinerary. The resource library for attractions, restaurants, fleet, and guides will load automatically.</p>
+
+          <!-- 6 City Radio Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4" id="cityRadioGroup">
+            
+              <label class="city-card relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 group shadow-sm select-none">
+                <input type="radio" name="builder_city" value="beijing" class="city-radio sr-only" checked onchange="onCitySelected('beijing')" />
+                <div class="relative h-28 sm:h-36 overflow-hidden rounded-2xl border-2 border-transparent transition-all">
+                  <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/cities/img-1788327753704-i2n1.webp" alt="Beijing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="city-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-colors"></div>
+                  
+                  <div class="city-check-icon absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm border border-white/60 flex items-center justify-center text-white transition-all shadow-sm">
+                    <svg class="w-3.5 h-3.5 city-check-svg opacity-0 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-3 right-3 text-white">
+                    <span class="text-[10px] text-china-gold font-bold uppercase tracking-wider block font-chinese">北京</span>
+                    <h4 class="font-serif font-bold text-sm sm:text-base leading-snug">Beijing</h4>
+                  </div>
+                </div>
+              </label>
+              
+              <label class="city-card relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 group shadow-sm select-none">
+                <input type="radio" name="builder_city" value="chengdu" class="city-radio sr-only"  onchange="onCitySelected('chengdu')" />
+                <div class="relative h-28 sm:h-36 overflow-hidden rounded-2xl border-2 border-transparent transition-all">
+                  <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80" alt="Chengdu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="city-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-colors"></div>
+                  
+                  <div class="city-check-icon absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm border border-white/60 flex items-center justify-center text-white transition-all shadow-sm">
+                    <svg class="w-3.5 h-3.5 city-check-svg opacity-0 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-3 right-3 text-white">
+                    <span class="text-[10px] text-china-gold font-bold uppercase tracking-wider block font-chinese">成都</span>
+                    <h4 class="font-serif font-bold text-sm sm:text-base leading-snug">Chengdu</h4>
+                  </div>
+                </div>
+              </label>
+              
+              <label class="city-card relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 group shadow-sm select-none">
+                <input type="radio" name="builder_city" value="guilin" class="city-radio sr-only"  onchange="onCitySelected('guilin')" />
+                <div class="relative h-28 sm:h-36 overflow-hidden rounded-2xl border-2 border-transparent transition-all">
+                  <img src="https://images.unsplash.com/photo-1528702748617-c64d49f918af?auto=format&fit=crop&w=1600&q=80" alt="Guilin & Yangshuo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="city-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-colors"></div>
+                  
+                  <div class="city-check-icon absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm border border-white/60 flex items-center justify-center text-white transition-all shadow-sm">
+                    <svg class="w-3.5 h-3.5 city-check-svg opacity-0 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-3 right-3 text-white">
+                    <span class="text-[10px] text-china-gold font-bold uppercase tracking-wider block font-chinese">桂林与阳朔</span>
+                    <h4 class="font-serif font-bold text-sm sm:text-base leading-snug">Guilin & Yangshuo</h4>
+                  </div>
+                </div>
+              </label>
+              
+              <label class="city-card relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 group shadow-sm select-none">
+                <input type="radio" name="builder_city" value="shanghai" class="city-radio sr-only"  onchange="onCitySelected('shanghai')" />
+                <div class="relative h-28 sm:h-36 overflow-hidden rounded-2xl border-2 border-transparent transition-all">
+                  <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80" alt="Shanghai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="city-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-colors"></div>
+                  
+                  <div class="city-check-icon absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm border border-white/60 flex items-center justify-center text-white transition-all shadow-sm">
+                    <svg class="w-3.5 h-3.5 city-check-svg opacity-0 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-3 right-3 text-white">
+                    <span class="text-[10px] text-china-gold font-bold uppercase tracking-wider block font-chinese">上海</span>
+                    <h4 class="font-serif font-bold text-sm sm:text-base leading-snug">Shanghai</h4>
+                  </div>
+                </div>
+              </label>
+              
+              <label class="city-card relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 group shadow-sm select-none">
+                <input type="radio" name="builder_city" value="xian" class="city-radio sr-only"  onchange="onCitySelected('xian')" />
+                <div class="relative h-28 sm:h-36 overflow-hidden rounded-2xl border-2 border-transparent transition-all">
+                  <img src="https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&w=1600&q=80" alt="Xi'an" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="city-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-colors"></div>
+                  
+                  <div class="city-check-icon absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm border border-white/60 flex items-center justify-center text-white transition-all shadow-sm">
+                    <svg class="w-3.5 h-3.5 city-check-svg opacity-0 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-3 right-3 text-white">
+                    <span class="text-[10px] text-china-gold font-bold uppercase tracking-wider block font-chinese">西安</span>
+                    <h4 class="font-serif font-bold text-sm sm:text-base leading-snug">Xi'an</h4>
+                  </div>
+                </div>
+              </label>
+              
+              <label class="city-card relative rounded-2xl overflow-hidden cursor-pointer border-2 border-transparent transition-all duration-300 group shadow-sm select-none">
+                <input type="radio" name="builder_city" value="zhangjiajie" class="city-radio sr-only"  onchange="onCitySelected('zhangjiajie')" />
+                <div class="relative h-28 sm:h-36 overflow-hidden rounded-2xl border-2 border-transparent transition-all">
+                  <img src="https://images.unsplash.com/photo-1513415564515-763d91423bdd?auto=format&fit=crop&w=1600&q=80" alt="Zhangjiajie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="city-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-colors"></div>
+                  
+                  <div class="city-check-icon absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm border border-white/60 flex items-center justify-center text-white transition-all shadow-sm">
+                    <svg class="w-3.5 h-3.5 city-check-svg opacity-0 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  </div>
+
+                  <div class="absolute bottom-2.5 left-3 right-3 text-white">
+                    <span class="text-[10px] text-china-gold font-bold uppercase tracking-wider block font-chinese">张家界</span>
+                    <h4 class="font-serif font-bold text-sm sm:text-base leading-snug">Zhangjiajie</h4>
+                  </div>
+                </div>
+              </label>
+              
+          </div>
+        </div>
+
+        <!-- STEP 2: Attractions Library (Multi-select with MAX = 3) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-200 space-y-4">
+          <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+            <div>
+              <span class="text-china-red text-xs uppercase font-bold tracking-widest block">Step 2</span>
+              <h2 class="font-serif text-xl sm:text-2xl font-bold text-china-navy">Must-See Attractions & Landmarks</h2>
+            </div>
+            <div class="text-right">
+              <span id="attrLimitBadge" class="px-2.5 py-1 bg-red-50 text-china-red text-xs font-bold rounded-lg border border-red-100">
+                0 / 3 Selected (Max 3)
+              </span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500">Pick up to 3 landmarks for a comfortable 1-day itinerary. Click <strong>Details</strong> to preview photos, or click card to select.</p>
+
+          <!-- Dynamic Attractions Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="attractionsGridContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- STEP 3: Restaurants Library (Multi-select with MAX = 2, Optional) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-200 space-y-4">
+          <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+            <div>
+              <span class="text-china-red text-xs uppercase font-bold tracking-widest block">Step 3</span>
+              <h2 class="font-serif text-xl sm:text-2xl font-bold text-china-navy">Authentic Local Dining (Optional)</h2>
+            </div>
+            <div class="text-right">
+              <span id="restLimitBadge" class="px-2.5 py-1 bg-amber-50 text-amber-900 text-xs font-bold rounded-lg border border-amber-200">
+                0 / 2 Selected (Max 2)
+              </span>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500">Hand-pick lunch or dinner at iconic heritage restaurants. Estimated meal cost is factored into the price range (can also be skipped).</p>
+
+          <!-- Dynamic Restaurants Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="restaurantsGridContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- STEP 4: Private Vehicle Chauffeur (Optional Single Select) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-200 space-y-4">
+          <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+            <div>
+              <span class="text-china-red text-xs uppercase font-bold tracking-widest block">Step 4</span>
+              <h2 class="font-serif text-xl sm:text-2xl font-bold text-china-navy">Dedicated Private Chauffeur & Vehicle</h2>
+            </div>
+            <span class="text-xs text-gray-400 font-medium">(Optional — click to select/deselect)</span>
+          </div>
+          <p class="text-xs text-gray-500">Full-day private air-conditioned vehicle with licensed chauffeur (includes fuel, parking, and toll fees). Click selected vehicle again to deselect.</p>
+
+          <!-- Dynamic Vehicles Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5" id="vehiclesGridContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- STEP 5: Licensed Private Guide (Optional Single Select) -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-200 space-y-4">
+          <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+            <div>
+              <span class="text-china-red text-xs uppercase font-bold tracking-widest block">Step 5</span>
+              <h2 class="font-serif text-xl sm:text-2xl font-bold text-china-navy">Licensed Private Tour Guide</h2>
+            </div>
+            <span class="text-xs text-gray-400 font-medium">(Optional — click to select/deselect)</span>
+          </div>
+          <p class="text-xs text-gray-500">Official national certified guide with in-depth historical knowledge and fluent foreign languages. Click selected guide again to deselect.</p>
+
+          <!-- Dynamic Guides Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5" id="guidesGridContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- STEP 6: Traveler Count Selection -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-200 space-y-4">
+          <div class="border-b border-gray-100 pb-3">
+            <span class="text-china-red text-xs uppercase font-bold tracking-widest block">Step 6</span>
+            <h2 class="font-serif text-xl sm:text-2xl font-bold text-china-navy">Number of Travelers</h2>
+            <p class="text-xs text-gray-500 mt-1">Ticket fees and dining budgets are multiplied by group size; vehicle and guide fees are shared across the party.</p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+            
+              <label class="cursor-pointer select-none">
+                <input type="radio" name="traveler_pax" value="1" class="pax-radio sr-only"  onchange="onPaxChanged(1)" />
+                <span class="block text-center py-2.5 px-3 rounded-xl border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-xs transition-all">
+                  <strong class="block text-xs font-bold">1 Person</strong>
+                  <span class="text-[10px] opacity-75">Solo Private</span>
+                </span>
+              </label>
+            
+              <label class="cursor-pointer select-none">
+                <input type="radio" name="traveler_pax" value="2" class="pax-radio sr-only" checked onchange="onPaxChanged(2)" />
+                <span class="block text-center py-2.5 px-3 rounded-xl border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-xs transition-all">
+                  <strong class="block text-xs font-bold">2 Persons</strong>
+                  <span class="text-[10px] opacity-75">Most Popular</span>
+                </span>
+              </label>
+            
+              <label class="cursor-pointer select-none">
+                <input type="radio" name="traveler_pax" value="3" class="pax-radio sr-only"  onchange="onPaxChanged(3)" />
+                <span class="block text-center py-2.5 px-3 rounded-xl border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-xs transition-all">
+                  <strong class="block text-xs font-bold">3-4 Persons</strong>
+                  <span class="text-[10px] opacity-75">Small Family</span>
+                </span>
+              </label>
+            
+              <label class="cursor-pointer select-none">
+                <input type="radio" name="traveler_pax" value="5" class="pax-radio sr-only"  onchange="onPaxChanged(5)" />
+                <span class="block text-center py-2.5 px-3 rounded-xl border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-xs transition-all">
+                  <strong class="block text-xs font-bold">5-6 Persons</strong>
+                  <span class="text-[10px] opacity-75">Family Group</span>
+                </span>
+              </label>
+            
+              <label class="cursor-pointer select-none">
+                <input type="radio" name="traveler_pax" value="8" class="pax-radio sr-only"  onchange="onPaxChanged(8)" />
+                <span class="block text-center py-2.5 px-3 rounded-xl border border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700 text-xs transition-all">
+                  <strong class="block text-xs font-bold">7+ Persons</strong>
+                  <span class="text-[10px] opacity-75">Private Party</span>
+                </span>
+              </label>
+            
+          </div>
+        </div>
+
+        <!-- Guarantees & Credentials -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-200 space-y-4 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-gray-50">
+              <span class="w-8 h-8 rounded-xl bg-red-100 text-china-red flex items-center justify-center shrink-0 font-bold">12h</span>
+              <div>
+                <strong class="font-serif text-sm text-china-navy block">Fast Custom Proposal</strong>
+                <p class="text-gray-500 text-[11px] mt-0.5">Full timing, route map, and transparent itemization sent to your email within 12 hours.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-gray-50">
+              <span class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 font-bold">0</span>
+              <div>
+                <strong class="font-serif text-sm text-china-navy block">Pure Travel Guarantee</strong>
+                <p class="text-gray-500 text-[11px] mt-0.5">100% private. Zero commission shopping stops. 100% focused on authentic exploration.</p>
+              </div>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-gray-100 text-[11px] text-gray-400 flex flex-wrap items-center justify-between gap-2">
+            <span>🛡️ China National Tourism Administration License: L-BJ-CJ00889</span>
+            <span>📍 Beijing Flagship: Level 28, China World Trade Center Tower 3, Chaoyang District, Beijing 100004, China</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Col: Live Pricing Engine & Request Form (Sticky) -->
+      <div class="space-y-6 lg:sticky lg:top-24">
+        
+        <div class="bg-white p-6 sm:p-7 rounded-3xl shadow-card border border-gray-200 space-y-5">
+          
+          <div>
+            <span class="text-china-red text-xs uppercase font-bold tracking-widest block">Live Quotation</span>
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-china-navy">Estimated Day Tour Price</h3>
+          </div>
+
+          <!-- Live Price Banner -->
+          <div class="p-4 rounded-2xl bg-gradient-to-br from-red-50/80 via-white to-amber-50/60 border border-red-200/80">
+            <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Total Group Quote Range:</div>
+            <div class="text-2xl sm:text-3xl font-serif font-extrabold text-china-red mt-0.5" id="liveTotalPriceDisplay">
+              $0 ~ $0
+            </div>
+            <div class="text-xs font-semibold text-slate-700 mt-1 flex items-center gap-1.5" id="livePerPersonDisplay">
+              From $0 / person (2 Travelers)
+            </div>
+          </div>
+
+          <!-- Itemized Breakdown Box -->
+          <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-xs space-y-2" id="priceBreakdownContainer">
+            <div class="font-bold text-china-navy text-[11px] border-b border-gray-200/60 pb-1.5 flex items-center justify-between">
+              <span>Resource Cost Itemization:</span>
+              <span id="breakdownCityLabel" class="text-china-red uppercase">Beijing</span>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-gray-500">🚗 Private Vehicle (Full Day):</span>
+              <span class="font-bold text-china-navy font-mono" id="rowVehicleCost">$0</span>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-gray-500">👨‍💼 Licensed Guide (Full Day):</span>
+              <span class="font-bold text-china-navy font-mono" id="rowGuideCost">$0</span>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-gray-500" id="labelTicketCount">🏛️ Admission Tickets:</span>
+              <span class="font-bold text-china-navy font-mono" id="rowTicketCost">$0</span>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-gray-500" id="labelDiningCount">🍜 Dining Budget:</span>
+              <span class="font-bold text-china-navy font-mono" id="rowDiningCost">$0</span>
+            </div>
+          </div>
+
+          <!-- Selected Summary Tags -->
+          <div class="space-y-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 block">Selected Day Itinerary:</span>
+            <div id="selectedSummaryPills" class="flex flex-wrap gap-1.5 text-[10px]">
+              <!-- Pills injected by JS -->
+            </div>
+          </div>
+
+          <!-- Booking Lead Form -->
+          <form id="customTourForm" class="space-y-3 pt-2 border-t border-gray-100">
+            <input type="text" name="hp_website_trap" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" />
+
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">Your Full Name *</label>
+              <input type="text" required name="fullName" placeholder="e.g. David Miller" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:ring-2 focus:ring-china-red focus:outline-none" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">Email Address *</label>
+              <input type="email" required name="email" placeholder="david@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:ring-2 focus:ring-china-red focus:outline-none" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">WhatsApp / Phone</label>
+              <input type="tel" name="whatsapp" placeholder="+1 (555) 000-0000" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:ring-2 focus:ring-china-red focus:outline-none" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">Target Travel Date</label>
+              <input type="text" name="travelDate" placeholder="e.g. Oct 15, 2026 or Next Month" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:ring-2 focus:ring-china-red focus:outline-none" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-gray-700 uppercase tracking-wider mb-1">Special Wishes / Hotel Pickup</label>
+              <textarea name="notes" rows="2" placeholder="Hotel pickup address, dietary requirements (halal, vegetarian), or children's ages..." class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs focus:ring-2 focus:ring-china-red focus:outline-none"></textarea>
+            </div>
+
+            <button type="submit" id="submitCustomFormBtn" class="w-full py-3.5 bg-china-red hover:bg-china-darkred text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 mt-2">
+              <span>Book & Lock Today's Rate</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+
+            <div id="customFormFeedback" class="text-xs text-center font-medium hidden"></div>
+
+            <div class="text-[10px] text-gray-400 text-center space-y-0.5 pt-1">
+              <p>🔒 Free cancellation up to 48 hours prior.</p>
+              <p>Average response time: <strong>under 2 hours</strong>.</p>
+            </div>
+          </form>
+
+          <!-- WhatsApp Link -->
+          <div class="pt-3 border-t border-gray-100 text-center">
+            <a href="https://wa.me/8613121234038?text=Hi%20TravelChina,%20I%20would%20like%20to%20customize%20a%20private%20day%20tour." target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors">
+              <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              <span>Instant Chat on WhatsApp (Online)</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sticky Mobile Bar -->
+  <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 p-3 shadow-lg flex items-center justify-between">
+    <div class="min-w-0 mr-3">
+      <span class="text-[10px] text-gray-400 block truncate" id="mobilePriceLabel">Estimated Total:</span>
+      <span class="text-sm font-bold text-china-red truncate block" id="mobilePriceValue">$0</span>
+    </div>
+    <a href="#customTourForm" class="px-5 py-2.5 bg-china-red text-white text-xs font-bold rounded-xl shadow shrink-0 flex items-center gap-1.5">
+      <span>Book Day Tour</span>
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    </a>
+  </div>
+
+  <!-- Resource Detail Modal / Drawer -->
+  <div id="resourceDetailModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-china-navy/70 backdrop-blur-sm transition-opacity" onclick="closeResourceModal()"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="relative bg-white w-full sm:max-w-2xl sm:rounded-3xl rounded-t-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col transform transition-all animate-fade-in-up">
+        <!-- Mobile swipe handle -->
+        <div class="sm:hidden flex justify-center pt-3 pb-1 cursor-pointer" onclick="closeResourceModal()">
+          <div class="w-12 h-1.5 bg-gray-300 rounded-full"></div>
+        </div>
+
+        <!-- Header -->
+        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+          <div class="flex items-center gap-2 overflow-hidden mr-2">
+            <span id="modalTypeBadge" class="px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider shrink-0 bg-china-red text-white"></span>
+            <h3 id="modalTitle" class="font-serif text-base sm:text-lg font-bold text-china-navy truncate"></h3>
+          </div>
+          <button onclick="closeResourceModal()" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Scrollable Body -->
+        <div class="overflow-y-auto p-6 space-y-5 flex-grow">
+          <!-- Main Image & Thumbnails -->
+          <div class="space-y-2">
+            <div class="relative h-56 sm:h-72 rounded-2xl overflow-hidden bg-gray-900 shadow-inner">
+              <img id="modalMainImage" src="" alt="" class="w-full h-full object-cover transition-all duration-300" />
+              <div id="modalImageIndex" class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-lg"></div>
+            </div>
+            <div id="modalThumbnails" class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none"></div>
+          </div>
+
+          <!-- Meta Badges -->
+          <div id="modalMetaBadges" class="flex flex-wrap items-center gap-2"></div>
+
+          <!-- Subtitle -->
+          <div id="modalSubtitle" class="text-xs sm:text-sm font-semibold text-china-navy/90"></div>
+
+          <!-- Description -->
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Details & Highlights</h4>
+            <p id="modalDescription" class="text-xs sm:text-sm text-gray-600 leading-relaxed whitespace-pre-line"></p>
+          </div>
+
+          <!-- Extra Section -->
+          <div id="modalExtraSection"></div>
+        </div>
+
+        <!-- Footer -->
+        <div class="p-4 sm:px-6 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-3 shrink-0">
+          <div>
+            <span class="text-[10px] text-gray-400 block" id="modalPriceLabel">Reference Fee</span>
+            <span class="text-base font-bold text-china-red font-serif" id="modalPriceValue"></span>
+          </div>
+          <button onclick="closeResourceModal()" class="px-5 py-2.5 bg-china-navy hover:bg-china-red text-white text-xs font-bold rounded-xl transition-all">
+            <span>Close Preview</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- City Resource Catalog JSON Lookup -->
+  <script id="cityResourceCatalogData" type="application/json">
+    {"beijing":{"slug":"beijing","name":"Beijing","chineseName":"北京","heroImage":"https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/cities/img-1788327753704-i2n1.webp","attractions":[{"id":"attr-bj-forbidden-city","title":"The Forbidden City / Palace Museum","subtitle":"UNESCO World Heritage • 600-Year-Old Imperial Palace of Ming and Qing Dynasties","rating":"5A级景区 / 世界文化遗产","cover":"https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80","https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/attractions/img-1788236440742-mem5.webp","https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/attractions/img-1788236448026-6gjg.webp"],"description":"The world's largest and best-preserved ancient wooden palace complex, boasting 980 surviving buildings with over 8,700 rooms. Served as the ceremonial and political center of Chinese government for almost 500 years.","ticketPrice":9,"rawTicket":"¥60 (旺季) / 约 $8.5"},{"id":"attr-bj-mutianyu-greatwall","title":"Mutianyu Great Wall (慕田峪长城)","subtitle":"UNESCO World Heritage • Magnificently Restored Wall with Lush Mountain Vistas & Toboggan","rating":"5A级景区 / 世界文化遗产","cover":"https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=80"],"description":"One of the best-preserved sections of the Great Wall, surrounded by 96% forest coverage. Features 23 ancient watchtowers, cable car access, and an exhilarating mountain toboggan ride.","ticketPrice":26,"rawTicket":"¥45 (门票) + ¥140 (缆车往返)"},{"id":"attr-bj-summer-palace","title":"The Summer Palace (颐和园)","subtitle":"UNESCO World Heritage • China's Largest and Most Magnificent Royal Imperial Garden","rating":"5A级景区 / 世界文化遗产","cover":"https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"],"description":"Centering on Kunming Lake and Longevity Hill, this sprawling royal retreat combines classical pavilions, the 728-meter Long Corridor, and graceful Seventeen-Arch Bridge.","ticketPrice":5,"rawTicket":"¥30 / 门票 (约 $4.5)"},{"id":"test abc","title":"test abc","subtitle":"light a   light b","rating":"5A级景区 / 世界文化遗产","cover":"https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/attractions/img-1788328022728-mbgl.webp","gallery":["https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/attractions/img-1788328022728-mbgl.webp","https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/attractions/img-1788328035770-r6am.webp","https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/attractions/img-1788328043645-bm7u.webp"],"description":"test beijing","ticketPrice":9,"rawTicket":"¥60"}],"restaurants":[{"id":"rest-bj-king-joy","title":"King's Joy Beijing (京兆尹 • 雍和宫总店)","subtitle":"3 Michelin Stars & Michelin Green Star • World-Renowned Vegetarian Fine Dining by Lama Temple","cuisine":"素食养生 / 清真风味 (Vegetarian & Halal Specialties)","rating":"⭐ 米其林推荐 / 国家特级酒家","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"],"description":"China's first three-Michelin-starred vegetarian restaurant situated in a tranquil traditional Siheyuan courtyard by Lama Temple. Harmonizes seasonal organic ingredients with poetic Chinese presentation.","dishes":"黑松露鲜松茸配鲜百合、糖醋素排骨、宫廷豌豆黄、古树普洱茶汤","dietaryTags":["Vegetarian","Vegan Options","Michelin 3-Star","English Service","Lama Temple View"],"priceMin":100,"priceMax":180,"rawPrice":"$100 - $180 / 人 (¥700 - ¥1,300)"},{"id":"rest-bj-quanjude","title":"Quanjude Peking Roast Duck (全聚德烤鸭 • 前门店)","subtitle":"Time-Honored Imperial Roast Duck with 160 Years of Heritage","cuisine":"北京烤鸭 / 宫廷鲁菜 (Beijing Duck & Imperial Cuisine)","rating":"🏆 中华百年老字号 / 非物质文化遗产","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80"],"description":"Founded in 1864 during the Qing Dynasty, Quanjude is world-renowned for its open-oven roasted duck roasted over fruit-tree firewood, yielding extraordinarily crispy skin and tender meat sliced tableside.","dishes":"挂炉烤鸭配荷叶饼 (Crispy Roast Duck with Handmade Pancakes), 鸭架浓汤 (Duck Bone Soup), 芥末鸭掌 (Mustard Duck Web), 宫保鸡丁 (Kung Pao Chicken)","dietaryTags":["English Menu Available","Non-Spicy Options","Halal-Certified Available","Reservation Recommended"],"priceMin":30,"priceMax":55,"rawPrice":"$30 - $55 / 人 (¥200 - ¥380)"},{"id":"rest-bj-siji-minfu","title":"Siji Minfu Roast Duck (四季民福烤鸭店 • 故宫东华门景观店)","subtitle":"Sensational Crispy Skin Peking Duck with Direct Views of the Forbidden City Corner Watchtower","cuisine":"北京烤鸭 / 宫廷鲁菜 (Beijing Duck & Imperial Cuisine)","rating":"💎 黑珍珠一钻 / 高端江景餐厅","cover":"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"],"description":"Famous across Beijing for its open-fire jujube wood roasted duck and window tables overlooking the historic moat and turrets of the Forbidden City.","dishes":"特选酥香嫩烤鸭配空心芝麻烧饼、老北京炸酱面、巧拌豆苗、宫保鸡丁","dietaryTags":["English Menu Available","Forbidden City View","Kid-Friendly","Authentic Beijing Flavor"],"priceMin":28,"priceMax":45,"rawPrice":"$28 - $45 / 人 (¥180 - ¥300)"}],"vehicles":[{"id":"veh-bj-buick-gl8","title":"Buick GL8 First Class 7-Seater MPV","subtitle":"Executive First-Class Transportation","type":"7座豪华商务车 (7-Seater Luxury MPV)","capacity":"4-5 乘客 (4-5 Pax)","luggage":"4 Large Suitcases","cover":"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"],"description":"The quintessential VIP choice for family and small business groups traveling in Beijing. Features ultra-quiet cabin, plush second-row captain seats, rear climate control, and ample luggage space.","amenities":[],"dailyRate":160,"rawPrice":"$160 / day"},{"id":"veh-bj-mercedes-vclass","title":"Mercedes-Benz V-Class Luxury VIP Van","subtitle":"Executive Class Luxury • Nappa Leather Massage Seats & Panoramic Sunroof for Dignitaries","type":"奔驰V级高定商务 (Mercedes V-Class VIP)","capacity":"4-6 乘客 (4-6 Pax)","luggage":"5件 28寸大行李箱 (5 Large Suitcases)","cover":"https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"],"description":"Ultimate presidential-tier transportation in Beijing, equipped with electric sliding doors, privacy curtains, premium sound system, and airline-style reclining massage seats.","amenities":["Onboard Free High-Speed WiFi","Bottled Evian Water & Wet Wipes","Chauffeured White-Glove Service","English Assistance Support","Full Comprehensive Coverage"],"dailyRate":260,"rawPrice":"接送机 $95起 / 全天包车 $260/天 (全包价)"}],"guides":[{"id":"guide-001","name":"David Zhang","chineseName":"张强","title":"National Senior English Cultural Guide","avatar":"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80","languages":"English, Mandarin","experienceYears":12,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":260},{"id":"guide-01","name":"Michael Zhang","chineseName":"张敏","title":"National Senior Certified Tour Guide & Imperial Historian","avatar":"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80","languages":"English, Mandarin","experienceYears":12,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":150}]},"chengdu":{"slug":"chengdu","name":"Chengdu","chineseName":"成都","heroImage":"https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80","attractions":[{"id":"attr-cd-dujiangyan","title":"Dujiangyan Irrigation System & Mount Qingcheng (都江堰与青城山)","subtitle":"2,270-Year Ancient Eco-Hydraulic Engineering Wonder & The Birthplace of Taoism","rating":"5A级景区 / 世界文化遗产","cover":"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80"],"description":"Built in 256 BC without a single dam and still irrigating the Chengdu Plain today. Qingcheng Mountain offers serene evergreen forests and ancient Taoist temples.","ticketPrice":11,"rawTicket":"¥80 / 都江堰门票 (约 $11.0)"},{"id":"attr-cd-leshan-giant-buddha","title":"Leshan Giant Buddha (乐山大佛)","subtitle":"UNESCO World Heritage • World's Largest 71-Meter Stone-Carved Sitting Buddha","rating":"5A级景区 / 世界文化与自然双遗产","cover":"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80"],"description":"Carved out of a cliff face during the Tang Dynasty overlooking the confluence of three rivers. Walk down the Nine-Turn Plank Road or take a boat cruise for full panoramic views.","ticketPrice":11,"rawTicket":"¥80 / 景区门票 (约 $11.0)"},{"id":"attr-cd-panda-base","title":"Chengdu Giant Panda Breeding Research Base (成都大熊猫繁育研究基地)","subtitle":"World's Foremost Giant Panda Conservation & Breeding Sanctuary","rating":"5A级景区 / 国际科普示范基地","cover":"https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1564349683136-77e08dba1ef6?auto=format&fit=crop&w=1200&q=80"],"description":"Spanning over 1,000 acres designed to mimic the natural habitat of wild giant pandas, offering travelers the chance to observe adult and newborn pandas feeding on bamboo in peaceful bamboo groves.","ticketPrice":8,"rawTicket":"¥55 / 约 $8"}],"restaurants":[{"id":"rest-cd-chen-mapo","title":"Chen Mapo Tofu (陈麻婆豆腐 • 旗舰店)","subtitle":"The Birthplace of Global Famous Sichuan Mapo Tofu Since 1862","cuisine":"正宗川菜 / 麻辣名吃 (Authentic Sichuan & Spicy Cuisine)","rating":"🏆 中华老字号 / 米其林必比登推介","cover":"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=80"],"description":"The legendary birthplace of Mapo Tofu, established in 1862. Offers the defining taste of Sichuan cuisine featuring numbing Sichuan peppercorn, fermented broad bean paste, and silky soft tofu.","dishes":"传统陈麻婆豆腐 (Classic Sizzling Mapo Tofu), 宫保鸡丁 (Authentic Kung Pao Chicken), 夫妻肺片 (Sliced Beef in Chili Sauce), 钟水饺 (Zhong Dumplings)","dietaryTags":["English Menu Available","Vegetarian-Friendly Options","Spiciness Customization"],"priceMin":15,"priceMax":28,"rawPrice":"$15 - $28 / 人 (¥90 - ¥180)"},{"id":"rest-cd-shudaxia","title":"Shu Daxia Traditional Sichuan Hotpot (蜀大侠火锅 • 春熙路总店)","subtitle":"Vibrant Chengdu Hot Pot with Dragon Broth Pot & Live Sichuan Face-Changing Opera","cuisine":"正宗川菜 / 麻辣名吃 (Authentic Sichuan & Spicy Cuisine)","rating":"🏮 阳朔非遗名菜 / 西街人气名店","cover":"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"],"description":"Exciting immersion into Sichuan hot pot culture in downtown Chunxi Road. Offers mild bone broths for foreign travelers and nightly Sichuan opera face-changing performances.","dishes":"太极双味鸳鸯锅 (含不辣菌菇骨汤)、大侠上上签麻辣牛肉、花千骨秘制排骨","dietaryTags":["Mild & Non-Spicy Broth Available","English Menu","Face-Changing Show","Fun Atmosphere"],"priceMin":22,"priceMax":38,"rawPrice":"$22 - $38 / 人 (¥140 - ¥250)"},{"id":"rest-cd-yu-zhi-lan","title":"Yu Zhi Lan (玉芝兰 • 私房川菜)","subtitle":"2 Michelin Stars & 3 Black Pearls • Master Chef Lan Guijun's Haute Sichuan Gastronomy","cuisine":"正宗川菜 / 麻辣名吃 (Authentic Sichuan & Spicy Cuisine)","rating":"⭐ 米其林推荐 / 国家特级酒家","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"],"description":"An intimate 18-seat private courtyard restaurant showcasing the 24 distinct flavor profiles of classical Sichuan cuisine beyond just chili spice, notably the legendary golden silk noodles cut with a huge cleaver.","dishes":"手打大刀金丝面、原汁酸辣海参汤、怪味五彩鲜鲍鱼、传统宫保大明虾","dietaryTags":["Michelin 2-Star","English Service","Non-Spicy Authentic Sichuan","Private Dining"],"priceMin":150,"priceMax":280,"rawPrice":"$150 - $280 / 人 (¥1,000 - ¥1,900)"}],"vehicles":[{"id":"veh-cd-buick-gl8","title":"Buick GL8 First Class 7-Seater","subtitle":"Direct Chauffeured Service to Giant Panda Base, Leshan Giant Buddha & Mount Qingcheng","type":"7座豪华商务车 (7-Seater Luxury MPV)","capacity":"4-5 乘客 (4-5 Pax)","luggage":"4件 28寸大行李箱 (4 Large Suitcases)","cover":"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"],"description":"Convenient, stress-free travel from Chengdu Tianfu or Shuangliu Airport to downtown hotels, early morning trips to see active feeding pandas, and scenic drives to Leshan Giant Buddha.","amenities":["Onboard Free High-Speed WiFi","Complimentary Bottled Water","Sichuan Highway Licensed Driver","Child Seat Available Upon Request"],"dailyRate":170,"rawPrice":"接送机 $60起 / 市区包车 $170/天 / 乐山大佛 $220/天"},{"id":"veh-cd-toyota-coaster","title":"Toyota Coaster 19-Seater VIP Coach","subtitle":"Spacious Group Coach for Sichuan Overland Tours, Mount Emei & Jiuzhaigou Routes","type":"19-23座丰田考斯特 (19-23 Seater Mini Coach)","capacity":"10-15 乘客 (10-15 Pax)","luggage":"12件 大行李箱 (12 Large Suitcases)","cover":"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80"],"description":"Premier mini-coach for small group excursions in Sichuan. Equipped with powerful air-conditioning, individual reading lights, and heavy luggage storage for long journeys.","amenities":["High-Roof Walk-In Cabin","Microphone System for Tour Guide","Onboard Free WiFi","Spacious Trunk & Luggage Racks"],"dailyRate":290,"rawPrice":"接送机 $115起 / 全天包车 $290/天 (全包服务)"}],"guides":[{"id":"guide-001","name":"David Zhang","chineseName":"张强","title":"National Senior English Cultural Guide","avatar":"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80","languages":"English, Mandarin","experienceYears":12,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":260},{"id":"guide-01","name":"Michael Zhang","chineseName":"张敏","title":"National Senior Certified Tour Guide & Imperial Historian","avatar":"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80","languages":"English, Mandarin","experienceYears":12,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":150},{"id":"guide-02","name":"Sophie Wang","chineseName":"王舒","title":"Silk Road Archaeologist & Certified Guide","avatar":"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80","languages":"English, French","experienceYears":9,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":140}]},"guilin":{"slug":"guilin","name":"Guilin & Yangshuo","chineseName":"桂林与阳朔","heroImage":"https://images.unsplash.com/photo-1528702748617-c64d49f918af?auto=format&fit=crop&w=1600&q=80","attractions":[{"id":"attr-gl-li-river","title":"Li River Scenic Cruise (漓江风景名胜区)","subtitle":"UNESCO World Heritage • Emerald Waters & Mythical Karst Peak Landscapes Celebrated for Millennia","rating":"5A级景区 / 国家重点风景区","cover":"https://images.unsplash.com/photo-1528702748617-c64d49f918af?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1528702748617-c64d49f918af?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1528702748617-c64d49f918af?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1200&q=80"],"description":"A picturesque 83-kilometer cruise from Guilin to Yangshuo resembling an unfurling traditional Chinese watercolor scroll, featuring Nine Horse Mural Hill and the famous 20-Yuan banknote scenery.","ticketPrice":82,"rawTicket":"¥215 - ¥360 (含4星游船)"},{"id":"attr-gl-longji-terrace","title":"Longji Rice Terraces (龙脊梯田 • 龙胜七星伴月)","subtitle":"650-Year Mountain Farming Wonder & Ethnic Minority Villages (Zhuang & Yao Red Clothing)","rating":"4A级景区 / 全球重要农业文化遗产","cover":"https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1200&q=80"],"description":"Magnificent terraced rice fields sculpted layer upon layer from river valleys to mountain ridges. Splendid in green summer, golden autumn, and mirror-like spring.","ticketPrice":11,"rawTicket":"¥80 / 通票 (约 $11.0)"},{"id":"attr-gl-yulong-river","title":"Yulong River Bamboo Rafting (遇龙河竹筏漂流)","subtitle":"Peaceful \"Little Li River\" Hand-Punted Traditional Bamboo Rafts Through Karst Valleys","rating":"4A级景区 / 国家级旅游度假区","cover":"https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1200&q=80"],"description":"Enjoy serene countryside waters flanked by green bamboo groves, historic bridges like Dragon Bridge (Yulong Qiao), and traditional water dams.","ticketPrice":22,"rawTicket":"¥160 - ¥320 / 筏 (双人筏, 约 $22 - $45)"}],"restaurants":[{"id":"rest-gl-chongshan-rice-noodles","title":"Chongshan Guilin Rice Noodles (崇善米粉 • 象鼻山总店)","subtitle":"Guilin Intangible Heritage Traditional Rice Noodles with 30-Spice Secret Gravy Broth","cuisine":"桂林特色菜 / 阳朔风味 (Guilin Local & Yangshuo Flavor)","rating":"🏆 中华百年老字号 / 非物质文化遗产","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"],"description":"The quintessential breakfast and lunch staple for Guilin locals and visitors. Chewy round rice noodles served dry with rich gravy, crispy roasted pork, and pickled sour bamboo.","dishes":"传统正宗卤菜干捞粉、黄金脆皮锅烧肉、浓香牛腩粉、秘制酸笋配菜","dietaryTags":["Fast Casual","Custom Condiments","Local Favorite","Authentic Recipe"],"priceMin":4,"priceMax":10,"rawPrice":"$4 - $10 / 人 (¥25 - ¥65)"},{"id":"rest-gl-yangshuo-beerfish","title":"Master Xie's Yangshuo Beer Fish (谢大姐阳朔啤酒鱼 • 西街总店)","subtitle":"Iconic Yangshuo Karst Specialty Cooked with Fresh Li River Carp & Local Beer","cuisine":"桂林特色菜 / 阳朔风味 (Guilin Local & Yangshuo Flavor)","rating":"🏮 阳朔非遗名菜 / 西街人气名店","cover":"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80"],"description":"A must-try Yangshuo culinary legend prepared by braising fresh live fish caught from Li River in local craft beer, tomatoes, garlic, and wild mountain peppers in a cast-iron skillet.","dishes":"秘制剑骨鱼啤酒鱼 (Signature Boneless River Carp in Craft Beer Broth), 荔浦芋头扣肉 (Lipu Taro Braised Pork Belly), 桂林鲜榨米粉 (Guilin Fresh Rice Noodles)","dietaryTags":["English Menu Available","Non-Spicy Customization","River Fish Fresh Selection"],"priceMin":18,"priceMax":32,"rawPrice":"$18 - $32 / 人 (¥110 - ¥210)"},{"id":"rest-gl-yangshuo-chun-ji","title":"Chunji Roasted Goose (椿记烧鹅 • 桂林旗舰店)","subtitle":"Crispy Golden Roasted Goose & Fresh Li River Steamed Fish Fusion Feast","cuisine":"桂林特色菜 / 阳朔风味 (Guilin Local & Yangshuo Flavor)","rating":"🏆 中华老字号 / 米其林必比登推介","cover":"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"],"description":"Award-winning multi-story dining establishment famed for perfectly roasted goose with glass-crispy skin, tender juicy meat, and sweet plum dipping sauce.","dishes":"招牌秘制脆皮烧鹅配酸梅酱、清蒸漓江剑骨鱼、芒果蛋黄特色点心、荔浦芋头煲","dietaryTags":["English Menu Available","Spacious Seating","Non-Spicy Options","Family Friendly"],"priceMin":16,"priceMax":28,"rawPrice":"$16 - $28 / 人 (¥100 - ¥180)"}],"vehicles":[{"id":"veh-gl-buick-gl8","title":"Buick GL8 First Class 7-Seater","subtitle":"Scenic Karst Journey from Guilin Airport/Station to Yangshuo Resorts & Longji Rice Terraces","type":"7座豪华商务车 (7-Seater Luxury MPV)","capacity":"4-5 乘客 (4-5 Pax)","luggage":"4件 28寸大行李箱 (4 Large Suitcases)","cover":"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"],"description":"Seamless direct transfers between Guilin Airport, Li River Cruise terminals, and boutique riverside hotels in Yangshuo. Experienced with scenic mountain highway driving.","amenities":["Onboard Free High-Speed WiFi","Complimentary Bottled Water","Karst Mountain Route Expert Driver","Luggage Assistance"],"dailyRate":170,"rawPrice":"接送机 $60起 / 阳朔包车 $170/天 / 龙脊梯田 $200/天"},{"id":"veh-gl-mercedes-vito","title":"Mercedes-Benz Vito Luxury 9-Seater","subtitle":"Extra Space for Luggage, Bicycles & Photography Gear Across Guilin Countryside","type":"7座豪华商务车 (7-Seater Luxury MPV)","capacity":"6-7 乘客 (6-7 Pax)","luggage":"6件 28寸大行李箱 (6 Large Suitcases)","cover":"https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80"],"description":"Ideal for extended families and photography enthusiasts carrying tripods, luggage, and outdoor gear through Yulong River valley and Moon Hill.","amenities":["High-Capacity Luggage Room","Air-Conditioned Comfort","Experienced Local Driver","Cold Bottled Water"],"dailyRate":210,"rawPrice":"接送机 $80起 / 全天包车 $210/天 (含路桥燃油费)"}],"guides":[{"id":"guide-03","name":"David Liu","chineseName":"刘浩","title":"Guilin Karst Outdoor Guide","avatar":"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80","languages":"English, German","experienceYears":10,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":130}]},"shanghai":{"slug":"shanghai","name":"Shanghai","chineseName":"上海","heroImage":"https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80","attractions":[{"id":"attr-sh-shanghai-tower","title":"Shanghai Tower & Lujiazui Skyline (上海中心大厦与陆家嘴天际线)","subtitle":"World's 2nd Tallest Skyscraper (632m) with 118th-Floor \"Top of Shanghai\" Observatory","rating":"4A级景区 / 现代建筑地标","cover":"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"],"description":"Ascend in the world's fastest elevator to 546 meters for breathtaking 360-degree views of Shanghai, the Huangpu River, Oriental Pearl Tower, and the Bund.","ticketPrice":25,"rawTicket":"¥180 / 成人票 (约 $25.0)"},{"id":"attr-sh-the-bund","title":"The Bund & Yu Garden (上海外滩与豫园名胜)","subtitle":"Centuries of Colonial Architecture Juxtaposed with 16th-Century Classic Jiangnan Garden","rating":"5A/4A级名胜景区","cover":"https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"],"description":"Stroll along the historic waterfront promenade lined with 52 diverse colonial buildings facing the futuristic Pudong skyline, and explore Yu Garden's serene koi ponds and ancient pavilions.","ticketPrice":0,"rawTicket":"豫园 ¥40 / 外滩免费"},{"id":"attr-sh-zhujiajiao","title":"Zhujiajiao Ancient Water Town (朱家角古镇 • 东方威尼斯)","subtitle":"1,700-Year-Old Water Town with Ming & Qing Stone Bridges, Canals & Hand-Rowed Gondolas","rating":"4A级景区 / 水乡古镇","cover":"https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1200&q=80"],"description":"Wander through willow-lined canals, 36 historic stone bridges, ancient courtyards, teahouses, and Kezhi Garden on Shanghai's romantic western waterways.","ticketPrice":0,"rawTicket":"免费入园 / 景点联票 ¥60 (约 $8.5)"}],"restaurants":[{"id":"rest-sh-lubolang","title":"Lu Bo Lang Restaurant (绿波廊酒楼 • 豫园总店)","subtitle":"State-Banquet Level Jiangnan Dim Sum by the Historic Zigzag Bridge","cuisine":"江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","rating":"⭐ 米其林推荐 / 国家特级酒家","cover":"https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=1200&q=80"],"description":"Overlooking the tranquil pond and Zigzag Bridge of Yu Garden, Lu Bo Lang has served numerous foreign dignitaries and royalty with exquisite classic dim sum and authentic Shanghai Jiangnan cuisine.","dishes":"南翔小笼包 (Crab Roe Soup Dumplings), 桂花拉糕 (Sweet Osmanthus Cake), 眉毛酥 (Eyebrow-shaped Crispy Pastry), 松鼠桂鱼 (Sweet & Sour Mandarin Fish)","dietaryTags":["English Menu Available","Vegetarian-Friendly","Non-Spicy","Scenic Garden View"],"priceMin":35,"priceMax":60,"rawPrice":"$35 - $60 / 人 (¥220 - ¥400)"},{"id":"rest-sh-nanxiang","title":"Nanxiang Steamed Bun Restaurant (南翔馒头店 • 豫园九曲桥总店)","subtitle":"120-Year Intangible Cultural Heritage • Shanghai's Most Celebrated Xiao Long Bao","cuisine":"江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","rating":"🏆 中华百年老字号 / 非物质文化遗产","cover":"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"],"description":"Located right at the Nine-Turn Bridge in Yu Garden since 1900. World-famous for paper-thin translucent dumpling skin and piping-hot, rich savory broth inside.","dishes":"传统鲜肉小笼灌汤包、蟹粉鲜肉小笼、豫园清汤蟹粉生煎、桂花拉糕","dietaryTags":["English Menu Available","Quick Service","Non-Spicy Options","Historic Landmark"],"priceMin":15,"priceMax":30,"rawPrice":"$15 - $30 / 人 (¥90 - ¥190)"},{"id":"rest-sh-ultraviolet","title":"Ultraviolet by Paul Pairet (超感官沉浸式多媒体餐厅)","subtitle":"3 Michelin Stars & World's 50 Best • Revolutionary 10-Seat Multi-Sensory Dining Journey","cuisine":"江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","rating":"⭐ 米其林推荐 / 国家特级酒家","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"],"description":"A secret location in Shanghai where 10 diners experience a synchronized 20-course avant-garde meal combining high-definition 360-degree video, scent diffusers, and surround music.","dishes":"20道先锋感官分子料理配定制名庄酒单、气味光影沉浸式呈现","dietaryTags":["English Fluent","Michelin 3-Star","Advance Reservation Required","Bucket List Experience"],"priceMin":600,"priceMax":1,"rawPrice":"$600 - $1,100 / 人 (¥4,000 - ¥7,500)"}],"vehicles":[{"id":"veh-sh-buick-gl8","title":"Buick GL8 First Class 7-Seater","subtitle":"Pudong / Hongqiao Airport VIP Transfer, The Bund Skyline & Water Towns Day Tour","type":"7座豪华商务车 (7-Seater Luxury MPV)","capacity":"4-5 乘客 (4-5 Pax)","luggage":"4件 28寸大行李箱 (4 Large Suitcases)","cover":"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"],"description":"Travel smoothly through Shanghai's bustling metropolis in luxurious comfort. Perfect for transfers from Pudong International Airport to city center hotels and Zhujiajiao ancient water town.","amenities":["Onboard Free High-Speed WiFi","Complimentary Bottled Water","Flight Delay Free Waiting","Express Highway Tolls Included"],"dailyRate":190,"rawPrice":"接送机 $65起 / 全天包车 $190/天 / 水乡专线 $240/天"},{"id":"veh-sh-mercedes-sclass","title":"Mercedes-Benz Executive Luxury Sedan","subtitle":"Prestigious Executive Sedan for VIP Couples & Business Travelers in Shanghai","type":"5座舒适商务轿车 (5-Seater Executive Sedan)","capacity":"1-3 乘客 (1-3 Pax)","luggage":"2件 28寸大行李箱 (2 Large Suitcases)","cover":"https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80"],"description":"Refined elegance for VIP individuals and couples. Features whisper-quiet ride, rear seat comfort controls, and professional uniformed chauffeur service.","amenities":["Premium Leather Seating","Onboard Free WiFi","Suit-and-Tie Chauffeur","Flight Tracking Service"],"dailyRate":240,"rawPrice":"接送机 $85起 / 全天包车 $240/天 (全包服务)"}],"guides":[{"id":"guide-04","name":"Emma Tang","chineseName":"唐艺","title":"Shanghai Art Deco Specialist","avatar":"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80","languages":"English, Spanish","experienceYears":8,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":145}]},"xian":{"slug":"xian","name":"Xi'an","chineseName":"西安","heroImage":"https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&w=1600&q=80","attractions":[{"id":"attr-xa-ancient-city-wall","title":"Xi'an Ancient City Wall (西安明城墙)","subtitle":"","rating":"5A级景区","cover":"https://travelchina-1321205937.cos.ap-singapore.myqcloud.com/assets/images/attractions/img-1788054028100-uc8k.jpg","gallery":["https://travelchina-1321205937.cos.ap-singapore.myqcloud.com/assets/images/attractions/img-1788054028100-uc8k.jpg","https://images.unsplash.com/photo-1599837767850-2565615eb4ec?auto=format&fit=crop&w=1200&q=80"],"description":"Enclosing 13.74 kilometers of historic downtown Xi'an. Visitors can rent bicycles or take electric carts along the top of the wide ramparts with moat views.","ticketPrice":8,"rawTicket":"¥54 / 成人票 (约 $7.5)"},{"id":"attr-xa-giant-wild-goose-pagoda","title":"Giant Wild Goose Pagoda & Tang Paradise (大雁塔与大唐不夜城)","subtitle":"UNESCO World Heritage Tang Buddhist Tower & Immersive Silk Road Light Spectacle","rating":"5A级景区 / 世界文化遗产","cover":"https://images.unsplash.com/photo-1599837767850-2565615eb4ec?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1599837767850-2565615eb4ec?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1599837767850-2565615eb4ec?auto=format&fit=crop&w=1200&q=80"],"description":"Built in 652 AD to house Buddhist scriptures brought from India by Master Xuanzang. Neighboring Tang Grand Market offers nightly light shows and Hanfu cultural events.","ticketPrice":6,"rawTicket":"¥40 / 登塔门票 (约 $5.5)"},{"id":"attr-xa-terracotta-army","title":"Emperor Qinshihuang's Terracotta Army (秦始皇兵马俑博物馆)","subtitle":"UNESCO World Heritage • The Eighth Wonder of the Ancient World with Thousands of Life-sized Warriors","rating":"5A级景区 / 世界文化遗产","cover":"https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&w=1200&q=80"],"description":"Discovered by local farmers in 1974, this extraordinary subterranean army contains more than 8,000 individually sculpted clay soldiers, chariots, and horses guarding the tomb of China's first Emperor.","ticketPrice":17,"rawTicket":"¥120 / 约 $17"}],"restaurants":[{"id":"rest-xa-changan-dapaidang","title":"Chang'an Da Pai Dang (长安大牌档 • 丝绸之路旗舰店)","subtitle":"Thematic Tang Dynasty Feasting with Live Qinqiang Opera & Silk Road Market Delicacies","cuisine":"陕西风味 / 宫廷饺子宴 (Shaanxi Specialty Dumpling Feast)","rating":"🏮 阳朔非遗名菜 / 西街人气名店","cover":"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"],"description":"Immerse in ancient Chang'an tavern culture with wooden benches, red lanterns, calligraphy brushes that you can eat, and crispy gourd chicken carved tableside.","dishes":"长安秘制葫芦鸡、妃子笑荔枝肉、毛笔酥点心、老潼关肉夹馍、桂花稠酒","dietaryTags":["Live Cultural Performance","English Picture Menu","Family Friendly","Costume Photo Experience"],"priceMin":16,"priceMax":32,"rawPrice":"$16 - $32 / 人 (¥100 - ¥220)"},{"id":"rest-xa-tong-sheng-xiang","title":"Tong Sheng Xiang Restaurant (同盛祥饭庄 • 钟楼总店)","subtitle":"National Intangible Cultural Heritage • Century-Old Mutton Paomo with Hand-Torn Bread","cuisine":"陕西风味 / 宫廷饺子宴 (Shaanxi Specialty Dumpling Feast)","rating":"🏆 中华百年老字号 / 非物质文化遗产","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"],"description":"A classic Xi'an culinary ritual by the Bell Tower. Guests tear flatbread into tiny morsels before the kitchen simmers it in 12-hour spiced lamb broth with pickled garlic.","dishes":"特级优质羊肉泡馍配糖蒜、自制麻酱凉皮、红柳木烤羊肉串、水盆羊肉","dietaryTags":["Halal Certified","English Menu Available","Cultural Experience","Non-Pork Options"],"priceMin":12,"priceMax":22,"rawPrice":"$12 - $22 / 人 (¥80 - ¥150)"}],"vehicles":[{"id":"veh-xa-buick-gl8","title":"Buick GL8 First Class 7-Seater","subtitle":"Comfortable Private Transportation to Terracotta Warriors, Ancient City Wall & Huaqing Palace","type":"7座豪华商务车 (7-Seater Luxury MPV)","capacity":"4-5 乘客 (4-5 Pax)","luggage":"4件 28寸大行李箱 (4 Large Suitcases)","cover":"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"],"description":"Enjoy a smooth, air-conditioned ride between downtown Xi'an and the Terracotta Army Museum. Avoid crowds and taxi queues with direct hotel pickup and return.","amenities":["Onboard Free High-Speed WiFi","Complimentary Bottled Water","Experienced Licensed Driver","Flight Delay Free Waiting"],"dailyRate":160,"rawPrice":"接送机 $55起 / 全天包车 $160/天 (含过路费停车费)"},{"id":"veh-xa-toyota-coaster","title":"Toyota Coaster 19-Seater VIP Mini-Coach","subtitle":"The Gold Standard for Small Group & Family Delegations in Ancient Capital Xi'an","type":"19-23座丰田考斯特 (19-23 Seater Mini Coach)","capacity":"10-15 乘客 (10-15 Pax)","luggage":"12件 大行李箱 (12 Large Suitcases)","cover":"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80"],"description":"Spacious standing-height mini-coach with wide panoramic tinted windows, comfortable plush seating, luggage compartment, and dedicated tour guide microphone.","amenities":["Microphone & PA System","Onboard Free WiFi","Spacious High-Roof Cabin","Professional Tourism Licensed Driver"],"dailyRate":280,"rawPrice":"接送机 $110起 / 全天包车 $280/天 (全包价)"}],"guides":[{"id":"guide-02","name":"Sophie Wang","chineseName":"王舒","title":"Silk Road Archaeologist & Certified Guide","avatar":"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80","languages":"English, French","experienceYears":9,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":140}]},"zhangjiajie":{"slug":"zhangjiajie","name":"Zhangjiajie","chineseName":"张家界","heroImage":"https://images.unsplash.com/photo-1513415564515-763d91423bdd?auto=format&fit=crop&w=1600&q=80","attractions":[{"id":"attr-zjj-avatar-mountains","title":"Zhangjiajie Avatar Mountains & Wulingyuan (张家界阿凡达悬浮山)","subtitle":"UNESCO World Heritage • 3,000 Towering Sandstone Pillars Inspiring Avatar's Pandora","rating":"5A级景区 / 世界自然遗产","cover":"https://images.unsplash.com/photo-1513415564515-763d91423bdd?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1513415564515-763d91423bdd?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1513415564515-763d91423bdd?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80"],"description":"A surreal labyrinth of more than 3,000 soaring quartz sandstone pinnacles and deep ravines. Includes the Bailong Elevator (the world's highest outdoor glass elevator) and the Hallelujah Mountain.","ticketPrice":33,"rawTicket":"¥228 (4日通票)"},{"id":"attr-zjj-grand-canyon-glass-bridge","title":"Zhangjiajie Grand Canyon Glass Bridge (张家界大峡谷玻璃桥 • 云天渡)","subtitle":"World's Longest & Highest Glass Suspension Bridge (430m Long, 300m Above Canyon Floor)","rating":"4A级景区 / 世界工程奇迹","cover":"https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80"],"description":"Architectural marvel designed by Haim Dotan suspended between two lush canyon cliffs. Offers thrilling transparent views beneath your feet and optional canyon boat tour.","ticketPrice":30,"rawTicket":"¥216 / 桥+峡谷套票 (约 $30.0)"}],"restaurants":[{"id":"rest-zjj-tujia-sanxiaguo","title":"Xiangxi Tujia Sanxiaguo (湘西土家三下锅 • 索道老店)","subtitle":"Authentic Ethnic Tujia Dry Pot Stew with Rich Smoked Mountain Aromas","cuisine":"湘西土家族特色菜 / 农家风味 (Xiangxi Ethnic Tujia Cuisine)","rating":"🏮 湘西非物质文化遗产名吃","cover":"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"],"description":"Tujia Sanxiaguo is Zhangjiajie's most famous ethnic dish with centuries of tradition, simmered in a copper pot with smoked pork, mountain bamboo shoots, wild mushrooms, and fragrant spices.","dishes":"传统三下锅干锅 (Tujia Trio Sizzling Dry Pot with Smoked Pork & Tofu), 葛根粉炒腊肉 (Wild Arrowroot Starch with Cured Ham), 湘西��鱼 (Mountain Sour Fish)","dietaryTags":["English Menu Available","Spiciness Customization (Non-Spicy Available)"],"priceMin":16,"priceMax":30,"rawPrice":"$16 - $30 / 人 (¥100 - ¥190)"},{"id":"rest-zjj-tujia-zhai","title":"Wulingyuan Tujia Ethnic Village Dining (武陵源湘西苗寨风情食府)","subtitle":"Authentic Tujia Mountain Smoked Delicacies & Fragrant Steamed Bamboo Rice","cuisine":"湘西土家族特色菜 / 农家风味 (Xiangxi Ethnic Tujia Cuisine)","rating":"🏮 阳朔非遗名菜 / 西街人气名店","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"],"description":"Set in a traditional wooden stilt house by Wulingyuan. Features pine-smoked bacon cured in mountain breeze and sweet sticky rice steamed inside fresh green bamboo tubes.","dishes":"湘西松枝腊肉蒸干笋、高山手打竹筒饭、野生岩耳炖土鸡汤、葛根糍粑","dietaryTags":["English Picture Menu","Organic Local Ingredients","Scenic Garden View","Mild Options"],"priceMin":14,"priceMax":26,"rawPrice":"$14 - $26 / 人 (¥90 - ¥170)"}],"vehicles":[{"id":"veh-zjj-buick-gl8","title":"Buick GL8 First Class 7-Seater","subtitle":"Direct Mountain Transfer from Zhangjiajie Airport to Wulingyuan & Tianmen Mountain Glass Walkway","type":"7座豪华商务车 (7-Seater Luxury MPV)","capacity":"4-5 乘客 (4-5 Pax)","luggage":"4件 28寸大行李箱 (4 Large Suitcases)","cover":"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"],"description":"Navigate Zhangjiajie's dramatic sandstone pillars and winding mountain passes with ease. Direct hotel pickup and drop-off to avoid crowded public tourist shuttles.","amenities":["Onboard Free High-Speed WiFi","Complimentary Bottled Water","Mountain Road Certified Driver","Luggage Storage Assistance"],"dailyRate":160,"rawPrice":"接送机 $50起 / 森林公园包车 $160/天 / 玻璃桥专线 $180/天"},{"id":"veh-zjj-maxus-luxury","title":"Maxus / Ford Luxury 9-15 Seater Van","subtitle":"Spacious Luggage Capacity & High Ground Clearance for Mountain Hiking Groups","type":"7座豪华商务车 (7-Seater Luxury MPV)","capacity":"6-10 乘客 (6-10 Pax)","luggage":"8件 28寸大行李箱 (8 Large Suitcases)","cover":"https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80"],"description":"Generous seating and massive rear luggage area built for hiking groups and families traveling with bulky gear between Zhangjiajie Grand Canyon, Tianzi Mountain, and Fenghuang Ancient Town.","amenities":["Extra High Luggage Capacity","Dual Air Conditioning Units","Mountain Safety Certified Driver","Free Bottled Water"],"dailyRate":200,"rawPrice":"接送机 $75起 / 全天包车 $200/天 (全包服务)"}],"guides":[{"id":"guide-001","name":"David Zhang","chineseName":"张强","title":"National Senior English Cultural Guide","avatar":"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80","languages":"English, Mandarin","experienceYears":12,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":260},{"id":"guide-01","name":"Michael Zhang","chineseName":"张敏","title":"National Senior Certified Tour Guide & Imperial Historian","avatar":"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80","languages":"English, Mandarin","experienceYears":12,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":150},{"id":"guide-02","name":"Sophie Wang","chineseName":"王舒","title":"Silk Road Archaeologist & Certified Guide","avatar":"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80","languages":"English, French","experienceYears":9,"description":"Official National Senior Guide with extensive experience leading international delegations and cultural enthusiasts.","dailyRate":140}]}}
+  </script>
+
+  <!-- Interactive Day Tour Builder Script -->
+  <script>
+    (function() {
+      const MAX_ATTRS = 3;
+      const MAX_RESTS = 2;
+
+      let currentCitySlug = 'beijing';
+      let selectedAttrs = [];
+      let selectedRests = [];
+      let selectedVehicleId = null;
+      let selectedGuideId = null;
+      let currentPax = 2;
+
+      let currentGallery = [];
+      let currentActiveIndex = 0;
+
+      function getCatalog() {
+        const raw = document.getElementById('cityResourceCatalogData').textContent;
+        return JSON.parse(raw);
+      }
+
+      window.onCitySelected = function(slug) {
+        currentCitySlug = slug;
+        selectedAttrs = [];
+        selectedRests = [];
+        selectedVehicleId = null;
+        selectedGuideId = null;
+
+        renderAttractions();
+        renderRestaurants();
+        renderVehicles();
+        renderGuides();
+        recalculatePricing();
+      };
+
+      function renderAttractions() {
+        const catalog = getCatalog();
+        const city = catalog[currentCitySlug];
+        const container = document.getElementById('attractionsGridContainer');
+        if (!container || !city) return;
+
+        const attrs = city.attractions || [];
+        if (attrs.length === 0) {
+          container.innerHTML = '<div class="col-span-2 text-center py-6 text-gray-400 text-xs">No attractions registered for this city yet.</div>';
+          return;
+        }
+
+        let html = '';
+        attrs.forEach(a => {
+          const isSelected = selectedAttrs.includes(a.id);
+          const isAtMax = selectedAttrs.length >= MAX_ATTRS && !isSelected;
+          const cardClass = isSelected ? 'active border-china-red bg-red-50/40' : (isAtMax ? 'disabled border-gray-200' : 'border-gray-200 hover:border-gray-300 bg-white');
+
+          html += '<div data-id="' + a.id + '" class="custom-res-card attr-item p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-3 ' + cardClass + '">';
+          html += '<div class="flex items-center gap-3 min-w-0 flex-grow">';
+          html += '<img src="' + a.cover + '" class="w-16 h-16 rounded-xl object-cover shrink-0" />';
+          html += '<div class="min-w-0 flex-grow">';
+          html += '<div class="flex items-center gap-1.5 mb-0.5"><span class="text-[9px] bg-red-50 text-china-red px-1.5 py-0.2 rounded font-bold">' + a.rating + '</span></div>';
+          html += '<h4 class="font-serif font-bold text-xs text-china-navy truncate">' + a.title + '</h4>';
+          html += '<div class="text-[11px] text-china-red font-semibold mt-0.5">Ticket: ' + (a.ticketPrice > 0 ? ('$' + a.ticketPrice + '/pax') : 'Free Admission') + '</div>';
+          html += '</div></div>';
+          html += '<div class="flex flex-col items-center justify-between shrink-0 h-full py-0.5 gap-2">';
+          html += '<button type="button" data-detail-type="attraction" data-detail-id="' + a.id + '" class="btn-detail-trigger w-7 h-7 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-china-navy flex items-center justify-center transition-colors" title="View Details"><svg class="w-3.5 h-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>';
+          html += '<span class="res-check-badge w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center text-xs font-bold ' + (isSelected ? 'bg-china-red text-white border-china-red' : 'text-transparent') + '">✓</span>';
+          html += '</div></div>';
+        });
+
+        container.innerHTML = html;
+        document.getElementById('attrLimitBadge').textContent = selectedAttrs.length + ' / ' + MAX_ATTRS + ' Selected' + (selectedAttrs.length >= MAX_ATTRS ? ' (Max Reached)' : '');
+
+        container.onclick = function(e) {
+          const detailBtn = e.target.closest('.btn-detail-trigger');
+          if (detailBtn) {
+            e.stopPropagation();
+            openDetailModal('attraction', detailBtn.getAttribute('data-detail-id'));
+            return;
+          }
+          const card = e.target.closest('.attr-item');
+          if (card) {
+            toggleAttraction(card.getAttribute('data-id'));
+          }
+        };
+      }
+
+      function toggleAttraction(id) {
+        const idx = selectedAttrs.indexOf(id);
+        if (idx >= 0) {
+          selectedAttrs.splice(idx, 1);
+        } else {
+          if (selectedAttrs.length >= MAX_ATTRS) {
+            alert('A comfortable 1-day itinerary includes up to ' + MAX_ATTRS + ' landmarks. Please uncheck one to replace it.');
+            return;
+          }
+          selectedAttrs.push(id);
+        }
+        renderAttractions();
+        recalculatePricing();
+      }
+
+      function renderRestaurants() {
+        const catalog = getCatalog();
+        const city = catalog[currentCitySlug];
+        const container = document.getElementById('restaurantsGridContainer');
+        if (!container || !city) return;
+
+        const rests = city.restaurants || [];
+        if (rests.length === 0) {
+          container.innerHTML = '<div class="col-span-2 text-center py-6 text-gray-400 text-xs">Optional: No specific dining pre-selections required.</div>';
+          return;
+        }
+
+        let html = '';
+        rests.forEach(r => {
+          const isSelected = selectedRests.includes(r.id);
+          const isAtMax = selectedRests.length >= MAX_RESTS && !isSelected;
+          const cardClass = isSelected ? 'active border-china-red bg-amber-50/40' : (isAtMax ? 'disabled border-gray-200' : 'border-gray-200 hover:border-gray-300 bg-white');
+
+          html += '<div data-id="' + r.id + '" class="custom-res-card rest-item p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-3 ' + cardClass + '">';
+          html += '<div class="flex items-center gap-3 min-w-0 flex-grow">';
+          html += '<img src="' + r.cover + '" class="w-16 h-16 rounded-xl object-cover shrink-0" />';
+          html += '<div class="min-w-0 flex-grow">';
+          html += '<div class="flex items-center gap-1.5 mb-0.5"><span class="text-[9px] bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded font-bold">' + r.cuisine + '</span></div>';
+          html += '<h4 class="font-serif font-bold text-xs text-china-navy truncate">' + r.title + '</h4>';
+          html += '<div class="text-[10px] text-gray-500 truncate mt-0.5">' + (r.dishes || 'Chef Specialties') + '</div>';
+          html += '<div class="text-[11px] text-amber-900 font-semibold mt-0.5">Avg: $' + r.priceMin + ' ~ $' + r.priceMax + '/pax</div>';
+          html += '</div></div>';
+          html += '<div class="flex flex-col items-center justify-between shrink-0 h-full py-0.5 gap-2">';
+          html += '<button type="button" data-detail-type="restaurant" data-detail-id="' + r.id + '" class="btn-detail-trigger w-7 h-7 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-china-navy flex items-center justify-center transition-colors" title="View Menu & Details"><svg class="w-3.5 h-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>';
+          html += '<span class="res-check-badge w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center text-xs font-bold ' + (isSelected ? 'bg-china-red text-white border-china-red' : 'text-transparent') + '">✓</span>';
+          html += '</div></div>';
+        });
+
+        container.innerHTML = html;
+        document.getElementById('restLimitBadge').textContent = selectedRests.length + ' / ' + MAX_RESTS + ' Selected' + (selectedRests.length >= MAX_RESTS ? ' (Max Reached)' : '');
+
+        container.onclick = function(e) {
+          const detailBtn = e.target.closest('.btn-detail-trigger');
+          if (detailBtn) {
+            e.stopPropagation();
+            openDetailModal('restaurant', detailBtn.getAttribute('data-detail-id'));
+            return;
+          }
+          const card = e.target.closest('.rest-item');
+          if (card) {
+            toggleRestaurant(card.getAttribute('data-id'));
+          }
+        };
+      }
+
+      function toggleRestaurant(id) {
+        const idx = selectedRests.indexOf(id);
+        if (idx >= 0) {
+          selectedRests.splice(idx, 1);
+        } else {
+          if (selectedRests.length >= MAX_RESTS) {
+            alert('You may select up to ' + MAX_RESTS + ' restaurants (Lunch & Dinner) for a 1-day tour.');
+            return;
+          }
+          selectedRests.push(id);
+        }
+        renderRestaurants();
+        recalculatePricing();
+      }
+
+      function renderVehicles() {
+        const catalog = getCatalog();
+        const city = catalog[currentCitySlug];
+        const container = document.getElementById('vehiclesGridContainer');
+        if (!container || !city) return;
+
+        const vehs = city.vehicles || [];
+
+        let html = '';
+        vehs.forEach(v => {
+          const isSelected = selectedVehicleId === v.id;
+          html += '<div data-id="' + v.id + '" class="custom-res-card veh-item p-3.5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ' + (isSelected ? 'active border-china-red bg-red-50/40' : 'border-gray-200 hover:border-gray-300 bg-white') + '">';
+          html += '<div>';
+          html += '<div class="relative h-28 rounded-xl overflow-hidden mb-2.5">';
+          html += '<img src="' + v.cover + '" class="w-full h-full object-cover" />';
+          html += '<button type="button" data-detail-type="vehicle" data-detail-id="' + v.id + '" class="btn-detail-trigger absolute top-2 right-2 w-7 h-7 rounded-lg bg-black/60 backdrop-blur-sm text-white hover:bg-china-red flex items-center justify-center transition-colors" title="View Vehicle Details"><svg class="w-3.5 h-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>';
+          html += '</div>';
+          html += '<h4 class="font-serif font-bold text-xs sm:text-sm text-china-navy leading-snug line-clamp-1">' + v.title + '</h4>';
+          html += '<div class="mt-2 space-y-1 text-[11px] text-gray-500">';
+          html += '<div class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-china-red shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg> ' + v.capacity + '</div>';
+          html += '<div class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-china-red shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> ' + v.luggage + '</div>';
+          html += '</div></div>';
+          html += '<div class="mt-3.5 pt-2.5 border-t border-gray-100 flex items-center justify-between text-xs">';
+          html += '<span class="font-bold text-china-red font-serif">$' + v.dailyRate + ' / day</span>';
+          html += '<span class="res-check-badge w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center text-xs font-bold ' + (isSelected ? 'bg-china-red text-white border-china-red' : 'text-transparent') + '">✓</span>';
+          html += '</div></div>';
+        });
+
+        container.innerHTML = html;
+
+        container.onclick = function(e) {
+          const detailBtn = e.target.closest('.btn-detail-trigger');
+          if (detailBtn) {
+            e.stopPropagation();
+            openDetailModal('vehicle', detailBtn.getAttribute('data-detail-id'));
+            return;
+          }
+          const card = e.target.closest('.veh-item');
+          if (card) {
+            selectVehicle(card.getAttribute('data-id'));
+          }
+        };
+      }
+
+      function selectVehicle(id) {
+        if (selectedVehicleId === id) {
+          selectedVehicleId = null; // Toggle off
+        } else {
+          selectedVehicleId = id;
+        }
+        renderVehicles();
+        recalculatePricing();
+      }
+
+      function renderGuides() {
+        const catalog = getCatalog();
+        const city = catalog[currentCitySlug];
+        const container = document.getElementById('guidesGridContainer');
+        if (!container || !city) return;
+
+        const guides = city.guides || [];
+
+        let html = '';
+        guides.forEach(g => {
+          const isSelected = selectedGuideId === g.id;
+          html += '<div data-id="' + g.id + '" class="custom-res-card guide-item p-3.5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-3 ' + (isSelected ? 'active border-china-red bg-red-50/40' : 'border-gray-200 hover:border-gray-300 bg-white') + '">';
+          html += '<div class="flex items-center gap-3 min-w-0 flex-grow">';
+          html += '<div class="relative w-14 h-14 shrink-0"><img src="' + g.avatar + '" class="w-14 h-14 rounded-full object-cover ring-2 ring-red-100 shadow-sm" /><span class="absolute -bottom-1 -right-1 bg-china-red text-white text-[8px] font-bold px-1 rounded-full font-chinese">' + g.chineseName + '</span></div>';
+          html += '<div class="min-w-0 flex-grow">';
+          html += '<h4 class="font-serif font-bold text-xs sm:text-sm text-china-navy truncate">' + g.name + '</h4>';
+          html += '<p class="text-[11px] text-gray-500 truncate mt-0.5">' + g.title + '</p>';
+          html += '<div class="flex items-center gap-1.5 mt-1 text-[10px] text-gray-600"><span class="bg-gray-100 px-1.5 py-0.5 rounded font-medium">' + g.languages + '</span><span>•</span><span class="text-china-gold font-bold">' + g.experienceYears + 'y Exp</span></div>';
+          html += '<div class="text-xs font-bold text-china-red font-serif mt-1">$' + g.dailyRate + ' / day</div>';
+          html += '</div></div>';
+          html += '<div class="flex flex-col items-center justify-between shrink-0 h-full py-0.5 gap-2">';
+          html += '<button type="button" data-detail-type="guide" data-detail-id="' + g.id + '" class="btn-detail-trigger w-7 h-7 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-china-navy flex items-center justify-center transition-colors" title="View Guide Profile"><svg class="w-3.5 h-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>';
+          html += '<span class="res-check-badge w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center text-xs font-bold ' + (isSelected ? 'bg-china-red text-white border-china-red' : 'text-transparent') + '">✓</span>';
+          html += '</div></div>';
+        });
+
+        container.innerHTML = html;
+
+        container.onclick = function(e) {
+          const detailBtn = e.target.closest('.btn-detail-trigger');
+          if (detailBtn) {
+            e.stopPropagation();
+            openDetailModal('guide', detailBtn.getAttribute('data-detail-id'));
+            return;
+          }
+          const card = e.target.closest('.guide-item');
+          if (card) {
+            selectGuide(card.getAttribute('data-id'));
+          }
+        };
+      }
+
+      function selectGuide(id) {
+        if (selectedGuideId === id) {
+          selectedGuideId = null; // Toggle off
+        } else {
+          selectedGuideId = id;
+        }
+        renderGuides();
+        recalculatePricing();
+      }
+
+      window.onPaxChanged = function(pax) {
+        currentPax = parseInt(pax) || 2;
+        recalculatePricing();
+      };
+
+      function recalculatePricing() {
+        const catalog = getCatalog();
+        const city = catalog[currentCitySlug];
+        if (!city) return;
+
+        // 1. Vehicle rate
+        const veh = (city.vehicles || []).find(v => v.id === selectedVehicleId);
+        const vehCost = veh ? veh.dailyRate : 0;
+
+        // 2. Guide rate
+        const guide = (city.guides || []).find(g => g.id === selectedGuideId);
+        const guideCost = guide ? guide.dailyRate : 0;
+
+        // 3. Tickets (Per Person * Pax)
+        let perPaxTicket = 0;
+        selectedAttrs.forEach(aid => {
+          const a = (city.attractions || []).find(it => it.id === aid);
+          if (a) perPaxTicket += a.ticketPrice;
+        });
+        const totalTickets = perPaxTicket * currentPax;
+
+        // 4. Dining (Per Person * Pax)
+        let perPaxMealMin = 0;
+        let perPaxMealMax = 0;
+        selectedRests.forEach(rid => {
+          const r = (city.restaurants || []).find(it => it.id === rid);
+          if (r) {
+            perPaxMealMin += r.priceMin;
+            perPaxMealMax += r.priceMax;
+          }
+        });
+        const totalDiningMin = perPaxMealMin * currentPax;
+        const totalDiningMax = perPaxMealMax * currentPax;
+
+        const totalMin = vehCost + guideCost + totalTickets + totalDiningMin;
+        const totalMax = vehCost + guideCost + totalTickets + totalDiningMax;
+
+        const perPersonMin = Math.round(totalMin / currentPax);
+        const perPersonMax = Math.round(totalMax / currentPax);
+
+        document.getElementById('breakdownCityLabel').textContent = city.name;
+        document.getElementById('rowVehicleCost').textContent = vehCost > 0 ? ('$' + vehCost) : '$0 (Not selected)';
+        document.getElementById('rowGuideCost').textContent = guideCost > 0 ? ('$' + guideCost) : '$0 (Not selected)';
+
+        document.getElementById('labelTicketCount').textContent = '🏛️ Tickets (' + currentPax + ' Pax, ' + selectedAttrs.length + ' Sites):';
+        document.getElementById('rowTicketCost').textContent = '$' + totalTickets;
+
+        document.getElementById('labelDiningCount').textContent = '🍜 Dining (' + currentPax + ' Pax, ' + selectedRests.length + ' Meals):';
+        if (selectedRests.length > 0) {
+          document.getElementById('rowDiningCost').textContent = '$' + totalDiningMin + ' ~ $' + totalDiningMax;
+        } else {
+          document.getElementById('rowDiningCost').textContent = '$0 (Optional)';
+        }
+
+        if (selectedRests.length > 0) {
+          document.getElementById('liveTotalPriceDisplay').textContent = '$' + totalMin + ' ~ $' + totalMax;
+          document.getElementById('livePerPersonDisplay').textContent = 'From $' + perPersonMin + ' ~ $' + perPersonMax + ' / person (' + currentPax + ' Travelers)';
+          document.getElementById('mobilePriceValue').textContent = '$' + totalMin + ' ~ $' + totalMax;
+        } else {
+          document.getElementById('liveTotalPriceDisplay').textContent = '$' + totalMin;
+          document.getElementById('livePerPersonDisplay').textContent = 'From $' + perPersonMin + ' / person (' + currentPax + ' Travelers)';
+          document.getElementById('mobilePriceValue').textContent = '$' + totalMin;
+        }
+
+        const pillsContainer = document.getElementById('selectedSummaryPills');
+        pillsContainer.innerHTML = '';
+
+        const cBadge = document.createElement('span');
+        cBadge.className = 'px-2 py-0.5 bg-china-navy text-white rounded-md font-bold';
+        cBadge.textContent = '📍 ' + city.name;
+        pillsContainer.appendChild(cBadge);
+
+        selectedAttrs.forEach(aid => {
+          const a = (city.attractions || []).find(it => it.id === aid);
+          if (a) {
+            const p = document.createElement('span');
+            p.className = 'px-2 py-0.5 bg-red-50 text-china-red rounded-md font-medium border border-red-100';
+            p.textContent = '🏛️ ' + a.title;
+            pillsContainer.appendChild(p);
+          }
+        });
+
+        if (veh) {
+          const p = document.createElement('span');
+          p.className = 'px-2 py-0.5 bg-emerald-50 text-emerald-800 rounded-md font-medium border border-emerald-100';
+          p.textContent = '🚗 ' + veh.title;
+          pillsContainer.appendChild(p);
+        }
+
+        if (guide) {
+          const p = document.createElement('span');
+          p.className = 'px-2 py-0.5 bg-blue-50 text-blue-800 rounded-md font-medium border border-blue-100';
+          p.textContent = '👨‍💼 ' + guide.name;
+          pillsContainer.appendChild(p);
+        }
+
+        selectedRests.forEach(rid => {
+          const r = (city.restaurants || []).find(it => it.id === rid);
+          if (r) {
+            const p = document.createElement('span');
+            p.className = 'px-2 py-0.5 bg-amber-50 text-amber-900 rounded-md font-medium border border-amber-200';
+            p.textContent = '🍜 ' + r.title;
+            pillsContainer.appendChild(p);
+          }
+        });
+      }
+
+      // ================= Modal Detail Logic =================
+      window.openDetailModal = function(type, id) {
+        const catalog = getCatalog();
+        const city = catalog[currentCitySlug];
+        if (!city) return;
+
+        let item = null;
+        let typeLabel = 'Resource Detail';
+        let badgeClass = 'bg-china-red text-white';
+        let priceLabel = 'Reference Rate';
+        let priceValue = 'Included';
+        let metaBadges = [];
+        let extraHtml = '';
+
+        if (type === 'attraction') {
+          item = (city.attractions || []).find(a => a.id === id);
+          typeLabel = 'Must-See Attraction';
+          badgeClass = 'bg-china-red text-white';
+          priceLabel = 'Admission Ticket';
+          priceValue = item.rawTicket;
+          metaBadges = [item.rating, city.name];
+        } else if (type === 'restaurant') {
+          item = (city.restaurants || []).find(r => r.id === id);
+          typeLabel = 'Authentic Dining';
+          badgeClass = 'bg-amber-500 text-slate-950 font-black';
+          priceLabel = 'Average Per Person';
+          priceValue = item.rawPrice;
+          metaBadges = [item.cuisine, item.rating, city.name];
+          if (item.dishes) {
+            extraHtml = '<div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs"><div class="font-bold text-amber-950 mb-0.5">🍴 Signature Dishes:</div><p class="text-amber-900">' + item.dishes + '</p></div>';
+          }
+        } else if (type === 'vehicle') {
+          item = (city.vehicles || []).find(v => v.id === id);
+          typeLabel = 'Private Fleet';
+          badgeClass = 'bg-slate-900 text-amber-400';
+          priceLabel = 'Full-Day Charter';
+          priceValue = item.rawPrice;
+          metaBadges = [item.capacity, item.luggage, city.name];
+          if (item.amenities && item.amenities.length) {
+            extraHtml = '<div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs"><div class="font-bold text-slate-800 mb-1">Included Amenities:</div><div class="grid grid-cols-2 gap-1 text-[11px] text-slate-600">' + item.amenities.map(am => '<div>✓ ' + am + '</div>').join('') + '</div></div>';
+          }
+        } else if (type === 'guide') {
+          item = (city.guides || []).find(g => g.id === id);
+          typeLabel = 'Certified Tour Guide';
+          badgeClass = 'bg-blue-600 text-white';
+          priceLabel = 'Daily Rate';
+          priceValue = '$' + item.dailyRate + ' / day';
+          metaBadges = [item.languages, item.experienceYears + ' Years Exp', city.name];
+        }
+
+        if (!item) return;
+
+        currentGallery = Array.isArray(item.gallery) && item.gallery.length ? item.gallery : [item.cover || item.avatar];
+        currentActiveIndex = 0;
+
+        const typeBadge = document.getElementById('modalTypeBadge');
+        typeBadge.textContent = typeLabel;
+        typeBadge.className = 'px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider shrink-0 ' + badgeClass;
+
+        document.getElementById('modalTitle').textContent = item.title || item.name;
+        document.getElementById('modalSubtitle').textContent = item.subtitle || item.title || '';
+        document.getElementById('modalDescription').textContent = item.description || '';
+
+        const metaContainer = document.getElementById('modalMetaBadges');
+        metaContainer.innerHTML = '';
+        metaBadges.forEach(b => {
+          if (!b) return;
+          const span = document.createElement('span');
+          span.className = 'px-2 py-0.5 bg-red-50 text-china-red text-[11px] font-semibold rounded-lg border border-red-100';
+          span.textContent = b;
+          metaContainer.appendChild(span);
+        });
+
+        document.getElementById('modalPriceLabel').textContent = priceLabel;
+        document.getElementById('modalPriceValue').textContent = priceValue;
+        document.getElementById('modalExtraSection').innerHTML = extraHtml;
+
+        updateModalGalleryImage(0);
+
+        const modal = document.getElementById('resourceDetailModal');
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.updateModalGalleryImage = function(index) {
+        if (!currentGallery || !currentGallery.length) return;
+        currentActiveIndex = (index + currentGallery.length) % currentGallery.length;
+
+        const mainImg = document.getElementById('modalMainImage');
+        mainImg.src = currentGallery[currentActiveIndex];
+
+        const countEl = document.getElementById('modalImageIndex');
+        countEl.textContent = (currentActiveIndex + 1) + ' / ' + currentGallery.length;
+
+        const thumbContainer = document.getElementById('modalThumbnails');
+        thumbContainer.innerHTML = '';
+        if (currentGallery.length > 1) {
+          currentGallery.forEach((imgUrl, idx) => {
+            const thumb = document.createElement('img');
+            thumb.src = imgUrl;
+            thumb.className = 'w-12 h-12 rounded-xl object-cover cursor-pointer border-2 transition-all shrink-0 ' + 
+              (idx === currentActiveIndex ? 'border-china-red scale-105 shadow' : 'border-transparent opacity-70 hover:opacity-100');
+            thumb.onclick = function() { updateModalGalleryImage(idx); };
+            thumbContainer.appendChild(thumb);
+          });
+        }
+      };
+
+      window.closeResourceModal = function() {
+        const modal = document.getElementById('resourceDetailModal');
+        if (modal) {
+          modal.classList.add('hidden');
+        }
+        document.body.style.overflow = '';
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeResourceModal();
+      });
+
+      // Export state helper for form submission
+      window.getDayTourBuilderState = function() {
+        const catalog = getCatalog();
+        const city = catalog[currentCitySlug];
+        const veh = (city.vehicles || []).find(v => v.id === selectedVehicleId);
+        const guide = (city.guides || []).find(g => g.id === selectedGuideId);
+
+        const attrTitles = selectedAttrs.map(aid => {
+          const a = (city.attractions || []).find(it => it.id === aid);
+          return a ? a.title : aid;
+        });
+
+        const restTitles = selectedRests.map(rid => {
+          const r = (city.restaurants || []).find(it => it.id === rid);
+          return r ? r.title : rid;
+        });
+
+        const totalMinText = document.getElementById('liveTotalPriceDisplay').textContent;
+
+        return {
+          city: city.name,
+          citySlug: currentCitySlug,
+          pax: currentPax,
+          attractions: attrTitles,
+          restaurants: restTitles,
+          vehicle: veh ? veh.title : 'None (Self-arranged)',
+          guide: guide ? (guide.name + ' (' + guide.languages + ')') : 'None (Self-guided)',
+          estimatedPriceRange: totalMinText
+        };
+      };
+
+      // Initialize on load
+      document.addEventListener('DOMContentLoaded', function() {
+        onCitySelected('beijing');
+      });
+    })();
+  </script>
+  
+  </main>
+  
+  <footer class="bg-china-navy text-gray-300 pt-16 pb-28 md:pb-12 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-china-red rounded-lg flex items-center justify-center text-white font-serif font-bold text-xl">
+              TC
+            </div>
+            <span class="font-serif font-bold text-2xl tracking-tight text-white">TRAVEL<span class="text-china-red">CHINA</span></span>
+          </div>
+          <p class="text-sm text-gray-400 leading-relaxed pr-6">
+            TravelChina.com is an official premier inbound travel specialist dedicated to delivering authentic, private, and tailor-made journeys across China for worldwide international travelers.
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <a href="https://instagram.com/travelchina_official" target="_blank" rel="noopener" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-china-red transition-all" aria-label="Instagram">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="https://facebook.com/travelchinacom" target="_blank" rel="noopener" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-china-red transition-all" aria-label="Facebook">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="https://youtube.com/@travelchinacom" target="_blank" rel="noopener" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-china-red transition-all" aria-label="YouTube">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+            <a href="https://tripadvisor.com" target="_blank" rel="noopener" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-china-red transition-all" aria-label="TripAdvisor">
+              <i data-lucide="award" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4 border-l-2 border-china-gold pl-2">Top Tour Routes</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="/tours/tc-101.html" class="hover:text-china-gold transition-colors">China Golden Triangle (8 Days)</a></li>
+            <li><a href="/tours/tc-102.html" class="hover:text-china-gold transition-colors">Pandas & Karst River (12 Days)</a></li>
+            <li><a href="/tours/tc-103.html" class="hover:text-china-gold transition-colors">Silk Road Odyssey (10 Days)</a></li>
+            <li><a href="/tours/tc-104.html" class="hover:text-china-gold transition-colors">Avatar Mountains & Yangtze (11 Days)</a></li>
+            <li><a href="/tours/tc-105.html" class="hover:text-china-gold transition-colors">Tibet & Mt. Everest (8 Days)</a></li>
+            <li><a href="/tours/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">View All 8 Tours <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4 border-l-2 border-china-gold pl-2">Destinations</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="/destinations/beijing.html" class="hover:text-china-gold transition-colors">Beijing Day Tours & Guides</a></li>
+            <li><a href="/destinations/xian.html" class="hover:text-china-gold transition-colors">Xi'an & Terracotta Army</a></li>
+            <li><a href="/destinations/guilin.html" class="hover:text-china-gold transition-colors">Guilin & Yangshuo Karst</a></li>
+            <li><a href="/destinations/shanghai.html" class="hover:text-china-gold transition-colors">Shanghai & Water Towns</a></li>
+            <li><a href="/destinations/chengdu.html" class="hover:text-china-gold transition-colors">Chengdu Giant Pandas</a></li>
+            <li><a href="/destinations/zhangjiajie.html" class="hover:text-china-gold transition-colors">Zhangjiajie Avatar Mountains</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4 border-l-2 border-china-gold pl-2">Get in Touch</h4>
+          <div class="space-y-3 text-sm text-gray-400">
+            <p class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-china-gold shrink-0 mt-1"></i>
+              <span>Room B521A , 5th Floor, Building 30, No. 8 Guanghua Road, Chaoyang District, Beijing,China.</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4 text-china-gold shrink-0"></i>
+              <span>+86 (10) 5360-1728</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-china-gold shrink-0"></i>
+              <span>service@travelchina.com</span>
+            </p>
+            <div class="pt-2">
+              <span class="inline-block bg-white/10 text-china-gold text-xs px-2.5 py-1 rounded font-medium border border-china-gold/30">
+                License: L-BJ-CJ00889
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+        <p>© 2026 TravelChina.com. All rights reserved. Registered Inbound Travel Agency in China.</p>
+        <div class="flex space-x-6">
+          <a href="/privacy.html" class="hover:text-gray-400 transition-colors">Privacy Policy</a>
+          <a href="/terms.html" class="hover:text-gray-400 transition-colors">Terms & Conditions</a>
+          <a href="/cancellation-refund.html" class="hover:text-gray-400 transition-colors">Cancellation & Refund Policy</a>
+          <a href="/sitemap.xml" class="hover:text-gray-400 transition-colors">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking & Inquiry Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button id="closeBookingModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-2">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="text-center mb-6">
+        <span class="text-[11px] uppercase tracking-widest text-china-red font-bold">100% Tailor-Made & Transparent Rates</span>
+        <h3 id="modalTourTitle" class="font-serif text-2xl font-bold text-china-navy mt-1">Book / Inquire Tour</h3>
+        <p class="text-xs text-gray-500 mt-1">Our travel planner will respond with customized proposal within 12 hours.</p>
+      </div>
+      <form id="quickInquiryForm" class="space-y-4">
+        <input type="hidden" id="inquiryTourId" name="tourId" value="" />
+        <input type="hidden" id="inquiryTourTitle" name="tourTitle" value="" />
+        <input type="hidden" id="inquiryTierPrice" name="tierPrice" value="" />
+        <!-- Invisible Honeypot Anti-Bot Shield -->
+        <input type="text" name="hp_website_trap" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" />
+        
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Your Full Name *</label>
+          <input type="text" required name="fullName" placeholder="e.g. John Smith" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-china-red focus:outline-none" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Email Address *</label>
+            <input type="email" required name="email" placeholder="john@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-china-red focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">WhatsApp / Phone</label>
+            <input type="tel" name="whatsapp" placeholder="+1 (555) 000-0000" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-china-red focus:outline-none" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Travelers</label>
+            <select name="groupSize" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-china-red focus:outline-none">
+              <option value="1">1 Person (Solo)</option>
+              <option value="2" selected>2 Persons</option>
+              <option value="3-4">3 - 4 Persons</option>
+              <option value="5-8">5 - 8 Persons</option>
+              <option value="9+">9+ Persons</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Expected Date</label>
+            <input type="date" name="travelDate" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-china-red focus:outline-none" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Special Requests / Questions</label>
+          <textarea name="notes" rows="3" placeholder="Tell us your preferences (hotel category, dietary needs, special interests)..." class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-china-red focus:outline-none"></textarea>
+        </div>
+        <button type="submit" id="submitInquiryBtn" class="w-full py-3.5 bg-china-red hover:bg-china-darkred text-white font-bold rounded-xl text-sm shadow-lg transition-all flex items-center justify-center gap-2">
+          <span>Submit Inquiry / Lock Today's Rate</span>
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+        <div id="inquiryFeedback" class="text-xs text-center font-medium hidden"></div>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- Global Client Script with Cache Buster -->
+  <script src="/assets/app.js?v=2.6"></script>
+  <script>
+    if (window.lucide) lucide.createIcons();
+  </script>
+</body>
+</html>

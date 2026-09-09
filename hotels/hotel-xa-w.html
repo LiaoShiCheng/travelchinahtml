@@ -535,8 +535,8 @@
 
         <div class="flex lg:hidden items-center space-x-3">
           <a href="/custom-tour.html" class="text-xs bg-china-red text-white px-3.5 py-1.5 rounded-full font-medium shadow">Plan Trip</a>
-          <button id="mobileMenuBtn" onclick="toggleMobileDrawer()" aria-label="Toggle Navigation" class="p-2 text-gray-700 hover:text-china-red rounded-lg focus:outline-none">
-            <i data-lucide="menu" class="w-6 h-6"></i>
+          <button id="mobileMenuBtn" onclick="toggleMobileDrawer(event)" aria-label="Toggle Navigation" class="p-2 text-gray-700 hover:text-china-red rounded-lg focus:outline-none">
+            <i data-lucide="menu" class="w-6 h-6 pointer-events-none"></i>
           </button>
         </div>
       </div>
@@ -851,17 +851,27 @@
       </div>
     </div>
     <script>
-      function toggleMobileDrawer() {
+      window.toggleMobileDrawer = function(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
         var d = document.getElementById('mobileDrawer');
         if (d) d.classList.toggle('hidden');
-      }
-      function toggleMobileSubmenu(subId, btn) {
+      };
+      window.toggleMobileSubmenu = function(subId, btn) {
         var el = document.getElementById(subId);
         if (!el) return;
         el.classList.toggle('hidden');
         var icon = btn ? btn.querySelector('svg, i') : null;
         if (icon) icon.classList.toggle('rotate-180');
-      }
+      };
+      document.addEventListener('click', function(e) {
+        var d = document.getElementById('mobileDrawer');
+        var btn = document.getElementById('mobileMenuBtn');
+        if (d && !d.classList.contains('hidden')) {
+          if (!d.contains(e.target) && (!btn || !btn.contains(e.target))) {
+            d.classList.add('hidden');
+          }
+        }
+      });
     </script>
   </header>
   

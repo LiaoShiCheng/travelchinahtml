@@ -2,7 +2,13 @@
  * TravelChina.com Front-End Client Application Script
  */
 
-// Mobile Submenu Accordion Toggle
+// Mobile Drawer & Submenu Navigation Functions
+window.toggleMobileDrawer = function(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  const d = document.getElementById('mobileDrawer');
+  if (d) d.classList.toggle('hidden');
+};
+
 window.toggleMobileSubmenu = function(subId, btn) {
   const el = document.getElementById(subId);
   if (!el) return;
@@ -14,14 +20,7 @@ window.toggleMobileSubmenu = function(subId, btn) {
 };
 
 function initFrontApp() {
-  // 1. Mobile Drawer Navigation Toggle
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  if (mobileMenuBtn && mobileDrawer) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileDrawer.classList.toggle('hidden');
-    });
-  }
+  // 1. Mobile Drawer Navigation Toggle handled via window.toggleMobileDrawer(event)
 
   // 2. Day-by-Day Accordion Itinerary Toggle
   const accordionHeaders = document.querySelectorAll('.accordion-header');

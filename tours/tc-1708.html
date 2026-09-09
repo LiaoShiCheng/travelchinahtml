@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="oriental_ink">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,14 +41,14 @@
         extend: {
           colors: {
             china: {
-              red: '#C8102E',
-              darkred: '#9B111E',
-              gold: '#C5A059',
-              darkgold: '#997328',
-              navy: '#0F1E36',
-              slate: '#1E293B',
-              jade: '#0A5C36',
-              cream: '#FDFBF7'
+              red: '#C83C23',
+              darkred: '#A92E18',
+              gold: '#4A6B5B',
+              darkgold: '#355043',
+              navy: '#1A1A1A',
+              slate: '#2C2C2C',
+              jade: '#4A6B5B',
+              cream: '#F7F5F0'
             }
           },
           fontFamily: {
@@ -73,13 +73,38 @@
   <style>
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* 双主题全局 CSS 变量与微润背景 */
+    :root {
+      --theme-name: 'oriental_ink';
+      --color-primary: #C83C23;
+      --color-primary-dark: #A92E18;
+      --color-bg-body: #F7F5F0;
+      --color-text-main: #2C2C2C;
+      --color-secondary: #4A6B5B;
+      --color-navy: #1A1A1A;
+    }
+    
+    /* 东方雅韵·水墨宣纸主题微调 */
+    body {
+      background-color: #F7F5F0 !important;
+      color: #2C2C2C !important;
+    }
+    /* 柔化边框与局部背景 */
+    .bg-slate-50, .bg-gray-50 {
+      background-color: #F3EFE8 !important;
+    }
+    .border-gray-100, .border-gray-200 {
+      border-color: #E7E2D8 !important;
+    }
+    
   </style>
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"TouristTrip","name":"test ","description":"","touristType":["International Inbound Travelers"],"offers":{"@type":"Offer","price":1299,"priceCurrency":"USD","availability":"https://schema.org/InStock"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://travelchina.com/index.html"},{"@type":"ListItem","position":2,"name":"China Tours","item":"https://travelchina.com/tours/index.html"},{"@type":"ListItem","position":3,"name":"test "}]}</script>
   
 </head>
-<body class="bg-[#FCFBF8] text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-china-red selection:text-white">
+<body class="bg-[#F7F5F0] text-[#2C2C2C] font-sans antialiased min-h-screen flex flex-col selection:bg-china-red selection:text-white">
   
   <!-- Top Bar -->
   <div class="bg-china-navy text-gray-300 text-xs py-2.5 px-4 border-b border-white/10 hidden md:block">

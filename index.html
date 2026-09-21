@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" data-theme="oriental_ink">
+<html lang="en" class="scroll-smooth" data-theme="classic">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Travel to china,China tours | TravelChina.com Official</title>
-  <meta name="description" content="默认 Meta Description, authentic China with TravelChina.com. Official private long-haul tours, 144-hour visa-free guidance, interactive custom tour builder, and 5-star English licensed guides." />
+  <meta name="description" content="Meta Description, authentic China with TravelChina.com. Official private long-haul tours, 144-hour visa-free guidance, interactive custom tour builder, and 5-star English licensed guides." />
   <meta name="keywords" content="China tours, travel to China, China vacation, China Golden Triangle, Silk Road tour, Tibet travel, China 144 hour visa free" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://travelchina.com/index.html" />
@@ -13,13 +13,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://travelchina.com/index.html" />
   <meta property="og:title" content="Travel to china,China tours | TravelChina.com Official" />
-  <meta property="og:description" content="默认 Meta Description, authentic China with TravelChina.com. Official private long-haul tours, 144-hour visa-free guidance, interactive custom tour builder, and 5-star English licensed guides." />
+  <meta property="og:description" content="Meta Description, authentic China with TravelChina.com. Official private long-haul tours, 144-hour visa-free guidance, interactive custom tour builder, and 5-star English licensed guides." />
   <meta property="og:image" content="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Travel to china,China tours | TravelChina.com Official" />
-  <meta name="twitter:description" content="默认 Meta Description, authentic China with TravelChina.com. Official private long-haul tours, 144-hour visa-free guidance, interactive custom tour builder, and 5-star English licensed guides." />
+  <meta name="twitter:description" content="Meta Description, authentic China with TravelChina.com. Official private long-haul tours, 144-hour visa-free guidance, interactive custom tour builder, and 5-star English licensed guides." />
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80" />
 
   <!-- Google Fonts Preconnect -->
@@ -41,14 +41,14 @@
         extend: {
           colors: {
             china: {
-              red: '#C83C23',
-              darkred: '#A92E18',
-              gold: '#4A6B5B',
-              darkgold: '#355043',
-              navy: '#1A1A1A',
-              slate: '#2C2C2C',
-              jade: '#4A6B5B',
-              cream: '#F7F5F0'
+              red: '#C8102E',
+              darkred: '#9B111E',
+              gold: '#C5A059',
+              darkgold: '#997328',
+              navy: '#0F1E36',
+              slate: '#1E293B',
+              jade: '#0A5C36',
+              cream: '#FDFBF7'
             }
           },
           fontFamily: {
@@ -66,9 +66,10 @@
     }
   </script>
 
-  <!-- Lucide Icons & Leaflet JS -->
+  <!-- Lucide Icons & Leaflet JS/CSS (Fast cdnjs globally accelerated) -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 
   <style>
     .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -76,41 +77,62 @@
 
     /* 双主题全局 CSS 变量与微润背景 */
     :root {
-      --theme-name: 'oriental_ink';
-      --color-primary: #C83C23;
-      --color-primary-dark: #A92E18;
-      --color-bg-body: #F7F5F0;
-      --color-text-main: #2C2C2C;
-      --color-secondary: #4A6B5B;
-      --color-navy: #1A1A1A;
+      --theme-name: 'classic';
+      --color-primary: #C8102E;
+      --color-primary-dark: #9B111E;
+      --color-bg-body: #FCFBF8;
+      --color-text-main: #1F2937;
+      --color-secondary: #C5A059;
+      --color-navy: #0F1E36;
     }
     
-    /* 东方雅韵·水墨宣纸主题微调 */
-    body {
-      background-color: #F7F5F0 !important;
-      color: #2C2C2C !important;
+
+    html, body {
+      overflow-x: clip;
+      max-width: 100%;
     }
-    /* 柔化边框与局部背景 */
-    .bg-slate-50, .bg-gray-50 {
-      background-color: #F3EFE8 !important;
+    /* 手机端全局模块与卡片圆角微调（更精致利落，避免大圆角在小屏过于臃肿） */
+    @media (max-width: 768px) {
+      .rounded-3xl {
+        border-radius: 12px !important;
+      }
+      .rounded-2xl {
+        border-radius: 10px !important;
+      }
+      .rounded-xl {
+        border-radius: 8px !important;
+      }
+      .rounded-t-3xl {
+        border-top-left-radius: 16px !important;
+        border-top-right-radius: 16px !important;
+      }
+      .rounded-t-2xl {
+        border-top-left-radius: 12px !important;
+        border-top-right-radius: 12px !important;
+      }
+      .rounded-b-3xl {
+        border-bottom-left-radius: 16px !important;
+        border-bottom-right-radius: 16px !important;
+      }
+      .rounded-b-2xl {
+        border-bottom-left-radius: 12px !important;
+        border-bottom-right-radius: 12px !important;
+      }
     }
-    .border-gray-100, .border-gray-200 {
-      border-color: #E7E2D8 !important;
-    }
-    
   </style>
 
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"TravelAgency","name":"TravelChina.com","url":"https://travelchina.com","logo":"https://travelchina.com/assets/logo.png","description":"Your Ultimate Gateway to Authentic China Travel","telephone":"+86 (10) 5360-1728","email":"service@travelchina.com","address":{"@type":"PostalAddress","streetAddress":"Room B521A , 5th Floor, Building 30, No. 8 Guanghua Road, Chaoyang District, Beijing,China.","addressLocality":"Beijing","postalCode":"100004","addressCountry":"CN"}}</script>
   
   
 </head>
-<body class="bg-[#F7F5F0] text-[#2C2C2C] font-sans antialiased min-h-screen flex flex-col selection:bg-china-red selection:text-white">
+<body class="bg-[#FCFBF8] text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-china-red selection:text-white">
   
   <!-- Top Bar -->
+  
   <div class="bg-china-navy text-gray-300 text-xs py-2.5 px-4 border-b border-white/10 hidden md:block">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center space-x-6">
-        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-china-gold"></i> Certified China Inbound Tour Operator (Lic: L-BJ-CJ00889)</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-china-gold"></i> Certified China Inbound Tour Operator</span>
         <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5 text-china-gold"></i> 24/7 VIP Concierge: +86 (10) 5360-1728</span>
         <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5 text-china-gold"></i> service@travelchina.com</span>
       </div>
@@ -119,23 +141,27 @@
           <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp Concierge
         </a>
         <span class="text-white/20">|</span>
-        <span class="text-china-gold font-medium">144h Visa-Free Transit Guarantee</span>
+        
+          <a href="/insights/china-144-hour-visa-free-transit-guide.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">
+            <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i> 144h Visa-Free Transit Guarantee
+          </a>
+        
       </div>
     </div>
   </div>
+  
 
   <!-- Navigation Header -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
-        <a href="/index.html" class="flex items-center space-x-3 group">
-          <div class="w-11 h-11 bg-china-red rounded-xl flex items-center justify-center text-white font-serif font-bold text-2xl shadow-md group-hover:scale-105 transition-transform duration-300">
-            TC
-          </div>
-          <div>
-            <span class="font-serif font-bold text-2xl tracking-tight text-china-navy block">TRAVEL<span class="text-china-red">CHINA</span></span>
-            <span class="text-[10px] tracking-[0.25em] text-gray-500 uppercase block font-medium">DISCOVER THE MIDDLE KINGDOM</span>
-          </div>
+        <a href="/index.html" class="flex items-center space-x-3.5 group" aria-label="TravelChina.com - Premier Inbound Specialist">
+          
+            <div class="flex flex-col justify-center">
+              <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/brand/img-1789552533697-lph7.webp" alt="TravelChina.com - Premier Inbound Specialist" class="w-auto object-contain group-hover:scale-105 transition-transform duration-300" style="height: 28px;" />
+              
+            </div>
+          
         </a>
 
         <!-- Desktop Navigation with Hover Sub-menus & Tooltips -->
@@ -143,8 +169,8 @@
           
             <div class="relative group py-6">
               <a href="/tours/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>Hot Tours</span>
-                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">5A</span>
+                <span>Grand Tours</span>
+                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">Hot</span>
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
 
@@ -225,7 +251,7 @@
             <div class="relative group py-6">
               <a href="/day-tours/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
                 <span>Day Tours</span>
-                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">Hot</span>
+                
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
 
@@ -316,7 +342,7 @@
             
             <div class="relative group py-6">
               <a href="/destinations/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>Destinations</span>
+                <span>Hot Cities</span>
                 
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
@@ -408,8 +434,8 @@
             
             <div class="relative group py-6">
               <a href="/hotels/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>China Hotels</span>
-                
+                <span>Selected Hotels</span>
+                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">best</span>
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
 
@@ -434,7 +460,7 @@
             
               <div class="relative group py-6">
                 <a href="/custom-tour.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                  <span>Tailor-Made</span>
+                  <span>Buid My Tour</span>
                   
                 </a>
 
@@ -446,7 +472,7 @@
                     <div class="relative z-10">
                       <div class="flex items-center justify-center gap-1 text-china-gold font-bold text-[11px] mb-1">
                         <i data-lucide="sparkles" class="w-3.5 h-3.5 text-china-gold"></i>
-                        <span>Tailor-Made</span>
+                        <span>Buid My Tour</span>
                       </div>
                       <p class="text-gray-200 font-normal text-[11px] leading-snug">100% Private, flexible & handcrafted journeys tailored to your pace and budget. test</p>
                     </div>
@@ -456,8 +482,8 @@
               
             <div class="relative group py-6">
               <a href="/insights/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>China Highlights</span>
-                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">Hot</span>
+                <span>About China </span>
+                
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
 
@@ -525,7 +551,7 @@
             </div>
             
               <a href="/about.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>About Us</span>
+                <span>Our Team</span>
                 
               </a>
               
@@ -533,8 +559,7 @@
 
         
 
-        <div class="flex lg:hidden items-center space-x-3">
-          <a href="/custom-tour.html" class="text-xs bg-china-red text-white px-3.5 py-1.5 rounded-full font-medium shadow">Plan Trip</a>
+        <div class="flex lg:hidden items-center">
           <button id="mobileMenuBtn" onclick="toggleMobileDrawer(event)" aria-label="Toggle Navigation" class="p-2 text-gray-700 hover:text-china-red rounded-lg focus:outline-none">
             <i data-lucide="menu" class="w-6 h-6 pointer-events-none"></i>
           </button>
@@ -548,8 +573,8 @@
         <div class="rounded-lg border border-gray-100 overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/tours/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
-              <span>Hot Tours</span>
-              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">5A</span>
+              <span>Grand Tours</span>
+              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">Hot</span>
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_0', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
               <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
@@ -612,7 +637,7 @@
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/day-tours/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
               <span>Day Tours</span>
-              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">Hot</span>
+              
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_1', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
               <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
@@ -682,7 +707,7 @@
         <div class="rounded-lg border border-gray-100 overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/destinations/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
-              <span>Destinations</span>
+              <span>Hot Cities</span>
               
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_2', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
@@ -753,8 +778,8 @@
         <div class="rounded-lg border border-gray-100 overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/hotels/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
-              <span>China Hotels</span>
-              
+              <span>Selected Hotels</span>
+              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">best</span>
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_3', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
               <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
@@ -775,7 +800,7 @@
         
           <a href="/custom-tour.html" class="block px-3 py-2.5 rounded-lg text-base font-medium transition-colors text-gray-700 hover:bg-gray-50">
             <div class="flex items-center justify-between">
-              <span>Tailor-Made</span>
+              <span>Buid My Tour</span>
               
             </div>
             <p class="text-xs text-gray-400 font-normal mt-1 leading-snug">100% Private, flexible & handcrafted journeys tailored to your pace and budget. test</p>
@@ -784,8 +809,8 @@
         <div class="rounded-lg border border-gray-100 overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/insights/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
-              <span>China Highlights</span>
-              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">Hot</span>
+              <span>About China </span>
+              
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_5', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
               <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
@@ -838,7 +863,7 @@
         
           <a href="/about.html" class="block px-3 py-2.5 rounded-lg text-base font-medium transition-colors text-gray-700 hover:bg-gray-50">
             <div class="flex items-center justify-between">
-              <span>About Us</span>
+              <span>Our Team</span>
               
             </div>
             
@@ -887,13 +912,16 @@
     
     <div class="relative z-10 max-w-5xl mx-auto px-4 text-center py-10 sm:py-12 md:py-16">
       <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-china-gold border border-china-gold/30 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4 md:mb-6">
-        <i data-lucide="compass" class="w-4 h-4"></i> TRAVEL CHINA.COM
+        <i data-lucide="compass" class="w-4 h-4"></i> TravelChina.COM
       </span>
       <h1 class="font-serif text-3xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-4 md:mb-6 drop-shadow-md">
-        Travel to china,China tours
+        Discover China Your Way！
       </h1>
       <p class="text-sm sm:text-xl text-gray-100 max-w-3xl mx-auto font-light leading-relaxed mb-0 line-clamp-3 sm:line-clamp-none drop-shadow">
-        Immersive cultural journeys,副标题介绍 (Hero Subtitle)
+        Established in 2000;
+Features a professional team of 200 members;
+Has served over 410,000 international guests;
+Offers a curated selection of hotels for travelers in popular destinations.
       </p>
 
       
@@ -906,8 +934,8 @@
   <section class="py-10 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-end justify-between mb-6 md:mb-10">
       <div>
-        <span class="text-china-red font-semibold text-xs uppercase tracking-widest block mb-1">Practical Guide & Culture</span>
-        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-china-navy">China Travel Insights test</h2>
+        <span class="text-china-red font-semibold text-xs uppercase tracking-widest block mb-1">Understanding China, loving China!</span>
+        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-china-navy">Rich Chinese information</h2>
       </div>
       <div>
         <a href="/insights/index.html" class="inline-flex items-center gap-1 text-china-red font-bold text-xs sm:text-sm hover:text-china-darkred group">
@@ -919,6 +947,38 @@
 
     <!-- 手机端：左图右文卡片列表；平板及电脑端：4列纵向卡片瀑布流 -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      
+        <article class="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100 flex flex-row md:flex-col group">
+          <!-- 左图（手机端） / 顶图（桌面端） -->
+          <div class="relative w-28 sm:w-36 h-28 sm:h-32 md:w-full md:h-48 shrink-0 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80" alt="Ultimate Chengdu Travel Guide: Pandas, Teahouses & Authentic Sichuan Cuisine" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="hidden md:inline-block absolute top-2 left-2 bg-china-red text-white text-[9px] md:text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider shadow-sm">
+              Food & Dining
+            </span>
+          </div>
+
+          <!-- 右文（手机端） / 底文（桌面端） -->
+          <div class="p-3.5 sm:p-4 md:p-5 flex flex-col justify-between flex-grow min-w-0">
+            <div>
+              <div class="flex items-center gap-1.5 text-[10px] md:text-xs text-gray-400 mb-1 md:mb-2">
+                <span>2026-09-10</span>
+                <span>•</span>
+                <span>6 min read</span>
+              </div>
+              <h3 class="font-serif font-bold text-xs sm:text-sm md:text-base text-china-navy group-hover:text-china-red transition-colors line-clamp-2 leading-snug">
+                <a href="/insights/chengdu.html">Ultimate Chengdu Travel Guide: Pandas, Teahouses & Authentic Sichuan Cuisine</a>
+              </h3>
+              <p class="text-[11px] md:text-xs text-gray-500 mt-1 md:mt-2 line-clamp-1 md:line-clamp-2 leading-relaxed hidden sm:block">
+                Discover Chengdu, China's laid-back capital of Sichuan province, where giant pandas munch bamboo, teahouses hum with the clink of gaiwan lids, and the cuisine delivers a sophisticated balance of heat, numbing spice, and savory depth. This practical guide covers 144/240-hour visa-free transit, using Alipay and WeChat Pay with international cards, high-speed rail connections, and must-try local dishes—from mild dandan noodles to bubbling hotpot. You'll also learn how to skip the lines at Panda Base, order tea like a local, and navigate Chengdu's famously safe streets with confidence. If you want a trip that feeds both your appetite and your spirit, start here.
+              </p>
+            </div>
+            <div class="mt-2 md:mt-4 pt-2 md:pt-3 border-t border-gray-100 flex items-center justify-between">
+              <a href="/insights/chengdu.html" class="text-[11px] md:text-xs font-semibold text-china-red group-hover:underline flex items-center gap-1">
+                Read Article <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </article>
       
         <article class="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100 flex flex-row md:flex-col group">
           <!-- 左图（手机端） / 顶图（桌面端） -->
@@ -1016,38 +1076,6 @@
           </div>
         </article>
       
-        <article class="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100 flex flex-row md:flex-col group">
-          <!-- 左图（手机端） / 顶图（桌面端） -->
-          <div class="relative w-28 sm:w-36 h-28 sm:h-32 md:w-full md:h-48 shrink-0 overflow-hidden">
-            <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/insights/img-1787990611908-1w7h.webp" alt="The Complete Guide to China 144-Hour Visa-Free Transit Policy (Live Verified)" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <span class="hidden md:inline-block absolute top-2 left-2 bg-china-red text-white text-[9px] md:text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider shadow-sm">
-              Transit Guide
-            </span>
-          </div>
-
-          <!-- 右文（手机端） / 底文（桌面端） -->
-          <div class="p-3.5 sm:p-4 md:p-5 flex flex-col justify-between flex-grow min-w-0">
-            <div>
-              <div class="flex items-center gap-1.5 text-[10px] md:text-xs text-gray-400 mb-1 md:mb-2">
-                <span>2026-08-15</span>
-                <span>•</span>
-                <span>5 min read</span>
-              </div>
-              <h3 class="font-serif font-bold text-xs sm:text-sm md:text-base text-china-navy group-hover:text-china-red transition-colors line-clamp-2 leading-snug">
-                <a href="/insights/china-144-hour-visa-free-transit-guide.html">The Complete Guide to China 144-Hour Visa-Free Transit Policy (Live Verified)</a>
-              </h3>
-              <p class="text-[11px] md:text-xs text-gray-500 mt-1 md:mt-2 line-clamp-1 md:line-clamp-2 leading-relaxed hidden sm:block">
-                Latest 2026 update on qualifying ports, eligible 54 nationalities, step-by-step immigration procedures, and top recommended layover itineraries.
-              </p>
-            </div>
-            <div class="mt-2 md:mt-4 pt-2 md:pt-3 border-t border-gray-100 flex items-center justify-between">
-              <a href="/insights/china-144-hour-visa-free-transit-guide.html" class="text-[11px] md:text-xs font-semibold text-china-red group-hover:underline flex items-center gap-1">
-                Read Article <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
-          </div>
-        </article>
-      
     </div>
   </section>
 
@@ -1056,8 +1084,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between mb-6 md:mb-10">
         <div>
-          <span class="text-china-red font-semibold text-xs uppercase tracking-widest block mb-1">Handcrafted Signature Journeys test</span>
-          <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-china-navy">Hot Long-haul Tours in China</h2>
+          <span class="text-china-red font-semibold text-xs uppercase tracking-widest block mb-1">A long history, rich culture, and vast land await you!</span>
+          <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-china-navy">Across China</h2>
         </div>
         <div>
           <a href="/tours/index.html" class="inline-flex items-center gap-1 text-china-red font-bold text-xs sm:text-sm hover:text-china-darkred group">
@@ -1070,10 +1098,116 @@
       <!-- 手机端露幅横向滑动列表 (自然触控吸附、右侧露幅暗示)，桌面端 4 列响应式网格 -->
       <div class="relative">
         <!-- 轮播轨道：手机端露幅卡片 (w-[82vw] max-w-[320px] snap-start)，桌面端 4 列响应式网格 -->
-        <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth pb-3 md:pb-0 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth pb-3 md:pb-0 no-scrollbar">
           
             <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
             <div data-tour-slide="0" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
+              <a href="/tours/tc-0911.html" class="block w-full h-full relative">
+                <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/tours/img-1789092928614-hio9.webp" alt="golden beijing xian shanghai 0911" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <!-- 沉浸式渐变黑幕遮罩 -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/20"></div>
+
+                <!-- 顶部浮层：路线编号与天数/评分 -->
+                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
+                  <span class="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20 tracking-wider">
+                    TC-0911
+                  </span>
+                  <div class="flex items-center gap-1.5">
+                    <span class="bg-china-red/90 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
+                      <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 3 Days
+                    </span>
+                    <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 5
+                    </span>
+                  </div>
+                </div>
+
+                <!-- 底部电影级半透明磨砂信息舱 -->
+                <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 z-10 flex flex-col justify-end">
+                  <div class="flex items-center gap-1.5 text-xs text-amber-300 font-medium mb-1.5 tracking-wide">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i>
+                    <span class="truncate">beijing → xian → shanghia</span>
+                  </div>
+
+                  <h3 class="font-serif font-bold text-base sm:text-lg text-white leading-snug drop-shadow-md group-hover:text-amber-300 transition-colors line-clamp-2 mb-1.5">
+                    golden beijing xian shanghai 0911
+                  </h3>
+
+                  <p class="text-[11px] text-gray-300/90 line-clamp-1 mb-3 font-light leading-relaxed">
+                    couse highlight 1,2,3,4,5,6
+                  </p>
+
+                  <div class="pt-2.5 border-t border-white/15 flex items-center justify-between">
+                    <div>
+                      <span class="text-[9px] text-gray-400 uppercase tracking-widest block font-medium">From (10+ Pax)</span>
+                      <div class="flex items-baseline gap-1">
+                        <span class="text-lg sm:text-xl font-bold text-amber-400 font-serif">$1299</span>
+                        <span class="text-[10px] text-gray-400">/ person</span>
+                      </div>
+                    </div>
+
+                    <div class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/20 hover:bg-china-red text-white text-xs font-semibold backdrop-blur-md border border-white/30 group-hover:border-china-red transition-all">
+                      <span>Explore</span>
+                      <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- 桌面端与平板端：经典高信息密度网格卡片 -->
+            <div class="hidden md:block w-auto">
+              <div class="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col group border border-gray-100 h-full">
+                <div class="relative h-56 overflow-hidden">
+                  <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/tours/img-1789092928614-hio9.webp" alt="golden beijing xian shanghai 0911" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute top-3 left-3 bg-china-navy/85 backdrop-blur-sm text-white px-2.5 py-1 rounded-md text-xs font-bold tracking-wider">
+                    TC-0911
+                  </div>
+                  <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-china-navy px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 shadow-sm">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-china-red"></i> 3 Days
+                  </div>
+                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
+                    <span class="truncate pr-2">beijing → xian → shanghia</span>
+                    <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 5
+                    </span>
+                  </div>
+                </div>
+
+                <div class="p-4 sm:p-5 flex flex-col flex-grow justify-between">
+                  <div>
+                    <span class="text-[10px] md:text-[11px] font-semibold uppercase tracking-wider text-china-gold block mb-1">silk road</span>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-china-navy group-hover:text-china-red transition-colors line-clamp-2 leading-snug">
+                      <a href="/tours/tc-0911.html">golden beijing xian shanghai 0911</a>
+                    </h3>
+                    <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed">
+                      couse highlight 1,2,3,4,5,6
+                    </p>
+
+                    <!-- Highlights list -->
+                    <ul class="mt-3 space-y-1 text-xs text-gray-600">
+                      
+                    </ul>
+                  </div>
+
+                  <div class="mt-4 pt-3 border-t border-gray-100 flex items-end justify-between">
+                    <div>
+                      <span class="text-[9px] md:text-[10px] text-gray-400 uppercase tracking-wider block">From (10+ Pax)</span>
+                      <div class="flex items-baseline gap-1">
+                        <span class="text-lg sm:text-xl font-bold text-china-red font-serif">$1299</span>
+                        <span class="text-[10px] sm:text-xs text-gray-400">/ person</span>
+                      </div>
+                    </div>
+                    <a href="/tours/tc-0911.html" class="inline-flex items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gray-50 hover:bg-china-red hover:text-white text-gray-700 text-xs font-semibold transition-all shadow-sm">
+                      Details <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
+            <div data-tour-slide="1" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
               <a href="/tours/tc-101.html" class="block w-full h-full relative">
                 <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/tours/img-1787986327219-h2vp.jpg" alt="China Golden Triangle Classic Tours" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <!-- 沉浸式渐变黑幕遮罩 -->
@@ -1089,7 +1223,7 @@
                       <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 8 Days
                     </span>
                     <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.96
                     </span>
                   </div>
                 </div>
@@ -1106,7 +1240,7 @@
                   </h3>
 
                   <p class="text-[11px] text-gray-300/90 line-clamp-1 mb-3 font-light leading-relaxed">
-                    
+                    The definitive first-timer journey through China's most iconic imperial, ancient, and modern wonders. Marvel at the Great Wall and Forbidden City in Beijing, encounter the 2,200-year-old Terracotta Army in Xi'an, and experience the dazzling futuristic skyline of Shanghai.
                   </p>
 
                   <div class="pt-2.5 border-t border-white/15 flex items-center justify-between">
@@ -1141,7 +1275,7 @@
                   <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
                     <span class="truncate pr-2">Beijing → Xi'an → Shanghai</span>
                     <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.96
                     </span>
                   </div>
                 </div>
@@ -1153,7 +1287,7 @@
                       <a href="/tours/tc-101.html">China Golden Triangle Classic Tours</a>
                     </h3>
                     <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed">
-                      
+                      The definitive first-timer journey through China's most iconic imperial, ancient, and modern wonders. Marvel at the Great Wall and Forbidden City in Beijing, encounter the 2,200-year-old Terracotta Army in Xi'an, and experience the dazzling futuristic skyline of Shanghai.
                     </p>
 
                     <!-- Highlights list -->
@@ -1189,7 +1323,7 @@
             </div>
           
             <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
-            <div data-tour-slide="1" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
+            <div data-tour-slide="2" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
               <a href="/tours/tc-102.html" class="block w-full h-full relative">
                 <img src="https://images.unsplash.com/photo-1528702748617-c64d49f918af?auto=format&fit=crop&w=1200&q=80" alt="Splendors of China: Karst Mountains & Pandass" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <!-- 沉浸式渐变黑幕遮罩 -->
@@ -1205,7 +1339,7 @@
                       <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 11 Days
                     </span>
                     <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.98
                     </span>
                   </div>
                 </div>
@@ -1257,7 +1391,7 @@
                   <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
                     <span class="truncate pr-2">Beijing → Xi'an → Chengdu → Guilin → Shanghai</span>
                     <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.98
                     </span>
                   </div>
                 </div>
@@ -1305,7 +1439,7 @@
             </div>
           
             <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
-            <div data-tour-slide="2" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
+            <div data-tour-slide="3" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
               <a href="/tours/tc-103.html" class="block w-full h-full relative">
                 <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80" alt="Legendary Silk Road Overland Odyssey" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <!-- 沉浸式渐变黑幕遮罩 -->
@@ -1321,7 +1455,7 @@
                       <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 10 Days
                     </span>
                     <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.97
                     </span>
                   </div>
                 </div>
@@ -1373,7 +1507,7 @@
                   <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
                     <span class="truncate pr-2">Xi'an → Dunhuang → Turpan → Kashgar</span>
                     <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.97
                     </span>
                   </div>
                 </div>
@@ -1421,7 +1555,7 @@
             </div>
           
             <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
-            <div data-tour-slide="3" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
+            <div data-tour-slide="4" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
               <a href="/tours/tc-104.html" class="block w-full h-full relative">
                 <img src="https://images.unsplash.com/photo-1513415564515-763d91423bdd?auto=format&fit=crop&w=1200&q=80" alt="Avatar Mountains & Yangtze River Luxury Cruise" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <!-- 沉浸式渐变黑幕遮罩 -->
@@ -1437,7 +1571,7 @@
                       <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 11 Days
                     </span>
                     <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.95
                     </span>
                   </div>
                 </div>
@@ -1489,7 +1623,7 @@
                   <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
                     <span class="truncate pr-2">Shanghai → Zhangjiajie → Yangtze River → Beijing</span>
                     <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.95
                     </span>
                   </div>
                 </div>
@@ -1537,7 +1671,7 @@
             </div>
           
             <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
-            <div data-tour-slide="4" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
+            <div data-tour-slide="5" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
               <a href="/tours/tc-105.html" class="block w-full h-full relative">
                 <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80" alt="Roof of the World: Tibet & Everest Base Camp Tour" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <!-- 沉浸式渐变黑幕遮罩 -->
@@ -1553,7 +1687,7 @@
                       <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 8 Days
                     </span>
                     <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.99
                     </span>
                   </div>
                 </div>
@@ -1605,7 +1739,7 @@
                   <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
                     <span class="truncate pr-2">Lhasa → Shigatse → Everest Base Camp</span>
                     <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.99
                     </span>
                   </div>
                 </div>
@@ -1653,7 +1787,7 @@
             </div>
           
             <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
-            <div data-tour-slide="5" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
+            <div data-tour-slide="6" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
               <a href="/tours/tc-106.html" class="block w-full h-full relative">
                 <img src="https://images.unsplash.com/photo-1528702748617-c64d49f918af?auto=format&fit=crop&w=1200&q=80" alt="Yunnan Ethnic Kingdoms & Shangri-La Fairyland" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <!-- 沉浸式渐变黑幕遮罩 -->
@@ -1669,7 +1803,7 @@
                       <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 8 Days
                     </span>
                     <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.94
                     </span>
                   </div>
                 </div>
@@ -1721,7 +1855,7 @@
                   <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
                     <span class="truncate pr-2">Kunming → Dali → Lijiang → Shangri-La</span>
                     <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.94
                     </span>
                   </div>
                 </div>
@@ -1769,7 +1903,7 @@
             </div>
           
             <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
-            <div data-tour-slide="6" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
+            <div data-tour-slide="7" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
               <a href="/tours/tc-107.html" class="block w-full h-full relative">
                 <img src="https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&w=1200&q=80" alt="Ancient Capitals & Martial Arts Heritage" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <!-- 沉浸式渐变黑幕遮罩 -->
@@ -1785,7 +1919,7 @@
                       <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 9 Days
                     </span>
                     <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.93
                     </span>
                   </div>
                 </div>
@@ -1837,7 +1971,7 @@
                   <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
                     <span class="truncate pr-2">Beijing → Datong → Pingyao → Luoyang</span>
                     <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
+                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.93
                     </span>
                   </div>
                 </div>
@@ -1877,122 +2011,6 @@
                       </div>
                     </div>
                     <a href="/tours/tc-107.html" class="inline-flex items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gray-50 hover:bg-china-red hover:text-white text-gray-700 text-xs font-semibold transition-all shadow-sm">
-                      Details <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          
-            <!-- 手机端：全幅文旅大片海报画卷卡片 (travelchina.org.cn Highlights 风格) -->
-            <div data-tour-slide="7" class="md:hidden w-[82vw] max-w-[340px] h-[400px] shrink-0 snap-start relative rounded-3xl overflow-hidden shadow-lg group block">
-              <a href="/tours/tc-108.html" class="block w-full h-full relative">
-                <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80" alt="Southern Splendors: Water Towns, Tea Hills & Hong Kong" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <!-- 沉浸式渐变黑幕遮罩 -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/20"></div>
-
-                <!-- 顶部浮层：路线编号与天数/评分 -->
-                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between z-10">
-                  <span class="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20 tracking-wider">
-                    TC-108
-                  </span>
-                  <div class="flex items-center gap-1.5">
-                    <span class="bg-china-red/90 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
-                      <i data-lucide="clock" class="w-3 h-3 text-china-gold"></i> 10 Days
-                    </span>
-                    <span class="bg-black/60 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-1 rounded-full border border-white/10 flex items-center gap-1">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
-                    </span>
-                  </div>
-                </div>
-
-                <!-- 底部电影级半透明磨砂信息舱 -->
-                <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-5 z-10 flex flex-col justify-end">
-                  <div class="flex items-center gap-1.5 text-xs text-amber-300 font-medium mb-1.5 tracking-wide">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i>
-                    <span class="truncate">Shanghai → Suzhou → Hangzhou → Guilin → Hong Kong</span>
-                  </div>
-
-                  <h3 class="font-serif font-bold text-base sm:text-lg text-white leading-snug drop-shadow-md group-hover:text-amber-300 transition-colors line-clamp-2 mb-1.5">
-                    Southern Splendors: Water Towns, Tea Hills & Hong Kong
-                  </h3>
-
-                  <p class="text-[11px] text-gray-300/90 line-clamp-1 mb-3 font-light leading-relaxed">
-                    Gardens of Suzhou, West Lake mist, tea hills and Hong Kong.
-                  </p>
-
-                  <div class="pt-2.5 border-t border-white/15 flex items-center justify-between">
-                    <div>
-                      <span class="text-[9px] text-gray-400 uppercase tracking-widest block font-medium">From (10+ Pax)</span>
-                      <div class="flex items-baseline gap-1">
-                        <span class="text-lg sm:text-xl font-bold text-amber-400 font-serif">$1550</span>
-                        <span class="text-[10px] text-gray-400">/ person</span>
-                      </div>
-                    </div>
-
-                    <div class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/20 hover:bg-china-red text-white text-xs font-semibold backdrop-blur-md border border-white/30 group-hover:border-china-red transition-all">
-                      <span>Explore</span>
-                      <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <!-- 桌面端与平板端：经典高信息密度网格卡片 -->
-            <div class="hidden md:block w-auto">
-              <div class="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col group border border-gray-100 h-full">
-                <div class="relative h-56 overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80" alt="Southern Splendors: Water Towns, Tea Hills & Hong Kong" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div class="absolute top-3 left-3 bg-china-navy/85 backdrop-blur-sm text-white px-2.5 py-1 rounded-md text-xs font-bold tracking-wider">
-                    TC-108
-                  </div>
-                  <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-china-navy px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 shadow-sm">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-china-red"></i> 10 Days
-                  </div>
-                  <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
-                    <span class="truncate pr-2">Shanghai → Suzhou → Hangzhou → Guilin → Hong Kong</span>
-                    <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                      <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> undefined
-                    </span>
-                  </div>
-                </div>
-
-                <div class="p-4 sm:p-5 flex flex-col flex-grow justify-between">
-                  <div>
-                    <span class="text-[10px] md:text-[11px] font-semibold uppercase tracking-wider text-china-gold block mb-1">Southern Elegance</span>
-                    <h3 class="font-serif font-bold text-sm sm:text-base text-china-navy group-hover:text-china-red transition-colors line-clamp-2 leading-snug">
-                      <a href="/tours/tc-108.html">Southern Splendors: Water Towns, Tea Hills & Hong Kong</a>
-                    </h3>
-                    <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed">
-                      Gardens of Suzhou, West Lake mist, tea hills and Hong Kong.
-                    </p>
-
-                    <!-- Highlights list -->
-                    <ul class="mt-3 space-y-1 text-xs text-gray-600">
-                      
-                        <li class="flex items-start gap-1.5">
-                          <i data-lucide="check" class="w-3.5 h-3.5 text-china-red shrink-0 mt-0.5"></i>
-                          <span class="line-clamp-1">Suzhou Classical Garden</span>
-                        </li>
-                      
-                        <li class="flex items-start gap-1.5">
-                          <i data-lucide="check" class="w-3.5 h-3.5 text-china-red shrink-0 mt-0.5"></i>
-                          <span class="line-clamp-1">Longjing Green Tea Harvest</span>
-                        </li>
-                      
-                    </ul>
-                  </div>
-
-                  <div class="mt-4 pt-3 border-t border-gray-100 flex items-end justify-between">
-                    <div>
-                      <span class="text-[9px] md:text-[10px] text-gray-400 uppercase tracking-wider block">From (10+ Pax)</span>
-                      <div class="flex items-baseline gap-1">
-                        <span class="text-lg sm:text-xl font-bold text-china-red font-serif">$1550</span>
-                        <span class="text-[10px] sm:text-xs text-gray-400">/ person</span>
-                      </div>
-                    </div>
-                    <a href="/tours/tc-108.html" class="inline-flex items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gray-50 hover:bg-china-red hover:text-white text-gray-700 text-xs font-semibold transition-all shadow-sm">
                       Details <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
                     </a>
                   </div>
@@ -2052,8 +2070,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between mb-6 md:mb-10">
         <div>
-          <span class="text-china-red font-semibold text-xs uppercase tracking-widest block mb-1">Explore by Destination test</span>
-          <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-china-navy">Iconic Cities of China</h2>
+          <span class="text-china-red font-semibold text-xs uppercase tracking-widest block mb-1">Every city has its unique side</span>
+          <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-china-navy">Discover a city!</h2>
         </div>
         <div>
           <a href="/destinations/index.html" class="inline-flex items-center gap-1 text-china-red font-bold text-xs sm:text-sm hover:text-china-darkred group">
@@ -2064,7 +2082,7 @@
       </div>
 
       <!-- 手机端左右横向滑动（snap-x），桌面端6列网格 -->
-      <div class="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-3.5 md:gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4 md:pb-0 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+      <div class="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-3.5 md:gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4 md:pb-0 no-scrollbar">
         
           <a href="/destinations/beijing.html" class="w-[145px] sm:w-[160px] md:w-auto shrink-0 snap-start group relative rounded-2xl overflow-hidden h-44 sm:h-48 shadow-sm hover:shadow-md transition-all">
             <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/cities/img-1788327753704-i2n1.webp" alt="Beijing" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -2073,7 +2091,7 @@
               <span class="text-[10px] text-china-gold tracking-widest block font-chinese">北京</span>
               <h3 class="font-serif font-bold text-sm sm:text-base group-hover:text-amber-300 transition-colors truncate">Beijing</h3>
               <p class="text-[10px] text-gray-300 mt-0.5 flex items-center gap-1">
-                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 6 Day Tours
+                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 12 Day Tours
               </p>
             </div>
           </a>
@@ -2085,7 +2103,7 @@
               <span class="text-[10px] text-china-gold tracking-widest block font-chinese">成都</span>
               <h3 class="font-serif font-bold text-sm sm:text-base group-hover:text-amber-300 transition-colors truncate">Chengdu</h3>
               <p class="text-[10px] text-gray-300 mt-0.5 flex items-center gap-1">
-                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 6 Day Tours
+                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 8 Day Tours
               </p>
             </div>
           </a>
@@ -2094,10 +2112,10 @@
             <img src="https://images.unsplash.com/photo-1528702748617-c64d49f918af?auto=format&fit=crop&w=1600&q=80" alt="Guilin & Yangshuo" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
             <div class="absolute bottom-3 left-3 right-3 text-white">
-              <span class="text-[10px] text-china-gold tracking-widest block font-chinese">桂林·阳朔</span>
+              <span class="text-[10px] text-china-gold tracking-widest block font-chinese">桂林与阳朔</span>
               <h3 class="font-serif font-bold text-sm sm:text-base group-hover:text-amber-300 transition-colors truncate">Guilin & Yangshuo</h3>
               <p class="text-[10px] text-gray-300 mt-0.5 flex items-center gap-1">
-                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 6 Day Tours
+                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 9 Day Tours
               </p>
             </div>
           </a>
@@ -2109,7 +2127,7 @@
               <span class="text-[10px] text-china-gold tracking-widest block font-chinese">上海</span>
               <h3 class="font-serif font-bold text-sm sm:text-base group-hover:text-amber-300 transition-colors truncate">Shanghai</h3>
               <p class="text-[10px] text-gray-300 mt-0.5 flex items-center gap-1">
-                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 6 Day Tours
+                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 10 Day Tours
               </p>
             </div>
           </a>
@@ -2121,7 +2139,7 @@
               <span class="text-[10px] text-china-gold tracking-widest block font-chinese">西安</span>
               <h3 class="font-serif font-bold text-sm sm:text-base group-hover:text-amber-300 transition-colors truncate">Xi'an</h3>
               <p class="text-[10px] text-gray-300 mt-0.5 flex items-center gap-1">
-                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 6 Day Tours
+                <i data-lucide="map-pin" class="w-3 h-3 text-china-red"></i> 8 Day Tours
               </p>
             </div>
           </a>
@@ -2146,8 +2164,8 @@
   <section class="py-10 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-end justify-between mb-6 md:mb-10">
       <div>
-        <span class="text-china-red font-semibold text-xs uppercase tracking-widest block mb-1">Single-City Highlights & Excursions test</span>
-        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-china-navy">Top Day Tours & Experiences</h2>
+        <span class="text-china-red font-semibold text-xs uppercase tracking-widest block mb-1">Different cities, different stories, but the same welcoming smiles</span>
+        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-china-navy">Explore every city</h2>
       </div>
       <div>
         <a href="/day-tours/index.html" class="inline-flex items-center gap-1 text-china-red font-bold text-xs sm:text-sm hover:text-china-darkred group">
@@ -2158,52 +2176,8 @@
     </div>
 
     <!-- 手机端左右滑动（snap-x），桌面端3列网格 -->
-    <div class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4 md:pb-0 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+    <div class="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4 md:pb-0 no-scrollbar">
       
-        <div class="w-[80vw] sm:w-[300px] md:w-auto shrink-0 snap-start bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col border border-gray-100 group">
-          <div class="relative h-44 sm:h-48 md:h-52 overflow-hidden">
-            <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/daytours/img-1788327395133-mkmk.webp" alt="mutianyju test" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <div class="absolute top-3 left-3 bg-china-navy/85 backdrop-blur-sm text-white px-2.5 py-1 rounded-md text-xs font-bold tracking-wider">
-              Beijing
-            </div>
-            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-china-navy px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 shadow-sm">
-              <i data-lucide="clock" class="w-3.5 h-3.5 text-china-red"></i> Full Day (5h)
-            </div>
-            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
-              <span class="truncate pr-2">no Pickup (Inside 4th Ring Road)</span>
-              <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
-                <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.95 (88)
-              </span>
-            </div>
-          </div>
-
-          <div class="p-4 sm:p-5 flex flex-col flex-grow justify-between">
-            <div>
-              <h3 class="font-serif font-bold text-sm sm:text-base text-china-navy group-hover:text-china-red transition-colors line-clamp-2 leading-snug">
-                <a href="/day-tours/dt-bj-8132.html">mutianyju test</a>
-              </h3>
-              <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed">
-                
-              </p>
-              
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-              <div>
-                <span class="text-[9px] md:text-[10px] text-gray-400 uppercase tracking-wider block">From</span>
-                <div class="flex items-baseline gap-1">
-                  <span class="text-lg sm:text-xl font-bold text-china-red font-serif">$110</span>
-                  <span class="text-[10px] sm:text-xs text-gray-400">/ person</span>
-                </div>
-              </div>
-              <a href="/day-tours/dt-bj-8132.html" class="inline-flex items-center px-3.5 py-2 bg-china-navy hover:bg-china-red text-white text-xs font-bold rounded-xl shadow transition-all duration-200">
-                <span>Details</span>
-                <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        
         <div class="w-[80vw] sm:w-[300px] md:w-auto shrink-0 snap-start bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col border border-gray-100 group">
           <div class="relative h-44 sm:h-48 md:h-52 overflow-hidden">
             <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/daytours/img-1787994048795-ymav.webp" alt="Mutianyu Great Wall All-Inclusive Day Tour with Cable Car & Authentic Farmer Lunch" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -2241,6 +2215,50 @@
                 </div>
               </div>
               <a href="/day-tours/dt-bj-001.html" class="inline-flex items-center px-3.5 py-2 bg-china-navy hover:bg-china-red text-white text-xs font-bold rounded-xl shadow transition-all duration-200">
+                <span>Details</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-[80vw] sm:w-[300px] md:w-auto shrink-0 snap-start bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col border border-gray-100 group">
+          <div class="relative h-44 sm:h-48 md:h-52 overflow-hidden">
+            <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/daytours/img-1788327395133-mkmk.webp" alt="mutianyju test" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute top-3 left-3 bg-china-navy/85 backdrop-blur-sm text-white px-2.5 py-1 rounded-md text-xs font-bold tracking-wider">
+              Beijing
+            </div>
+            <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-china-navy px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1 shadow-sm">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-china-red"></i> Full Day (5h)
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white bg-black/60 backdrop-blur-sm px-2.5 py-1.5 rounded-xl">
+              <span class="truncate pr-2">no Pickup (Inside 4th Ring Road)</span>
+              <span class="flex items-center gap-1 font-semibold text-amber-300 shrink-0">
+                <i data-lucide="star" class="w-3 h-3 fill-amber-300"></i> 4.95 (88)
+              </span>
+            </div>
+          </div>
+
+          <div class="p-4 sm:p-5 flex flex-col flex-grow justify-between">
+            <div>
+              <h3 class="font-serif font-bold text-sm sm:text-base text-china-navy group-hover:text-china-red transition-colors line-clamp-2 leading-snug">
+                <a href="/day-tours/dt-bj-8132.html">mutianyju test</a>
+              </h3>
+              <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed">
+                
+              </p>
+              
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+              <div>
+                <span class="text-[9px] md:text-[10px] text-gray-400 uppercase tracking-wider block">From</span>
+                <div class="flex items-baseline gap-1">
+                  <span class="text-lg sm:text-xl font-bold text-china-red font-serif">$110</span>
+                  <span class="text-[10px] sm:text-xs text-gray-400">/ person</span>
+                </div>
+              </div>
+              <a href="/day-tours/dt-bj-8132.html" class="inline-flex items-center px-3.5 py-2 bg-china-navy hover:bg-china-red text-white text-xs font-bold rounded-xl shadow transition-all duration-200">
                 <span>Details</span>
                 <i data-lucide="chevron-right" class="w-3.5 h-3.5 ml-1"></i>
               </a>
@@ -2436,12 +2454,14 @@
       <div class="pb-8 border-b border-white/10 md:border-b-0 md:pb-0">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
           <div class="lg:col-span-2 space-y-3.5">
-            <div class="flex items-center space-x-3">
-              <div class="w-9 h-9 sm:w-10 sm:h-10 bg-china-red rounded-lg flex items-center justify-center text-white font-serif font-bold text-lg sm:text-xl">
-                TC
-              </div>
-              <span class="font-serif font-bold text-xl sm:text-2xl tracking-tight text-white">TRAVEL<span class="text-china-red">CHINA</span></span>
-            </div>
+            <a href="/index.html" class="flex items-center space-x-3.5 group" aria-label="TravelChina.com - Premier Inbound Specialist">
+              
+                <div class="flex flex-col justify-center">
+                  <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/brand/img-1789552533697-lph7.webp" alt="TravelChina.com - Premier Inbound Specialist" class="w-auto object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.22)] group-hover:scale-105 transition-transform duration-300" style="height: 34px;" />
+                  
+                </div>
+              
+            </a>
             <p class="text-xs sm:text-sm text-gray-400 leading-relaxed pr-2 sm:pr-6">
               TravelChina.com is an official premier inbound travel specialist dedicated to delivering authentic, private, and tailor-made journeys across China for worldwide international travelers.
             </p>
@@ -2528,7 +2548,7 @@
             <div><a href="/tours/tc-103.html" class="block py-1 hover:text-china-gold transition-colors">Silk Road Odyssey (10 Days)</a></div>
             <div><a href="/tours/tc-104.html" class="block py-1 hover:text-china-gold transition-colors">Avatar Mountains & Yangtze (11 Days)</a></div>
             <div><a href="/tours/tc-105.html" class="block py-1 hover:text-china-gold transition-colors">Tibet & Mt. Everest (8 Days)</a></div>
-            <div class="pt-1"><a href="/tours/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">View All 8 Tours <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a></div>
+            <div class="pt-1"><a href="/tours/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">View All 8 Tours <i data-lucide="chevron-right" class="w-3 h-3"></i></a></div>
           </div>
         </div>
 
@@ -2548,7 +2568,7 @@
             <div><a href="/destinations/shanghai.html" class="block py-1 hover:text-china-gold transition-colors">Shanghai & Water Towns</a></div>
             <div><a href="/destinations/chengdu.html" class="block py-1 hover:text-china-gold transition-colors">Chengdu Giant Pandas</a></div>
             <div><a href="/destinations/zhangjiajie.html" class="block py-1 hover:text-china-gold transition-colors">Zhangjiajie Avatar Mountains</a></div>
-            <div class="pt-1"><a href="/destinations/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">Explore All Cities <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a></div>
+            <div class="pt-1"><a href="/destinations/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">Explore All Cities <i data-lucide="chevron-right" class="w-3 h-3"></i></a></div>
           </div>
         </div>
 

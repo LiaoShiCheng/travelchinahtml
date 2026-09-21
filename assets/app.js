@@ -37,7 +37,7 @@ function initFrontApp() {
     });
   });
 
-  const toggleAllBtn = document.getElementById('toggleAllAccordionBtn');
+  const toggleAllBtn = document.getElementById('toggleAllDaysBtn') || document.getElementById('toggleAllAccordionBtn');
   if (toggleAllBtn) {
     let allExpanded = false;
     toggleAllBtn.addEventListener('click', () => {
@@ -56,7 +56,13 @@ function initFrontApp() {
           icon.classList.remove('rotate-180');
         }
       });
-      toggleAllBtn.textContent = allExpanded ? 'Collapse All Days' : 'Expand All Days';
+      const textSpan = toggleAllBtn.querySelector('span');
+      const label = allExpanded ? 'Collapse All Days' : 'Expand All Days';
+      if (textSpan) {
+        textSpan.textContent = label;
+      } else {
+        toggleAllBtn.textContent = label;
+      }
     });
   }
 
@@ -458,37 +464,109 @@ function initFrontApp() {
     });
   }
 
-  // 9. Initialize Leaflet Route Map if on Tour Detail page
-  const mapContainer = document.getElementById('tourLeafletMap');
-  if (mapContainer && typeof L !== 'undefined') {
-    try {
-      const waypointsRaw = mapContainer.getAttribute('data-waypoints');
-      const waypoints = JSON.parse(waypointsRaw || '[]');
-      if (waypoints.length > 0) {
-        const first = waypoints[0];
-        const map = L.map('tourLeafletMap').setView([first.lat, first.lng], 5);
+  // 9. Robust Leaflet Route Map Init (with auto-retry, fallback waypoints & tile refresh)
+  function initTourLeafletMap(retryCount) {
+    retryCount = retryCount || 0;
+    const mapContainer = document.getElementById('tourLeafletMap');
+    if (!mapContainer || mapContainer._leaflet_id) return;
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 18,
-          attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
-
-        const latlngs = [];
-        waypoints.forEach(wp => {
-          const latlng = [wp.lat, wp.lng];
-          latlngs.push(latlng);
-          L.marker(latlng).addTo(map).bindPopup('<b>' + wp.city + '</b><br/>' + wp.day);
-        });
-
-        if (latlngs.length > 1) {
-          const polyline = L.polyline(latlngs, { color: '#C8102E', weight: 4, opacity: 0.8, dashArray: '8, 8' }).addTo(map);
-          map.fitBounds(polyline.getBounds(), { padding: [30, 30] });
+    if (typeof L === 'undefined') {
+      if (retryCount < 60) {
+        setTimeout(() => initTourLeafletMap(retryCount + 1), 100);
+      } else {
+        if (!document.getElementById('leaflet-dynamic-cdn')) {
+          const s = document.createElement('script');
+          s.id = 'leaflet-dynamic-cdn';
+          s.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+          s.onload = () => initTourLeafletMap(0);
+          document.head.appendChild(s);
         }
       }
+      return;
+    }
+
+    try {
+      const waypointsRaw = mapContainer.getAttribute('data-waypoints');
+      let waypoints = [];
+      try { waypoints = JSON.parse(waypointsRaw || '[]'); } catch (e) {}
+
+      const CITY_COORDS = {
+        'beijing': { lat: 39.9042, lng: 116.4074, name: 'Beijing' },
+        "xi'an": { lat: 34.3416, lng: 108.9398, name: "Xi'an" },
+        'xian': { lat: 34.3416, lng: 108.9398, name: "Xi'an" },
+        'shanghai': { lat: 31.2304, lng: 121.4737, name: 'Shanghai' },
+        'chengdu': { lat: 30.5728, lng: 104.0668, name: 'Chengdu' },
+        'guilin': { lat: 25.2736, lng: 110.2902, name: 'Guilin' },
+        'zhangjiajie': { lat: 29.1170, lng: 110.4792, name: 'Zhangjiajie' },
+        'lhasa': { lat: 29.6525, lng: 91.1721, name: 'Lhasa' },
+        'tibet': { lat: 29.6525, lng: 91.1721, name: 'Tibet' },
+        'hong kong': { lat: 22.3193, lng: 114.1694, name: 'Hong Kong' },
+        'hangzhou': { lat: 30.2741, lng: 120.1551, name: 'Hangzhou' },
+        'suzhou': { lat: 31.2990, lng: 120.5853, name: 'Suzhou' },
+        'huangshan': { lat: 29.7147, lng: 118.3375, name: 'Huangshan' },
+        'kunming': { lat: 25.0453, lng: 102.7097, name: 'Kunming' },
+        'dali': { lat: 25.6065, lng: 100.2676, name: 'Dali' },
+        'lijiang': { lat: 26.8550, lng: 100.2277, name: 'Lijiang' },
+        'shangri-la': { lat: 27.8251, lng: 99.7073, name: 'Shangri-La' },
+        'luoyang': { lat: 34.6185, lng: 112.4539, name: 'Luoyang' }
+      };
+
+      if (!waypoints.length) {
+        const destsRaw = mapContainer.getAttribute('data-destinations') || '';
+        const destList = destsRaw.split(',').map(s => s.trim()).filter(Boolean);
+        destList.forEach((d, i) => {
+          const key = d.toLowerCase();
+          if (CITY_COORDS[key]) {
+            waypoints.push({
+              city: CITY_COORDS[key].name || d,
+              lat: CITY_COORDS[key].lat,
+              lng: CITY_COORDS[key].lng,
+              day: 'Day ' + (i + 1)
+            });
+          }
+        });
+      }
+
+      if (!waypoints.length) {
+        waypoints = [
+          { city: 'Beijing', lat: 39.9042, lng: 116.4074, day: 'Day 1' },
+          { city: "Xi'an", lat: 34.3416, lng: 108.9398, day: 'Day 2' },
+          { city: 'Shanghai', lat: 31.2304, lng: 121.4737, day: 'Day 3' }
+        ];
+      }
+
+      const first = waypoints[0];
+      const map = L.map('tourLeafletMap', { scrollWheelZoom: false }).setView([first.lat, first.lng], 5);
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        maxZoom: 18,
+        subdomains: 'abcd',
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+      }).addTo(map);
+
+      const latlngs = [];
+      waypoints.forEach(wp => {
+        const latlng = [wp.lat, wp.lng];
+        const dayText = wp.day ? ('<br/><span style="color:#C8102E;font-size:11px;font-weight:600;">' + wp.day + '</span>') : '';
+        L.marker(latlng).addTo(map).bindPopup('<div style="font-family:sans-serif;padding:2px 4px;"><b>' + (wp.city || '') + '</b>' + dayText + '</div>');
+      });
+
+      if (latlngs.length > 1) {
+        const polyline = L.polyline(latlngs, { color: '#C8102E', weight: 4, opacity: 0.85, dashArray: '8, 8' }).addTo(map);
+        map.fitBounds(polyline.getBounds(), { padding: [35, 35] });
+      } else if (latlngs.length === 1) {
+        map.setView(latlngs[0], 8);
+      }
+
+      setTimeout(() => map.invalidateSize(), 250);
+      setTimeout(() => map.invalidateSize(), 750);
+      window.addEventListener('resize', () => map.invalidateSize());
     } catch (e) {
-      console.warn('Map initialization:', e);
+      console.warn('Leaflet map initialization error:', e);
     }
   }
+
+  initTourLeafletMap(0);
 }
 
 if (document.readyState === 'loading') {

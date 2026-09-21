@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" data-theme="oriental_ink">
+<html lang="en" class="scroll-smooth" data-theme="classic">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Shanghai Travel Guide 2026 | Top Attractions, Hotels, Dining & Day Tours</title>
   <meta name="description" content="Discover authentic Shanghai, China. Handcrafted 1-day tours, 5-star heritage hotels, Michelin-recommended dining, licensed English guides, and 144-hour visa exemption tips." />
   <meta name="keywords" content="Shanghai tours, Shanghai day trip, Shanghai travel guide, Shanghai attractions, Shanghai hotels, Shanghai restaurants" />
@@ -41,14 +41,14 @@
         extend: {
           colors: {
             china: {
-              red: '#C83C23',
-              darkred: '#A92E18',
-              gold: '#4A6B5B',
-              darkgold: '#355043',
-              navy: '#1A1A1A',
-              slate: '#2C2C2C',
-              jade: '#4A6B5B',
-              cream: '#F7F5F0'
+              red: '#C8102E',
+              darkred: '#9B111E',
+              gold: '#C5A059',
+              darkgold: '#997328',
+              navy: '#0F1E36',
+              slate: '#1E293B',
+              jade: '#0A5C36',
+              cream: '#FDFBF7'
             }
           },
           fontFamily: {
@@ -66,9 +66,10 @@
     }
   </script>
 
-  <!-- Lucide Icons & Leaflet JS -->
+  <!-- Lucide Icons & Leaflet JS/CSS (Fast cdnjs globally accelerated) -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 
   <style>
     .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -76,41 +77,62 @@
 
     /* 双主题全局 CSS 变量与微润背景 */
     :root {
-      --theme-name: 'oriental_ink';
-      --color-primary: #C83C23;
-      --color-primary-dark: #A92E18;
-      --color-bg-body: #F7F5F0;
-      --color-text-main: #2C2C2C;
-      --color-secondary: #4A6B5B;
-      --color-navy: #1A1A1A;
+      --theme-name: 'classic';
+      --color-primary: #C8102E;
+      --color-primary-dark: #9B111E;
+      --color-bg-body: #FCFBF8;
+      --color-text-main: #1F2937;
+      --color-secondary: #C5A059;
+      --color-navy: #0F1E36;
     }
     
-    /* 东方雅韵·水墨宣纸主题微调 */
-    body {
-      background-color: #F7F5F0 !important;
-      color: #2C2C2C !important;
+
+    html, body {
+      overflow-x: clip;
+      max-width: 100%;
     }
-    /* 柔化边框与局部背景 */
-    .bg-slate-50, .bg-gray-50 {
-      background-color: #F3EFE8 !important;
+    /* 手机端全局模块与卡片圆角微调（更精致利落，避免大圆角在小屏过于臃肿） */
+    @media (max-width: 768px) {
+      .rounded-3xl {
+        border-radius: 12px !important;
+      }
+      .rounded-2xl {
+        border-radius: 10px !important;
+      }
+      .rounded-xl {
+        border-radius: 8px !important;
+      }
+      .rounded-t-3xl {
+        border-top-left-radius: 16px !important;
+        border-top-right-radius: 16px !important;
+      }
+      .rounded-t-2xl {
+        border-top-left-radius: 12px !important;
+        border-top-right-radius: 12px !important;
+      }
+      .rounded-b-3xl {
+        border-bottom-left-radius: 16px !important;
+        border-bottom-right-radius: 16px !important;
+      }
+      .rounded-b-2xl {
+        border-bottom-left-radius: 12px !important;
+        border-bottom-right-radius: 12px !important;
+      }
     }
-    .border-gray-100, .border-gray-200 {
-      border-color: #E7E2D8 !important;
-    }
-    
   </style>
 
   
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://travelchina.com/index.html"},{"@type":"ListItem","position":2,"name":"Destinations","item":"https://travelchina.com/destinations/index.html"},{"@type":"ListItem","position":3,"name":"Shanghai Guide"}]}</script>
   
 </head>
-<body class="bg-[#F7F5F0] text-[#2C2C2C] font-sans antialiased min-h-screen flex flex-col selection:bg-china-red selection:text-white">
+<body class="bg-[#FCFBF8] text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-china-red selection:text-white">
   
   <!-- Top Bar -->
+  
   <div class="bg-china-navy text-gray-300 text-xs py-2.5 px-4 border-b border-white/10 hidden md:block">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center space-x-6">
-        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-china-gold"></i> Certified China Inbound Tour Operator (Lic: L-BJ-CJ00889)</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-china-gold"></i> Certified China Inbound Tour Operator</span>
         <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5 text-china-gold"></i> 24/7 VIP Concierge: +86 (10) 5360-1728</span>
         <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5 text-china-gold"></i> service@travelchina.com</span>
       </div>
@@ -119,23 +141,27 @@
           <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp Concierge
         </a>
         <span class="text-white/20">|</span>
-        <span class="text-china-gold font-medium">144h Visa-Free Transit Guarantee</span>
+        
+          <a href="/insights/china-144-hour-visa-free-transit-guide.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">
+            <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i> 144h Visa-Free Transit Guarantee
+          </a>
+        
       </div>
     </div>
   </div>
+  
 
   <!-- Navigation Header -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
-        <a href="/index.html" class="flex items-center space-x-3 group">
-          <div class="w-11 h-11 bg-china-red rounded-xl flex items-center justify-center text-white font-serif font-bold text-2xl shadow-md group-hover:scale-105 transition-transform duration-300">
-            TC
-          </div>
-          <div>
-            <span class="font-serif font-bold text-2xl tracking-tight text-china-navy block">TRAVEL<span class="text-china-red">CHINA</span></span>
-            <span class="text-[10px] tracking-[0.25em] text-gray-500 uppercase block font-medium">DISCOVER THE MIDDLE KINGDOM</span>
-          </div>
+        <a href="/index.html" class="flex items-center space-x-3.5 group" aria-label="TravelChina.com - Premier Inbound Specialist">
+          
+            <div class="flex flex-col justify-center">
+              <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/brand/img-1789552533697-lph7.webp" alt="TravelChina.com - Premier Inbound Specialist" class="w-auto object-contain group-hover:scale-105 transition-transform duration-300" style="height: 28px;" />
+              
+            </div>
+          
         </a>
 
         <!-- Desktop Navigation with Hover Sub-menus & Tooltips -->
@@ -143,8 +169,8 @@
           
             <div class="relative group py-6">
               <a href="/tours/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>Hot Tours</span>
-                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">5A</span>
+                <span>Grand Tours</span>
+                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">Hot</span>
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
 
@@ -225,7 +251,7 @@
             <div class="relative group py-6">
               <a href="/day-tours/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
                 <span>Day Tours</span>
-                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">Hot</span>
+                
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
 
@@ -316,7 +342,7 @@
             
             <div class="relative group py-6">
               <a href="/destinations/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-china-red border-china-red font-bold">
-                <span>Destinations</span>
+                <span>Hot Cities</span>
                 
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
@@ -408,8 +434,8 @@
             
             <div class="relative group py-6">
               <a href="/hotels/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>China Hotels</span>
-                
+                <span>Selected Hotels</span>
+                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">best</span>
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
 
@@ -434,7 +460,7 @@
             
               <div class="relative group py-6">
                 <a href="/custom-tour.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                  <span>Tailor-Made</span>
+                  <span>Buid My Tour</span>
                   
                 </a>
 
@@ -446,7 +472,7 @@
                     <div class="relative z-10">
                       <div class="flex items-center justify-center gap-1 text-china-gold font-bold text-[11px] mb-1">
                         <i data-lucide="sparkles" class="w-3.5 h-3.5 text-china-gold"></i>
-                        <span>Tailor-Made</span>
+                        <span>Buid My Tour</span>
                       </div>
                       <p class="text-gray-200 font-normal text-[11px] leading-snug">100% Private, flexible & handcrafted journeys tailored to your pace and budget. test</p>
                     </div>
@@ -456,8 +482,8 @@
               
             <div class="relative group py-6">
               <a href="/insights/index.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>China Highlights</span>
-                <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 uppercase leading-tight">Hot</span>
+                <span>About China </span>
+                
                 <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 group-hover:text-china-red group-hover:rotate-180 transition-transform duration-200"></i>
               </a>
 
@@ -525,7 +551,7 @@
             </div>
             
               <a href="/about.html" class="font-medium text-sm transition-colors py-2 border-b-2 relative flex items-center gap-1.5 text-gray-700 border-transparent hover:text-china-red">
-                <span>About Us</span>
+                <span>Our Team</span>
                 
               </a>
               
@@ -533,8 +559,7 @@
 
         
 
-        <div class="flex lg:hidden items-center space-x-3">
-          <a href="/custom-tour.html" class="text-xs bg-china-red text-white px-3.5 py-1.5 rounded-full font-medium shadow">Plan Trip</a>
+        <div class="flex lg:hidden items-center">
           <button id="mobileMenuBtn" onclick="toggleMobileDrawer(event)" aria-label="Toggle Navigation" class="p-2 text-gray-700 hover:text-china-red rounded-lg focus:outline-none">
             <i data-lucide="menu" class="w-6 h-6 pointer-events-none"></i>
           </button>
@@ -548,8 +573,8 @@
         <div class="rounded-lg border border-gray-100 overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/tours/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
-              <span>Hot Tours</span>
-              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">5A</span>
+              <span>Grand Tours</span>
+              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">Hot</span>
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_0', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
               <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
@@ -612,7 +637,7 @@
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/day-tours/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
               <span>Day Tours</span>
-              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">Hot</span>
+              
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_1', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
               <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
@@ -682,7 +707,7 @@
         <div class="rounded-lg border border-gray-100 overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2.5 bg-red-50 text-china-red font-bold">
             <a href="/destinations/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
-              <span>Destinations</span>
+              <span>Hot Cities</span>
               
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_2', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
@@ -753,8 +778,8 @@
         <div class="rounded-lg border border-gray-100 overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/hotels/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
-              <span>China Hotels</span>
-              
+              <span>Selected Hotels</span>
+              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">best</span>
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_3', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
               <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
@@ -775,7 +800,7 @@
         
           <a href="/custom-tour.html" class="block px-3 py-2.5 rounded-lg text-base font-medium transition-colors text-gray-700 hover:bg-gray-50">
             <div class="flex items-center justify-between">
-              <span>Tailor-Made</span>
+              <span>Buid My Tour</span>
               
             </div>
             <p class="text-xs text-gray-400 font-normal mt-1 leading-snug">100% Private, flexible & handcrafted journeys tailored to your pace and budget. test</p>
@@ -784,8 +809,8 @@
         <div class="rounded-lg border border-gray-100 overflow-hidden">
           <div class="flex items-center justify-between px-3 py-2.5 text-gray-700 hover:bg-gray-50">
             <a href="/insights/index.html" class="flex-grow flex items-center justify-between pr-2 text-base font-medium">
-              <span>China Highlights</span>
-              <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-bold">Hot</span>
+              <span>About China </span>
+              
             </a>
             <button onclick="toggleMobileSubmenu('mobile_sub_5', this)" type="button" class="p-1.5 text-gray-400 hover:text-china-red focus:outline-none" aria-label="Toggle submenu">
               <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200"></i>
@@ -838,7 +863,7 @@
         
           <a href="/about.html" class="block px-3 py-2.5 rounded-lg text-base font-medium transition-colors text-gray-700 hover:bg-gray-50">
             <div class="flex items-center justify-between">
-              <span>About Us</span>
+              <span>Our Team</span>
               
             </div>
             
@@ -878,10 +903,10 @@
   <main class="flex-grow">
     
   <!-- Breadcrumb Navigation Bar -->
-  <nav class="bg-slate-50/90 border-b border-gray-200/80 py-3 text-xs text-gray-500 relative z-20" aria-label="Breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-2.5">
-      <ol class="flex items-center gap-1.5 flex-wrap min-w-0" itemscope itemtype="https://schema.org/BreadcrumbList">
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5">
+  <nav class="bg-slate-50/90 border-b border-gray-200/80 py-2.5 sm:py-3 text-xs text-gray-500 relative z-20 overflow-hidden" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
+      <ol class="flex items-center gap-1.5 flex-nowrap sm:flex-wrap min-w-0 overflow-hidden text-ellipsis whitespace-nowrap" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5 shrink-0">
           <a href="/index.html" itemprop="item" class="hover:text-china-red transition-colors flex items-center gap-1 font-medium text-gray-600">
             <i data-lucide="home" class="w-3.5 h-3.5 text-gray-400"></i>
             <span itemprop="name">Home</span>
@@ -889,7 +914,7 @@
           <meta itemprop="position" content="1" />
         </li>
         
-          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5 shrink-0">
             <span class="text-gray-400 shrink-0">/</span>
             <a href="/destinations/index.html" itemprop="item" class="hover:text-china-red transition-colors font-medium text-gray-600">
               <span itemprop="name">Destinations</span>
@@ -897,16 +922,16 @@
             <meta itemprop="position" content="2" />
           </li>
           
-            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5 min-w-0">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5 min-w-0 overflow-hidden">
               <span class="text-gray-400 shrink-0">/</span>
-              <span itemprop="name" class="text-china-navy font-bold truncate max-w-xs sm:max-w-md md:max-w-xl" aria-current="page">Shanghai Guide</span>
+              <span itemprop="name" class="text-china-navy font-bold truncate max-w-[130px] sm:max-w-md md:max-w-xl" aria-current="page">Shanghai Guide</span>
               
               <meta itemprop="position" content="3" />
             </li>
             
       </ol>
       
-      <div class="shrink-0 text-xs font-medium">
+      <div class="shrink-0 text-xs font-medium hidden sm:block">
         <a href="/destinations/index.html" class="text-china-red font-semibold hover:underline flex items-center gap-1"><i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> All Destinations</a>
       </div>
       
@@ -958,11 +983,11 @@
       <div class="flex flex-wrap items-center gap-3 sm:gap-4 mt-6 text-xs sm:text-sm text-gray-200">
         <div class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl border border-white/10">
           <i data-lucide="calendar" class="w-4 h-4 text-china-gold"></i>
-          <span>Best Season: <strong>April to October</strong></span>
+          <span>Best Season: <strong>October to November & March to May</strong></span>
         </div>
         <div class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl border border-white/10">
           <i data-lucide="shield-check" class="w-4 h-4 text-china-gold"></i>
-          <span>144-Hour Visa-Free Transit Eligible</span>
+          <span>144h Visa-Free Transit Eligible</span>
         </div>
         <div class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-xl border border-white/10">
           <i data-lucide="landmark" class="w-4 h-4 text-china-gold"></i>
@@ -999,6 +1024,38 @@
       <h2 class="font-serif text-2xl sm:text-3xl font-bold text-china-navy mb-4">About Shanghai</h2>
       <p class="text-gray-600 leading-relaxed text-sm sm:text-base">China's financial powerhouse showcases a dazzling contrast between the futuristic Pudong skyline and the historic colonial architecture along The Bund.</p>
       
+      
+      <div class="mt-8 pt-6 border-t border-gray-100">
+        <h3 class="text-xs uppercase font-bold tracking-wider text-china-navy mb-3">Key Highlights & Cultural Icons</h3>
+        <div class="flex flex-wrap gap-2.5">
+          
+            <span class="bg-red-50 text-china-red px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border border-red-100">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-china-red shrink-0"></i>
+              <span>The Bund & Pudong Skyline</span>
+            </span>
+          
+            <span class="bg-red-50 text-china-red px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border border-red-100">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-china-red shrink-0"></i>
+              <span>Yu Garden & Bazaar</span>
+            </span>
+          
+            <span class="bg-red-50 text-china-red px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border border-red-100">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-china-red shrink-0"></i>
+              <span>French Concession</span>
+            </span>
+          
+            <span class="bg-red-50 text-china-red px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border border-red-100">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-china-red shrink-0"></i>
+              <span>Shanghai Tower Observation Deck</span>
+            </span>
+          
+            <span class="bg-red-50 text-china-red px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 border border-red-100">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-china-red shrink-0"></i>
+              <span>Zhujiajiao Water Town</span>
+            </span>
+          
+        </div>
+      </div>
       
     </section>
 
@@ -1613,7 +1670,7 @@
                   <span class="font-bold text-amber-950 flex items-center gap-1 mb-0.5">
                     <i data-lucide="utensils" class="w-3 h-3 text-amber-700"></i> Must-Try Specialties:
                   </span>
-                  <span class="text-amber-900/80 line-clamp-2 leading-relaxed">20��先锋感官分子料理配定制名庄酒单、气味光影沉浸式呈现</span>
+                  <span class="text-amber-900/80 line-clamp-2 leading-relaxed">20道先锋感官分子料理配定制名庄酒单、气味光影沉浸式呈现</span>
                 </div>
                 
 
@@ -1677,7 +1734,7 @@
                 <h3 class="font-serif font-bold text-base text-china-navy group-hover:text-china-red transition-colors mt-0.5 leading-snug">
                   <a href="/tours/tc-101.html">China Golden Triangle Classic Tours</a>
                 </h3>
-                <p class="text-xs text-gray-500 mt-1.5 line-clamp-2"></p>
+                <p class="text-xs text-gray-500 mt-1.5 line-clamp-2">The definitive first-timer journey through China's most iconic imperial, ancient, and modern wonders. Marvel at the Great Wall and Forbidden City in Beijing, encounter the 2,200-year-old Terracotta Army in Xi'an, and experience the dazzling futuristic skyline of Shanghai.</p>
               </div>
               <div class="mt-4 flex items-center justify-between border-t border-gray-200/60 pt-3">
                 <span class="text-base font-bold text-china-red font-serif">From $1180</span>
@@ -1771,13 +1828,13 @@
           <div class="bg-white p-6 rounded-3xl shadow-card border border-gray-100 text-center flex flex-col items-center justify-between group">
             <div class="flex flex-col items-center">
               <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Emma Tang" class="w-20 h-20 rounded-full object-cover mb-3 shadow-md ring-2 ring-red-50 group-hover:scale-105 transition-transform" />
-              <span class="text-[10px] bg-red-50 text-china-red px-2.5 py-0.5 rounded-full font-bold uppercase mb-1 font-chinese"></span>
+              <span class="text-[10px] bg-red-50 text-china-red px-2.5 py-0.5 rounded-full font-bold uppercase mb-1 font-chinese">唐艺</span>
               <h3 class="font-serif font-bold text-base text-china-navy">Emma Tang</h3>
               <p class="text-[11px] text-gray-500 mt-0.5">Shanghai Art Deco Specialist</p>
               <div class="mt-3 text-xs text-gray-600 space-y-1 w-full text-left bg-gray-50 p-3 rounded-2xl">
                 <div><strong>Languages:</strong> English, Spanish</div>
-                <div><strong>Experience:</strong> 6 Years</div>
-                <div><strong>Daily Rate:</strong> <span class="text-china-red font-bold font-serif">$160/day</span></div>
+                <div><strong>Experience:</strong> 8 Years</div>
+                <div><strong>Daily Rate:</strong> <span class="text-china-red font-bold font-serif">$145/day</span></div>
               </div>
             </div>
             <button class="open-inquiry-btn mt-4 w-full py-2.5 bg-china-navy hover:bg-china-red text-white text-xs font-semibold rounded-xl transition-colors" data-tour-id="guide-guide-04" data-tour-title="Guide Booking: Emma Tang (Shanghai)">
@@ -1805,6 +1862,35 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
+          <article class="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100 flex flex-col group">
+            <div class="relative h-48 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80" alt="Ultimate Chengdu Travel Guide: Pandas, Teahouses & Authentic Sichuan Cuisine" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <span class="hidden md:inline-block absolute top-3 left-3 bg-china-red text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
+                Food & Dining
+              </span>
+            </div>
+            <div class="p-5 flex flex-col flex-grow justify-between">
+              <div>
+                <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                  <span>2026-09-10 15:40:32.870221+08</span>
+                  <span>•</span>
+                  <span>6 min read</span>
+                </div>
+                <h3 class="font-serif font-bold text-base text-china-navy group-hover:text-china-red transition-colors line-clamp-2 leading-snug">
+                  <a href="/insights/chengdu.html">Ultimate Chengdu Travel Guide: Pandas, Teahouses & Authentic Sichuan Cuisine</a>
+                </h3>
+                <p class="text-xs text-gray-500 mt-2 line-clamp-3 leading-relaxed">
+                  Discover Chengdu, China's laid-back capital of Sichuan province, where giant pandas munch bamboo, teahouses hum with the clink of gaiwan lids, and the cuisine delivers a sophisticated balance of heat, numbing spice, and savory depth. This practical guide covers 144/240-hour visa-free transit, using Alipay and WeChat Pay with international cards, high-speed rail connections, and must-try local dishes—from mild dandan noodles to bubbling hotpot. You'll also learn how to skip the lines at Panda Base, order tea like a local, and navigate Chengdu's famously safe streets with confidence. If you want a trip that feeds both your appetite and your spirit, start here.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <a href="/insights/chengdu.html" class="text-xs font-semibold text-china-red group-hover:underline flex items-center gap-1">
+                  Read Article <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+          
           <article class="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100 flex flex-col group">
             <div class="relative h-48 overflow-hidden">
               <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80" alt="3-Day Beijing Classic: Forbidden City Masterpieces, Private Great Wall Hikes & Hutong Foodie Adventures" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -1857,35 +1943,6 @@
               </div>
               <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
                 <a href="/insights/all-cashless-china-guide.html" class="text-xs font-semibold text-china-red group-hover:underline flex items-center gap-1">
-                  Read Article <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-                </a>
-              </div>
-            </div>
-          </article>
-          
-          <article class="bg-white rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 border border-gray-100 flex flex-col group">
-            <div class="relative h-48 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80" alt="Master China's High-Speed Rail: The Ultimate 12306 and Scenic Routes Guide" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <span class="hidden md:inline-block absolute top-3 left-3 bg-china-red text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
-                Transportation & Trains
-              </span>
-            </div>
-            <div class="p-5 flex flex-col flex-grow justify-between">
-              <div>
-                <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                  <span>2026-08-30 18:58:25.584711+08</span>
-                  <span>•</span>
-                  <span>7 min read</span>
-                </div>
-                <h3 class="font-serif font-bold text-base text-china-navy group-hover:text-china-red transition-colors line-clamp-2 leading-snug">
-                  <a href="/insights/china-high-speed-rail-masterclass.html">Master China's High-Speed Rail: The Ultimate 12306 and Scenic Routes Guide</a>
-                </h3>
-                <p class="text-xs text-gray-500 mt-2 line-clamp-3 leading-relaxed">
-                  Discover how international travelers can conquer China's high-speed rail network with ease. This comprehensive guide covers booking tickets via 12306 using foreign cards linked to Alipay and WeChat Pay, mastering airport-style station security, and navigating strict luggage rules. We also unlock the potential of the 144-hour visa-free transit policy to combine major cities seamlessly within one itinerary. Finally, we highlight the most breathtaking scenic routes, from karst peaks in Guilin to alpine passes in Qinling and the tea fields of Hangzhou. Packed with actionable tips on choosing window seats, avoiding third-party fees, and understanding punctuality, this ensures you ride safely and comfortably through the Middle Kingdom.
-                </p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-                <a href="/insights/china-high-speed-rail-masterclass.html" class="text-xs font-semibold text-china-red group-hover:underline flex items-center gap-1">
                   Read Article <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
                 </a>
               </div>
@@ -1964,7 +2021,7 @@
 
   <!-- Resource Lookup JSON & Modal Script -->
   <script id="cityResourcesData" type="application/json">
-    {"attr-attr-sh-shanghai-tower":{"id":"attr-sh-shanghai-tower","type":"attraction","typeLabel":"Must-See Landmark","badgeClass":"bg-china-red text-white","title":"Shanghai Tower & Lujiazui Skyline (上海中心大厦与陆家嘴天际线)","subtitle":"World's 2nd Tallest Skyscraper (632m) with 118th-Floor \"Top of Shanghai\" Observatory","rating":"4A级景区 / 现代建筑地标","price":"¥180 / 成人票 (约 $25.0)","priceLabel":"Reference Ticket Fee","cover":"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"],"description":"Ascend in the world's fastest elevator to 546 meters for breathtaking 360-degree views of Shanghai, the Huangpu River, Oriental Pearl Tower, and the Bund.","badges":["4A级景区 / 现代建筑地标","Cultural Heritage","Shanghai"],"actionLabel":"Include in My Custom Route","inquiryTitle":"Attraction Visit: Shanghai Tower & Lujiazui Skyline (上海中心大厦与陆家嘴天际线) (Shanghai)"},"attr-attr-sh-the-bund":{"id":"attr-sh-the-bund","type":"attraction","typeLabel":"Must-See Landmark","badgeClass":"bg-china-red text-white","title":"The Bund & Yu Garden (上海外滩与豫园名胜)","subtitle":"Centuries of Colonial Architecture Juxtaposed with 16th-Century Classic Jiangnan Garden","rating":"5A/4A级名胜景区","price":"豫园 ¥40 / 外滩免费","priceLabel":"Reference Ticket Fee","cover":"https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"],"description":"Stroll along the historic waterfront promenade lined with 52 diverse colonial buildings facing the futuristic Pudong skyline, and explore Yu Garden's serene koi ponds and ancient pavilions.","badges":["5A/4A级名胜景区","Cultural Heritage","Shanghai"],"actionLabel":"Include in My Custom Route","inquiryTitle":"Attraction Visit: The Bund & Yu Garden (上海外滩与豫园名胜) (Shanghai)"},"attr-attr-sh-zhujiajiao":{"id":"attr-sh-zhujiajiao","type":"attraction","typeLabel":"Must-See Landmark","badgeClass":"bg-china-red text-white","title":"Zhujiajiao Ancient Water Town (朱家角古镇 • 东方威尼斯)","subtitle":"1,700-Year-Old Water Town with Ming & Qing Stone Bridges, Canals & Hand-Rowed Gondolas","rating":"4A级景区 / 水乡古镇","price":"免费入园 / 景点联票 ¥60 (约 $8.5)","priceLabel":"Reference Ticket Fee","cover":"https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1200&q=80"],"description":"Wander through willow-lined canals, 36 historic stone bridges, ancient courtyards, teahouses, and Kezhi Garden on Shanghai's romantic western waterways.","badges":["4A级景区 / 水乡古镇","Cultural Heritage","Shanghai"],"actionLabel":"Include in My Custom Route","inquiryTitle":"Attraction Visit: Zhujiajiao Ancient Water Town (朱家角古镇 • 东方威尼斯) (Shanghai)"},"hotel-hotel-sh-amanyangyun":{"id":"hotel-sh-amanyangyun","type":"hotel","typeLabel":"Luxury & Heritage Hotel","badgeClass":"bg-slate-900 text-amber-400","title":"Amanyangyun Shanghai (上海养云安缦)","subtitle":"Ancient Ming & Qing Dynasty Village & Sacred Camphor Forest Sanctuary in Suburban Shanghai","rating":"5 ★ Luxury","price":"$750 - $1400 / 晚 (¥5,200 - ¥9,800)","priceLabel":"Nightly Rate Estimate","cover":"https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"],"description":"A monumental conservation project relocating 50 historic Jiangxi Ming-Qing villas and 10,000 ancient camphor trees into an ultra-luxury modern wellness haven.","badges":["5 Star","Verified Partner","Shanghai"],"actionLabel":"Inquire Hotel Room","inquiryTitle":"Hotel Booking: Amanyangyun Shanghai (上海养云安缦) (Shanghai)"},"hotel-hotel-sh-fairmont-peace":{"id":"hotel-sh-fairmont-peace","type":"hotel","typeLabel":"Luxury & Heritage Hotel","badgeClass":"bg-slate-900 text-amber-400","title":"Fairmont Peace Hotel Shanghai (上海和平饭店)","subtitle":"Iconic Art Deco heritage landmark overlooking The Bund & Huangpu River","rating":"5 ★ Luxury","price":"$320 - $480 / 晚","priceLabel":"Nightly Rate Estimate","cover":"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"],"description":"A legendary 1920s Art Deco masterpiece positioned directly on The Bund. Renowned for its Old Jazz Band, heritage museum, and spectacular panoramic views across the Huangpu River to the futuristic Lujiazui skyline.","badges":["5 Star","Verified Partner","Shanghai"],"actionLabel":"Inquire Hotel Room","inquiryTitle":"Hotel Booking: Fairmont Peace Hotel Shanghai (上海和平饭店) (Shanghai)"},"hotel-hotel-sh-peninsula":{"id":"hotel-sh-peninsula","type":"hotel","typeLabel":"Luxury & Heritage Hotel","badgeClass":"bg-slate-900 text-amber-400","title":"The Peninsula Shanghai (上海半岛酒店)","subtitle":"Art Deco Grandeur on The Bund with Breathtaking Huangpu River & Pudong Skyline Views","rating":"5 ★ Luxury","price":"$420 - $780 / 晚 (¥2,900 - ¥5,400)","priceLabel":"Nightly Rate Estimate","cover":"https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"],"description":"The only contemporary building constructed on The Bund in the past 60 years. Offers 5-star Michelin-starred dining, private river yacht, and bespoke Rolls-Royce fleet.","badges":["5 Star","Verified Partner","Shanghai"],"actionLabel":"Inquire Hotel Room","inquiryTitle":"Hotel Booking: The Peninsula Shanghai (上海半岛酒店) (Shanghai)"},"rest-rest-sh-lubolang":{"id":"rest-sh-lubolang","type":"restaurant","typeLabel":"Authentic Gastronomy","badgeClass":"bg-amber-500 text-slate-950 font-black","title":"Lu Bo Lang Restaurant (绿波廊酒楼 • 豫园总店)","subtitle":"State-Banquet Level Jiangnan Dim Sum by the Historic Zigzag Bridge","rating":"⭐ 米其林推荐 / 国家特级酒家","price":"$35 - $60 / 人 (¥220 - ¥400)","priceLabel":"Average Per Person","cover":"https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=1200&q=80"],"description":"Overlooking the tranquil pond and Zigzag Bridge of Yu Garden, Lu Bo Lang has served numerous foreign dignitaries and royalty with exquisite classic dim sum and authentic Shanghai Jiangnan cuisine.","signatureDishes":"南翔小笼包 (Crab Roe Soup Dumplings), 桂花拉糕 (Sweet Osmanthus Cake), 眉毛酥 (Eyebrow-shaped Crispy Pastry), 松鼠桂鱼 (Sweet & Sour Mandarin Fish)","dietaryTags":["English Menu Available","Vegetarian-Friendly","Non-Spicy","Scenic Garden View"],"badges":["江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","⭐ 米其林推荐 / 国家特级酒家","Shanghai"],"actionLabel":"Reserve Table Arrangement","inquiryTitle":"Dining Arrangement: Lu Bo Lang Restaurant (绿波廊酒楼 • 豫园总店) (Shanghai)"},"rest-rest-sh-nanxiang":{"id":"rest-sh-nanxiang","type":"restaurant","typeLabel":"Authentic Gastronomy","badgeClass":"bg-amber-500 text-slate-950 font-black","title":"Nanxiang Steamed Bun Restaurant (南翔馒头店 • 豫园九曲桥总店)","subtitle":"120-Year Intangible Cultural Heritage • Shanghai's Most Celebrated Xiao Long Bao","rating":"🏆 中华百年老字号 / 非物质文化遗产","price":"$15 - $30 / 人 (¥90 - ¥190)","priceLabel":"Average Per Person","cover":"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"],"description":"Located right at the Nine-Turn Bridge in Yu Garden since 1900. World-famous for paper-thin translucent dumpling skin and piping-hot, rich savory broth inside.","signatureDishes":"传统鲜肉小笼灌汤包、蟹粉鲜肉小笼、豫园清汤蟹粉生煎、桂花拉糕","dietaryTags":["English Menu Available","Quick Service","Non-Spicy Options","Historic Landmark"],"badges":["江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","🏆 中华百年老字号 / 非物质文化遗产","Shanghai"],"actionLabel":"Reserve Table Arrangement","inquiryTitle":"Dining Arrangement: Nanxiang Steamed Bun Restaurant (南翔馒头店 • 豫园九曲桥总店) (Shanghai)"},"rest-rest-sh-ultraviolet":{"id":"rest-sh-ultraviolet","type":"restaurant","typeLabel":"Authentic Gastronomy","badgeClass":"bg-amber-500 text-slate-950 font-black","title":"Ultraviolet by Paul Pairet (超感官沉浸式多媒体餐厅)","subtitle":"3 Michelin Stars & World's 50 Best • Revolutionary 10-Seat Multi-Sensory Dining Journey","rating":"⭐ 米其林推荐 / 国家特级酒家","price":"$600 - $1,100 / 人 (¥4,000 - ¥7,500)","priceLabel":"Average Per Person","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"],"description":"A secret location in Shanghai where 10 diners experience a synchronized 20-course avant-garde meal combining high-definition 360-degree video, scent diffusers, and surround music.","signatureDishes":"20��先锋感官分子料理配定制名庄酒单、气味光影沉浸式呈现","dietaryTags":["English Fluent","Michelin 3-Star","Advance Reservation Required","Bucket List Experience"],"badges":["江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","⭐ 米其林推荐 / 国家特级酒家","Shanghai"],"actionLabel":"Reserve Table Arrangement","inquiryTitle":"Dining Arrangement: Ultraviolet by Paul Pairet (超感官沉浸式多媒体餐厅) (Shanghai)"}}
+    {"attr-attr-sh-shanghai-tower":{"id":"attr-sh-shanghai-tower","type":"attraction","typeLabel":"Must-See Landmark","badgeClass":"bg-china-red text-white","title":"Shanghai Tower & Lujiazui Skyline (上海中心大厦与陆家嘴天际线)","subtitle":"World's 2nd Tallest Skyscraper (632m) with 118th-Floor \"Top of Shanghai\" Observatory","rating":"4A级景区 / 现代建筑地标","price":"¥180 / 成人票 (约 $25.0)","priceLabel":"Reference Ticket Fee","cover":"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"],"description":"Ascend in the world's fastest elevator to 546 meters for breathtaking 360-degree views of Shanghai, the Huangpu River, Oriental Pearl Tower, and the Bund.","badges":["4A级景区 / 现代建筑地标","Cultural Heritage","Shanghai"],"actionLabel":"Include in My Custom Route","inquiryTitle":"Attraction Visit: Shanghai Tower & Lujiazui Skyline (上海中心大厦与陆家嘴天际线) (Shanghai)"},"attr-attr-sh-the-bund":{"id":"attr-sh-the-bund","type":"attraction","typeLabel":"Must-See Landmark","badgeClass":"bg-china-red text-white","title":"The Bund & Yu Garden (上海外滩与豫园名胜)","subtitle":"Centuries of Colonial Architecture Juxtaposed with 16th-Century Classic Jiangnan Garden","rating":"5A/4A级名胜景区","price":"豫园 ¥40 / 外滩免费","priceLabel":"Reference Ticket Fee","cover":"https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80"],"description":"Stroll along the historic waterfront promenade lined with 52 diverse colonial buildings facing the futuristic Pudong skyline, and explore Yu Garden's serene koi ponds and ancient pavilions.","badges":["5A/4A级名胜景区","Cultural Heritage","Shanghai"],"actionLabel":"Include in My Custom Route","inquiryTitle":"Attraction Visit: The Bund & Yu Garden (上海外滩与豫园名胜) (Shanghai)"},"attr-attr-sh-zhujiajiao":{"id":"attr-sh-zhujiajiao","type":"attraction","typeLabel":"Must-See Landmark","badgeClass":"bg-china-red text-white","title":"Zhujiajiao Ancient Water Town (朱家角古镇 • 东方威尼斯)","subtitle":"1,700-Year-Old Water Town with Ming & Qing Stone Bridges, Canals & Hand-Rowed Gondolas","rating":"4A级景区 / 水乡古镇","price":"免费入园 / 景点联票 ¥60 (约 $8.5)","priceLabel":"Reference Ticket Fee","cover":"https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?auto=format&fit=crop&w=1200&q=80"],"description":"Wander through willow-lined canals, 36 historic stone bridges, ancient courtyards, teahouses, and Kezhi Garden on Shanghai's romantic western waterways.","badges":["4A级景区 / 水乡古镇","Cultural Heritage","Shanghai"],"actionLabel":"Include in My Custom Route","inquiryTitle":"Attraction Visit: Zhujiajiao Ancient Water Town (朱家角古镇 • 东方威尼斯) (Shanghai)"},"hotel-hotel-sh-amanyangyun":{"id":"hotel-sh-amanyangyun","type":"hotel","typeLabel":"Luxury & Heritage Hotel","badgeClass":"bg-slate-900 text-amber-400","title":"Amanyangyun Shanghai (上海养云安缦)","subtitle":"Ancient Ming & Qing Dynasty Village & Sacred Camphor Forest Sanctuary in Suburban Shanghai","rating":"5 ★ Luxury","price":"$750 - $1400 / 晚 (¥5,200 - ¥9,800)","priceLabel":"Nightly Rate Estimate","cover":"https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"],"description":"A monumental conservation project relocating 50 historic Jiangxi Ming-Qing villas and 10,000 ancient camphor trees into an ultra-luxury modern wellness haven.","badges":["5 Star","Verified Partner","Shanghai"],"actionLabel":"Inquire Hotel Room","inquiryTitle":"Hotel Booking: Amanyangyun Shanghai (上海养云安缦) (Shanghai)"},"hotel-hotel-sh-fairmont-peace":{"id":"hotel-sh-fairmont-peace","type":"hotel","typeLabel":"Luxury & Heritage Hotel","badgeClass":"bg-slate-900 text-amber-400","title":"Fairmont Peace Hotel Shanghai (上海和平饭店)","subtitle":"Iconic Art Deco heritage landmark overlooking The Bund & Huangpu River","rating":"5 ★ Luxury","price":"$320 - $480 / 晚","priceLabel":"Nightly Rate Estimate","cover":"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"],"description":"A legendary 1920s Art Deco masterpiece positioned directly on The Bund. Renowned for its Old Jazz Band, heritage museum, and spectacular panoramic views across the Huangpu River to the futuristic Lujiazui skyline.","badges":["5 Star","Verified Partner","Shanghai"],"actionLabel":"Inquire Hotel Room","inquiryTitle":"Hotel Booking: Fairmont Peace Hotel Shanghai (上海和平饭店) (Shanghai)"},"hotel-hotel-sh-peninsula":{"id":"hotel-sh-peninsula","type":"hotel","typeLabel":"Luxury & Heritage Hotel","badgeClass":"bg-slate-900 text-amber-400","title":"The Peninsula Shanghai (上海半岛酒店)","subtitle":"Art Deco Grandeur on The Bund with Breathtaking Huangpu River & Pudong Skyline Views","rating":"5 ★ Luxury","price":"$420 - $780 / 晚 (¥2,900 - ¥5,400)","priceLabel":"Nightly Rate Estimate","cover":"https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"],"description":"The only contemporary building constructed on The Bund in the past 60 years. Offers 5-star Michelin-starred dining, private river yacht, and bespoke Rolls-Royce fleet.","badges":["5 Star","Verified Partner","Shanghai"],"actionLabel":"Inquire Hotel Room","inquiryTitle":"Hotel Booking: The Peninsula Shanghai (上海半岛酒店) (Shanghai)"},"rest-rest-sh-lubolang":{"id":"rest-sh-lubolang","type":"restaurant","typeLabel":"Authentic Gastronomy","badgeClass":"bg-amber-500 text-slate-950 font-black","title":"Lu Bo Lang Restaurant (绿波廊酒楼 • 豫园总店)","subtitle":"State-Banquet Level Jiangnan Dim Sum by the Historic Zigzag Bridge","rating":"⭐ 米其林推荐 / 国家特级酒家","price":"$35 - $60 / 人 (¥220 - ¥400)","priceLabel":"Average Per Person","cover":"https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1200&q=80","https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=1200&q=80"],"description":"Overlooking the tranquil pond and Zigzag Bridge of Yu Garden, Lu Bo Lang has served numerous foreign dignitaries and royalty with exquisite classic dim sum and authentic Shanghai Jiangnan cuisine.","signatureDishes":"南翔小笼包 (Crab Roe Soup Dumplings), 桂花拉糕 (Sweet Osmanthus Cake), 眉毛酥 (Eyebrow-shaped Crispy Pastry), 松鼠桂鱼 (Sweet & Sour Mandarin Fish)","dietaryTags":["English Menu Available","Vegetarian-Friendly","Non-Spicy","Scenic Garden View"],"badges":["江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","⭐ 米其林推荐 / 国家特级酒家","Shanghai"],"actionLabel":"Reserve Table Arrangement","inquiryTitle":"Dining Arrangement: Lu Bo Lang Restaurant (绿波廊酒楼 • 豫园总店) (Shanghai)"},"rest-rest-sh-nanxiang":{"id":"rest-sh-nanxiang","type":"restaurant","typeLabel":"Authentic Gastronomy","badgeClass":"bg-amber-500 text-slate-950 font-black","title":"Nanxiang Steamed Bun Restaurant (南翔馒头店 • 豫园九曲桥总店)","subtitle":"120-Year Intangible Cultural Heritage • Shanghai's Most Celebrated Xiao Long Bao","rating":"🏆 中华百年老字号 / 非物质文化遗产","price":"$15 - $30 / 人 (¥90 - ¥190)","priceLabel":"Average Per Person","cover":"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"],"description":"Located right at the Nine-Turn Bridge in Yu Garden since 1900. World-famous for paper-thin translucent dumpling skin and piping-hot, rich savory broth inside.","signatureDishes":"传统鲜肉小笼灌汤包、蟹粉鲜肉小笼、豫园清汤蟹粉生煎、桂花拉糕","dietaryTags":["English Menu Available","Quick Service","Non-Spicy Options","Historic Landmark"],"badges":["江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","🏆 中华百年老字号 / 非物质文化遗产","Shanghai"],"actionLabel":"Reserve Table Arrangement","inquiryTitle":"Dining Arrangement: Nanxiang Steamed Bun Restaurant (南翔馒头店 • 豫园九曲桥总店) (Shanghai)"},"rest-rest-sh-ultraviolet":{"id":"rest-sh-ultraviolet","type":"restaurant","typeLabel":"Authentic Gastronomy","badgeClass":"bg-amber-500 text-slate-950 font-black","title":"Ultraviolet by Paul Pairet (超感官沉浸式多媒体餐厅)","subtitle":"3 Michelin Stars & World's 50 Best • Revolutionary 10-Seat Multi-Sensory Dining Journey","rating":"⭐ 米其林推荐 / 国家特级酒家","price":"$600 - $1,100 / 人 (¥4,000 - ¥7,500)","priceLabel":"Average Per Person","cover":"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","gallery":["https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"],"description":"A secret location in Shanghai where 10 diners experience a synchronized 20-course avant-garde meal combining high-definition 360-degree video, scent diffusers, and surround music.","signatureDishes":"20道先锋感官分子料理配定制名庄酒单、气味光影沉浸式呈现","dietaryTags":["English Fluent","Michelin 3-Star","Advance Reservation Required","Bucket List Experience"],"badges":["江南本帮菜 / 经典海派点心 (Jiangnan & Cantonese Dim Sum)","⭐ 米其林推荐 / 国家特级酒家","Shanghai"],"actionLabel":"Reserve Table Arrangement","inquiryTitle":"Dining Arrangement: Ultraviolet by Paul Pairet (超感官沉浸式多媒体餐厅) (Shanghai)"}}
   </script>
 
   <script>
@@ -2138,12 +2195,14 @@
       <div class="pb-8 border-b border-white/10 md:border-b-0 md:pb-0">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
           <div class="lg:col-span-2 space-y-3.5">
-            <div class="flex items-center space-x-3">
-              <div class="w-9 h-9 sm:w-10 sm:h-10 bg-china-red rounded-lg flex items-center justify-center text-white font-serif font-bold text-lg sm:text-xl">
-                TC
-              </div>
-              <span class="font-serif font-bold text-xl sm:text-2xl tracking-tight text-white">TRAVEL<span class="text-china-red">CHINA</span></span>
-            </div>
+            <a href="/index.html" class="flex items-center space-x-3.5 group" aria-label="TravelChina.com - Premier Inbound Specialist">
+              
+                <div class="flex flex-col justify-center">
+                  <img src="https://7472-travelchina-d1gj8y48be5df37fd-1321205937.tcb.qcloud.la/assets/images/brand/img-1789552533697-lph7.webp" alt="TravelChina.com - Premier Inbound Specialist" class="w-auto object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.22)] group-hover:scale-105 transition-transform duration-300" style="height: 34px;" />
+                  
+                </div>
+              
+            </a>
             <p class="text-xs sm:text-sm text-gray-400 leading-relaxed pr-2 sm:pr-6">
               TravelChina.com is an official premier inbound travel specialist dedicated to delivering authentic, private, and tailor-made journeys across China for worldwide international travelers.
             </p>
@@ -2230,7 +2289,7 @@
             <div><a href="/tours/tc-103.html" class="block py-1 hover:text-china-gold transition-colors">Silk Road Odyssey (10 Days)</a></div>
             <div><a href="/tours/tc-104.html" class="block py-1 hover:text-china-gold transition-colors">Avatar Mountains & Yangtze (11 Days)</a></div>
             <div><a href="/tours/tc-105.html" class="block py-1 hover:text-china-gold transition-colors">Tibet & Mt. Everest (8 Days)</a></div>
-            <div class="pt-1"><a href="/tours/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">View All 8 Tours <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a></div>
+            <div class="pt-1"><a href="/tours/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">View All 8 Tours <i data-lucide="chevron-right" class="w-3 h-3"></i></a></div>
           </div>
         </div>
 
@@ -2250,7 +2309,7 @@
             <div><a href="/destinations/shanghai.html" class="block py-1 hover:text-china-gold transition-colors">Shanghai & Water Towns</a></div>
             <div><a href="/destinations/chengdu.html" class="block py-1 hover:text-china-gold transition-colors">Chengdu Giant Pandas</a></div>
             <div><a href="/destinations/zhangjiajie.html" class="block py-1 hover:text-china-gold transition-colors">Zhangjiajie Avatar Mountains</a></div>
-            <div class="pt-1"><a href="/destinations/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">Explore All Cities <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></a></div>
+            <div class="pt-1"><a href="/destinations/index.html" class="text-china-gold font-medium hover:underline flex items-center gap-1">Explore All Cities <i data-lucide="chevron-right" class="w-3 h-3"></i></a></div>
           </div>
         </div>
 
